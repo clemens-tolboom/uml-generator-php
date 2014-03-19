@@ -30,8 +30,14 @@ class OopToJson
                 $node = [
                     'type' => 'class',
                     'name' => $statement->name,
+                    'extends' => join('\\', $statement->extends->parts),
                     'children' => $this->parseLevel($statement->stmts)
                 ];
+                $implements = [];
+                foreach($statement->implements as $implement){
+                    $implements[] = join('\\', $implement->parts);
+                }
+                $node['implements'] = $implements;
                 $ret[] = $node;
             } elseif ($statement instanceof Stmt\Property) {
                 $node = [
