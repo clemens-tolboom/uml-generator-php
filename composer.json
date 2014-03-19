@@ -9,6 +9,11 @@
             "email": "clemens@build2be.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "UmlGeneratorPhp\\": "src/"
+        }
+    },
     "require": {
         "nikic/php-parser": "1.0.*@dev"
     },
