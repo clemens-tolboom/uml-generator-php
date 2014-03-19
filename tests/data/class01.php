@@ -1,12 +1,35 @@
 <?php
-class ExampleClass{
-  private $exampleproperty;
 
-  function __construct($exampleargument){
-    $this->exampleproperty = $exampleargument;
-  }
+class ExampleClass
+{
+    private $privateVar;
+    protected $protectedVar;
+    public $publicVar;
+    static $staticVar = "staticValue";
 
-  function getExampled(){
-    return $this->exampleproperty . ' example!';
-  }
+    function __construct($exampleargument)
+    {
+        $this->exampleproperty = $exampleargument;
+    }
+
+    public function publicFunction()
+    {
+    }
+
+    function publicByDefaultFunction()
+    {
+    }
+
+    static function staticFunction()
+    {
+    }
+
+    private function privateFunction()
+    {
+    }
+
+    protected function protectedFunction()
+    {
+    }
+
 }
