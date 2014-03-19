@@ -13,6 +13,7 @@ class JsonGenerator{
     }
 
     public function getJson(){
+        print_r($this->statements);
         $functiontree = $this->parseLevel($this->statements);
         print_r($functiontree);
         return json_encode($functiontree);
@@ -31,7 +32,8 @@ class JsonGenerator{
             }elseif($statement instanceof Stmt\Function_ || $statement instanceof Stmt\ClassMethod){
                 $node = [
                     'type' => $statement instanceof Stmt\Function_ ? 'function' : 'method',
-                    'name' => $statement->name
+                    'name' => $statement->name,
+                    'scope' => $statement->getType()
                 ];
                 $params = [];
                 foreach($statement->params as $param){
@@ -41,6 +43,25 @@ class JsonGenerator{
                     ];
                 }
                 $node['parameters'] = $params;
+
+                if($statement instanceof Stmt\ClassMethod){
+                    //TODO: Workaround for issue https://github.com/clemens-tolboom/uml-generator-php/issues/4
+                    $node['visibility'] = 'public';
+                    if($statement->type & Stmt\Class_::MODIFIER_PUBLIC){
+                        $node['visibility'] = 'public';
+                    }elseif($statement->type & Stmt\Class_::MODIFIER_PROTECTED){
+                        $node['visibility'] = 'protected';
+                    }elseif($statement->type & Stmt\Class_::MODIFIER_PRIVATE){
+                        $node['visibility'] = 'private';
+                    }
+                    if($statement->type & Stmt\Class_::MODIFIER_STATIC){
+                        $node['scope'] = 'classifier';
+                    }else{
+                        $node['scope'] = 'instance';
+                    }
+
+                }
+
                 $ret[] = $node;
             }
         }

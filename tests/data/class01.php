@@ -24,6 +24,18 @@ class ExampleClass
     {
     }
 
+    public static function publicStaticFunction()
+    {
+    }
+
+    private static function privateStaticFunction()
+    {
+    }
+
+    protected  static function protectedStaticFunction()
+    {
+    }
+
     private function privateFunction()
     {
     }
