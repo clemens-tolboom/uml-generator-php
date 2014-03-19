@@ -1,0 +1,15 @@
+{
+    "name": "clemens-tolboom/uml-php-parser",
+    "description": "Parser PHP into UML diagrams.",
+    "minimum-stability": "dev",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Clemens Tolboom",
+            "email": "clemens@build2be.com"
+        }
+    ],
+    "require": {
+        "nikic/php-parser": "1.0.*@dev"
+    }
+}
