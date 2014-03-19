@@ -39,6 +39,15 @@ class OopToJson
                 }
                 $node['implements'] = $implements;
                 $ret[] = $node;
+            } elseif ($statement instanceof Stmt\TraitUse) {
+                foreach($statement->traits as $trait){
+                    $node = [
+                        'type' => 'traituse',
+                        'name' => join('\\', $trait->parts)
+                    ];
+                    $ret[] = $node;
+                }
+
             } elseif ($statement instanceof Stmt\Property) {
                 $node = [
                     'type' => 'attribute',
