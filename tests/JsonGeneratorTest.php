@@ -11,11 +11,11 @@ namespace UmlGeneratorPhp;
 
 class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
 {
-    private $jsonGenerator;
+    private $oopToJson;
 
     public function setUp()
     {
-        $this->jsonGenerator = new JsonGenerator(file_get_contents(__DIR__ . '/data/class01.php'));
+        $this->oopToJson = new OopToJson(file_get_contents(__DIR__ . '/data/class01.php'));
     }
 
     public function testGetJson(){
@@ -27,7 +27,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
 
     public function testGenerateHTML()
     {
-        $json = $this->jsonGenerator->getJson();
+        $json = $this->oopToJson->getJson();
         $array = json_decode($json);
 
         print_r($array);

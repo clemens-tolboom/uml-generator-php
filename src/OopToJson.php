@@ -3,7 +3,7 @@ namespace UmlGeneratorPhp;
 
 use PhpParser\Node\Stmt;
 
-class JsonGenerator
+class OopToJson
 {
     private $phpparser;
     private $statements;
