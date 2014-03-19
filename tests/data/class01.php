@@ -1,7 +1,10 @@
 <?php
 
-class ExampleClass
+class ExampleClass extends SimpleExampleClass implements Examples, Things
 {
+    use ExampleTrait;
+    use OtherTrait;
+
     private $privateVar;
     protected $protectedVar;
     public $publicVar;
