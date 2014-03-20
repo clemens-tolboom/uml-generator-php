@@ -1,14 +1,18 @@
 #!/usr/bin/env php
 <?php
-require_once('../vendor/autoload.php');
+
 if($argc != 2){
-    echo 'Usage: json2dot directory'.PHP_EOL;
+    echo 'Usage: json2dot <directory>'.PHP_EOL;
     exit();
 }
-if(!is_dir($argv[1])){
-    echo 'Inputdirectory is not a directory'.PHP_EOL;
-}
+
 $directory = $argv[1];
+
+if(!is_dir($directory)){
+    echo 'Input directory is not a directory'.PHP_EOL;
+}
+
+require_once(__DIR__ . '/../vendor/autoload.php');
 
 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
 $files = new RegexIterator($files, '/\.json$/');
@@ -16,9 +20,10 @@ $files = new RegexIterator($files, '/\.json$/');
 foreach($files as $file){
     $array = json_decode(file_get_contents($file));
     $dot = getDot($array);
-    echo $file . PHP_EOL;
+
     $pinfo=pathinfo($file);
     $outputfile = $pinfo['dirname'] . '/' . $pinfo['filename'] . '.dot';
+    echo $outputfile . PHP_EOL;
     file_put_contents($outputfile, $dot);
 
 }
