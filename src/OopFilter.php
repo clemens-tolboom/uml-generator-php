@@ -12,22 +12,28 @@ use PhpParser\Node\Stmt;
 
 class OopFilter extends \PhpParser\NodeVisitorAbstract
 {
-    var $result = [];
+    var $currentnamespace = '';
 
     public function leaveNode(Node $statement) {
         if ($statement instanceof Stmt\Class_) {
             $node = [
                 'type' => 'class',
+                'namespace' => $this->currentnamespace,
                 'name' => $statement->name,
-                'extends' => join('\\', $statement->extends->parts),
                 'children' => $statement->stmts
             ];
+            if(isset($statement->extends->parts)){
+                $node['extends'] = join('\\', $statement->extends->parts);
+            }
             $implements = [];
             foreach($statement->implements as $implement){
                 $implements[] = join('\\', $implement->parts);
             }
             $node['implements'] = $implements;
             return [$node];
+        } elseif ($statement instanceof Stmt\Namespace_){
+            $this->currentnamespace = $statement->name;
+            return [$statement->stmts];
         } elseif ($statement instanceof Stmt\TraitUse) {
             foreach($statement->traits as $trait){
                 $node = [
