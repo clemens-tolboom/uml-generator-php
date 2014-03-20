@@ -28,11 +28,25 @@ foreach($files as $file){
 
 }
 
+/**
+ * Generate an UML CLass Digram dot file based on the given objects
+ *
+ * TODO: alignments
+ * TODO: links to Name, vars and methods
+ * TODO: add stereotype: <<class>>, <<interface>>, <<trait>>
+ *
+ * @param $array
+ * @return string
+ */
 function getDot($array){
-    foreach ($array as $object) {
-        $result = array();
+    $result = array();
+    $result[] = 'graph "Class Diagram" {';
+    $result[] = "  node [shape=plaintext]";
+    foreach ($array as $index => $object) {
+        $result[] = "  node_$index [";
+        $result[] = "    label=<";
         $result[] = '<table >';
-        $result[]= '<tr><td align="center">' . $object->name . '</td></tr>';
+        $result[]= '<tr><td align="center" href="http://api.drupal.org/">' . $object->name . '</td></tr>';
 
         $methods = array_filter($object->children, function ($item) {
             return $item->type == 'method';
@@ -65,9 +79,12 @@ function getDot($array){
 
         }
         $result[] = '</table>';
+        $result[] = "  >";
 
-        $label = join(PHP_EOL, $result);
-        return "node [label=<\n$label\n>];";
+        $result[] = "  ];";
     }
+    $result[] = "}";
+
+    return join(PHP_EOL, $result);
 
 }
