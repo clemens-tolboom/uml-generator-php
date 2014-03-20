@@ -11,24 +11,23 @@ namespace UmlGeneratorPhp;
 
 class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
 {
-    private $oopToJson;
+    private $OopTreeArray;
 
     public function setUp()
     {
-        $this->oopToJson = new OopToJson(file_get_contents(__DIR__ . '/data/class01.php'));
+        $code = file_get_contents(__DIR__ . '/data/class01.php');
+        $parser = new \PhpParser\Parser(new \PhpParser\Lexer);
+        $traverser = new \PhpParser\NodeTraverser;
+        $visitor = new OopFilter;
+        $traverser->addVisitor($visitor);
+        $stmts = $parser->parse($code);
+        $this->OopTreeArray = $traverser->traverse($stmts);
     }
 
-    public function testGetJson(){
-        $json = $this->jsongenerator->getJson();
-        $output = json_decode($json, true);
-        $expected = json_decode('[{"type":"class","name":"ExampleClass","children":[{"type":"method","name":"__construct","scope":"instance","parameters":[{"name":"exampleargument","type":null}],"visibility":"public"},{"type":"method","name":"publicFunction","scope":"instance","parameters":[],"visibility":"public"},{"type":"method","name":"publicByDefaultFunction","scope":"instance","parameters":[],"visibility":"public"},{"type":"method","name":"staticFunction","scope":"classifier","parameters":[],"visibility":"public"},{"type":"method","name":"publicStaticFunction","scope":"classifier","parameters":[],"visibility":"public"},{"type":"method","name":"privateStaticFunction","scope":"classifier","parameters":[],"visibility":"private"},{"type":"method","name":"protectedStaticFunction","scope":"classifier","parameters":[],"visibility":"protected"},{"type":"method","name":"privateFunction","scope":"instance","parameters":[],"visibility":"private"},{"type":"method","name":"protectedFunction","scope":"instance","parameters":[],"visibility":"protected"}]}]',true);
-        $this->assertEquals($expected, $output);
-    }
 
     public function testGenerateHTML()
     {
-        $json = $this->oopToJson->getJson();
-        $array = json_decode($json);
+        $array = json_decode(json_encode($this->OopTreeArray));
 
         print_r($array);
 
