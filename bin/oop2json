@@ -1,0 +1,35 @@
+#!/usr/bin/env php
+<?php
+require_once('../vendor/autoload.php');
+if($argc != 3){
+    echo 'Usage: oop2json inputdirectory outputdirectory'.PHP_EOL;
+    exit();
+}
+if(!is_dir($argv[1])){
+    echo 'Inputdirectory is not a directory'.PHP_EOL;
+}
+if(!is_dir($argv[2])){
+    echo 'Outputdirectory is not a directory'.PHP_EOL;
+}
+list(,$inputdir,$outputdir) = $argv;
+
+$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($inputdir));
+$files = new RegexIterator($files, '/\.php$/');
+
+foreach($files as $file){
+    $code = file_get_contents($file);
+    $parser = new \PhpParser\Parser(new \PhpParser\Lexer);
+    $traverser = new \PhpParser\NodeTraverser;
+    $visitor = new UmlGeneratorPhp\OopFilter;
+    $traverser->addVisitor($visitor);
+    $stmts = $parser->parse($code);
+    $tree = $traverser->traverse($stmts);
+    echo $file.PHP_EOL;
+    $pinfo=pathinfo($file);
+    $outputfiledir = str_replace($inputdir, $outputdir, $pinfo['dirname']);
+    $outputfile = $outputfiledir . $pinfo['filename'] . '.json';
+    if(!is_dir($outputfiledir)){
+        mkdir($outputfiledir,0777,true);
+    }
+    file_put_contents($outputfile, json_encode($tree));
+}
