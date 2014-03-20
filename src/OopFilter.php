@@ -44,7 +44,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             return [$node];
         } elseif ($statement instanceof Stmt\Namespace_){
             $this->currentnamespace = $statement->name;
-            return [$statement->stmts];
+            return $statement->stmts;
         } elseif ($statement instanceof Stmt\TraitUse) {
             foreach($statement->traits as $trait){
                 $node = [
