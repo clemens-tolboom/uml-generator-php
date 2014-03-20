@@ -1,22 +1,30 @@
 #!/usr/bin/env php
 <?php
-require_once('../vendor/autoload.php');
+
 if($argc != 3){
-    echo 'Usage: oop2json inputdirectory outputdirectory'.PHP_EOL;
+    echo 'Usage: oop2json <inputdirectory> <outputdirectory>'.PHP_EOL;
     exit();
 }
-if(!is_dir($argv[1])){
-    echo 'Inputdirectory is not a directory'.PHP_EOL;
-}
-if(!is_dir($argv[2])){
-    echo 'Outputdirectory is not a directory'.PHP_EOL;
-}
+
 list(,$inputdir,$outputdir) = $argv;
 
+if(!is_dir($inputdir)){
+    echo 'Input directory is not a directory'.PHP_EOL;
+    die;
+}
+if(!is_dir($outputdir)){
+    echo 'Output directory is not a directory'.PHP_EOL;
+    die;
+}
+
+require_once(__DIR__ . '/../vendor/autoload.php');
+
+// Scan only for .php files
 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($inputdir));
 $files = new RegexIterator($files, '/\.php$/');
 
 foreach($files as $file){
+    // Parse file for OOP concepts
     $code = file_get_contents($file);
     $parser = new \PhpParser\Parser(new \PhpParser\Lexer);
     $traverser = new \PhpParser\NodeTraverser;
@@ -24,6 +32,7 @@ foreach($files as $file){
     $traverser->addVisitor($visitor);
     $stmts = $parser->parse($code);
     $tree = $traverser->traverse($stmts);
+
     echo $file.PHP_EOL;
     $pinfo=pathinfo($file);
     $outputfiledir = str_replace($inputdir, $outputdir, $pinfo['dirname']);
