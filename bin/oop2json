@@ -27,9 +27,12 @@ foreach($files as $file){
     echo $file.PHP_EOL;
     $pinfo=pathinfo($file);
     $outputfiledir = str_replace($inputdir, $outputdir, $pinfo['dirname']);
-    $outputfile = $outputfiledir . $pinfo['filename'] . '.json';
-    if(!is_dir($outputfiledir)){
-        mkdir($outputfiledir,0777,true);
+    $outputfile = $outputfiledir . '/' . $pinfo['filename'] . '.json';
+    $json = json_encode($tree);
+    if($json != '[]'){
+        if(!is_dir($outputfiledir)){
+            mkdir($outputfiledir,0777,true);
+        }
+        file_put_contents($outputfile, $json);
     }
-    file_put_contents($outputfile, json_encode($tree));
 }
