@@ -31,6 +31,17 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             }
             $node['implements'] = $implements;
             return [$node];
+        } elseif ($statement instanceof Stmt\Interface_){
+            $node = [
+                'type' => 'interface',
+                'namespace' => $this->currentnamespace,
+                'name' => $statement->name,
+                'children' => $statement->stmts
+            ];
+            if(isset($statement->extends->parts)){
+                $node['extends'] = join('\\', $statement->extends->parts);
+            }
+            return [$node];
         } elseif ($statement instanceof Stmt\Namespace_){
             $this->currentnamespace = $statement->name;
             return [$statement->stmts];
