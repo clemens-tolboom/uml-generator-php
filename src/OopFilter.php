@@ -30,7 +30,11 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
 
     public function enterNode(Node $statement){
         if($statement instanceof Stmt\Namespace_){
-            $this->currentNamespace = join('\\', $statement->name->parts);
+            if($statement->name===null){
+                $this->currentNamespace = '';
+            }else{
+                $this->currentNamespace = join('\\', $statement->name->parts);
+            }
         }
     }
 
