@@ -111,7 +111,16 @@ class OopToDot
             foreach ($methods as $method) {
                 $s = sprintf($visibility[$method['visibility']], $method['name']);
                 $s = sprintf($scope[$method['scope']], $s);
-                $result[] = '<tr><td align="left">' . $s . '()</td></tr>';
+                if ($this->documenter instanceof DocumentationInterface) {
+                    $methodUrl = $this->documenter->getMethodURL($method, $values);
+                    if (!empty($methodUrl)) {
+                        $methodUrl = ' href="' . $methodUrl . '"';
+                    }
+                } else {
+                    $methodUrl = '';
+                }
+
+                $result[] = '<tr><td align="left"' . $methodUrl . '>' . $s . '()</td></tr>';
 
             }
             $result[] = '</table>';

@@ -29,7 +29,13 @@ class DrupalDocumentation implements DocumentationInterface
     {
         $parts = array();
         $parts[] = $this->getSiteURL($data);
-        $parts[] = str_replace(DIRECTORY_SEPARATOR, '!', $data['file']);
+        $parts[] = $this->meta['component'];
+
+        $file = str_replace($this->meta['basePath'], '', $classdata['meta']['file']);
+        $parts[] = str_replace(DIRECTORY_SEPARATOR, '!', $file);
+        $parts[] = 'function';
+        $parts[] = $classdata['name'] . '::' . $data['name'];
+        $parts[] = $this->meta['version'];
 
         return join("/", $parts);
     }
@@ -47,7 +53,6 @@ class DrupalDocumentation implements DocumentationInterface
         $parts[] = $this->meta['version'];
 
         return join("/", $parts);
-
     }
 
     function getObjectURL($data)
