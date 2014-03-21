@@ -12,11 +12,16 @@ use PhpParser\Node\Stmt;
 
 class OopFilter extends \PhpParser\NodeVisitorAbstract
 {
-    protected  $currentnamespace;
+    protected $currentNamespace;
+    protected $currentFilename;
+
+    public function setFilename($filename){
+        $this->currentFilename = $filename;
+    }
 
     public function enterNode(Node $statement){
         if($statement instanceof Stmt\Namespace_){
-            $this->currentnamespace = join('\\', $statement->name->parts);
+            $this->currentNamespace = join('\\', $statement->name->parts);
         }
     }
 
@@ -24,7 +29,8 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
         if ($statement instanceof Stmt\Class_) {
             $node = [
                 'type' => 'class',
-                'namespace' => $this->currentnamespace,
+                'namespace' => $this->currentNamespace,
+                'filename' => $this->currentFilename,
                 'name' => $statement->name,
                 'children' => $statement->stmts
             ];
@@ -40,7 +46,8 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
         } elseif ($statement instanceof Stmt\Interface_){
             $node = [
                 'type' => 'interface',
-                'namespace' => $this->currentnamespace,
+                'namespace' => $this->currentNamespace,
+                'filename' => $this->currentFilename,
                 'name' => $statement->name,
                 'children' => $statement->stmts
             ];
@@ -51,7 +58,8 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
         } elseif ($statement instanceof Stmt\Trait_){
             $node = [
                 'type' => 'trait',
-                'namespace' => $this->currentnamespace,
+                'namespace' => $this->currentNamespace,
+                'filename' => $this->currentFilename,
                 'name' => $statement->name,
                 'children' => $statement->stmts
             ];
