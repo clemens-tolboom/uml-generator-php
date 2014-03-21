@@ -23,13 +23,19 @@ class OopToDot
     function getClassDiagram($array)
     {
         $result = array();
+
         $result[] = 'graph "Class Diagram" {';
         $result[] = "  node [shape=plaintext]";
         foreach ($array as $index => $values) {
+            $meta = $values['meta'];
+
+            $fileUrl = isset($meta['fileUrl']) ? ' href="' . $meta['fileUrl'] . '"' : '';
+            $propertyUrl = isset($meta['propertyUrl']) ? ' href="' . $meta['propertyUrl'] . '"' : '';
+
             $result[] = "  node_$index [";
             $result[] = "    label=<";
             $result[] = '<table>';
-            $result[] = '<tr><td align="center" href="http://api.drupal.org/">' . $values['name'] . '</td></tr>';
+            $result[] = '<tr><td align="center"' .  $fileUrl . '>' . $values['name'] . '</td></tr>';
 
             $methods = array_filter($values['children'], function ($item) {
                 return $item['type'] == 'method';
