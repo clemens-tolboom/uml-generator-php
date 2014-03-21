@@ -13,68 +13,21 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
 {
     private $parser;
     private $traverser;
-    private $OopTreeArray;
 
     public function setUp()
     {
-        $code = file_get_contents(__DIR__ . '/data/class01.php');
         $this->parser = new \PhpParser\Parser(new \PhpParser\Lexer);
         $this->traverser = new \PhpParser\NodeTraverser;
 
         $visitor = new OopFilter;
         $this->traverser->addVisitor($visitor);
-        $stmts = $this->parser->parse($code);
-        $this->OopTreeArray = $this->traverser->traverse($stmts);
     }
 
-
-    public function testGenerateHTML()
+    function testNamespace()
     {
-        $array = json_decode(json_encode($this->OopTreeArray));
-
-        print_r($array);
-
-        foreach ($array as $index => $object) {
-            echo "$object->type\n";
-            $result = array();
-            $result[] = '<table >';
-            $result[] = '<tr><td align="center">' . $object->name . '</td></tr>';
-
-            $methods = array_filter($object->children, function ($item) {
-                return $item->type == 'method';
-            });
-            uasort($methods, function ($a, $b) {
-                if ($a->visibility <> $b->visibility) {
-                    // public before protected before private
-                    return ($a->visibility > $b->visibility) ? -1 : 1;
-                }
-                if ($a->scope <> $b->scope) {
-                    // classifiers before instance
-                    return ($a->scope < $b->scope) ? -1 : 1;
-                }
-                return 0;
-            });
-            //var_dump($methods);
-            $scope = array(
-                'classifier' => '<u>%s</u>',
-                'instance' => '%s',
-            );
-            $visibility = array(
-                'public' => '+ %s',
-                'protected' => '# %s',
-                'private' => '- %s',
-            );
-            foreach ($methods as $method) {
-                $s = sprintf($visibility[$method->visibility], $method->name);
-                $s = sprintf($scope[$method->scope], $s);
-                $result[] = "<tr><td>$s</td></tr>";
-
-            }
-            $result[] = '</table>';
-
-            $label = join(PHP_EOL, $result);
-            echo "node [label=<\n$label\n>];";
-        }
+        $result = $this->traverser->traverse($this->parser->parse($this->getCode('interface')));
+        var_dump($result);
+        $this->assertEquals('interfaceNamespace', $result[0]['namespace'], "Namespace found");
     }
 
     function testInterface()
@@ -83,7 +36,6 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
         $result = $this->traverser->traverse($stmts);
 
         $children = $result[0]['children'];
-        var_dump($children);
         $this->assertEquals(1, count($children), "1 method found");
         $method = $children[0];
         $this->assertEquals('method', $method['type'], "method");
@@ -108,9 +60,18 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * @param $type
+     *   interface, class, trait
+     * @param string $scope
+     *   public, protected, private
+     * @return string
+     */
     function getCode($type, $scope = '')
     {
         return "<?php
+        namespace {$type}Namespace;
+
         $type {$type}Name {
           $scope function testFunction();
         }
