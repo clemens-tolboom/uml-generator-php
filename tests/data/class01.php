@@ -1,5 +1,9 @@
 <?php
 
+namespace ExampleNameSpace;
+
+use \UseNamespace\UseClass;
+
 class ExampleClass extends SimpleExampleClass implements Examples, Things
 {
     use ExampleTrait;
