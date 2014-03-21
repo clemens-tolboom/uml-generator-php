@@ -17,6 +17,8 @@ if(!is_dir($outputdir)){
     die;
 }
 
+$outputdir .= (substr($outputdir, -1) == '/' ? '' : '/');
+
 require_once(__DIR__ . '/../vendor/autoload.php');
 
 // Scan only for .php files
