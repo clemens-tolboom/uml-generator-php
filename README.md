@@ -1,6 +1,8 @@
 uml-generator-php
 =================
 
+[![Build Status](https://travis-ci.org/clemens-tolboom/uml-generator-php.svg?branch=master)](https://travis-ci.org/clemens-tolboom/uml-generator-php)
+
 To parse your source tree for Class Interface and Traits run
 
 ```
