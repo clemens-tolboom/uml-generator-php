@@ -12,6 +12,7 @@ class ExampleClass extends SimpleExampleClass implements Examples, Things
     private $privateVar;
     protected $protectedVar;
     public $publicVar;
+    const CONST_PROPERTY = 'constProperty';
     static $staticVar = "staticValue";
 
     function __construct($exampleargument)
