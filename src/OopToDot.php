@@ -25,23 +25,23 @@ class OopToDot
         $result = array();
         $result[] = 'graph "Class Diagram" {';
         $result[] = "  node [shape=plaintext]";
-        foreach ($array as $index => $object) {
+        foreach ($array as $index => $values) {
             $result[] = "  node_$index [";
             $result[] = "    label=<";
-            $result[] = '<table >';
-            $result[] = '<tr><td align="center" href="http://api.drupal.org/">' . $object->name . '</td></tr>';
+            $result[] = '<table>';
+            $result[] = '<tr><td align="center" href="http://api.drupal.org/">' . $values['name'] . '</td></tr>';
 
-            $methods = array_filter($object->children, function ($item) {
-                return $item->type == 'method';
+            $methods = array_filter($values['children'], function ($item) {
+                return $item['type'] == 'method';
             });
             uasort($methods, function ($a, $b) {
-                if ($a->visibility <> $b->visibility) {
+                if ($a['visibility'] <> $b['visibility']) {
                     // public before protected before private
-                    return ($a->visibility > $b->visibility) ? -1 : 1;
+                    return ($a['visibility'] > $b['visibility']) ? -1 : 1;
                 }
-                if ($a->scope <> $b->scope) {
+                if ($a['scope'] <> $b['scope']) {
                     // classifiers before instance
-                    return ($a->scope < $b->scope) ? -1 : 1;
+                    return ($a['scope'] < $b['scope']) ? -1 : 1;
                 }
                 return 0;
             });
@@ -56,8 +56,8 @@ class OopToDot
                 'private' => '- %s',
             );
             foreach ($methods as $method) {
-                $s = sprintf($visibility[$method->visibility], $method->name);
-                $s = sprintf($scope[$method->scope], $s);
+                $s = sprintf($visibility[$method['visibility']], $method['name']);
+                $s = sprintf($scope[$method['scope']], $s);
                 $result[] = "<tr><td>$s</td></tr>";
 
             }
