@@ -13,10 +13,19 @@ use PhpParser\Node\Stmt;
 class OopFilter extends \PhpParser\NodeVisitorAbstract
 {
     protected $currentNamespace;
+
+    /**
+     * @var prepare for meta data
+     *   We need at least the file being processed.
+     */
     protected $meta;
 
     public function setMeta($meta){
         $this->meta = $meta;
+    }
+
+    public function getMeta(){
+        return $this->meta ?: array();
     }
 
     public function enterNode(Node $statement){
@@ -30,7 +39,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             $node = [
                 'type' => 'class',
                 'namespace' => $this->currentNamespace,
-                'filename' => $this->currentFilename,
+                'meta' => $this->getMeta(),
                 'name' => $statement->name,
                 'children' => $statement->stmts
             ];
@@ -47,7 +56,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             $node = [
                 'type' => 'interface',
                 'namespace' => $this->currentNamespace,
-                'filename' => $this->currentFilename,
+                'meta' => $this->getMeta(),
                 'name' => $statement->name,
                 'children' => $statement->stmts
             ];
@@ -59,7 +68,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             $node = [
                 'type' => 'trait',
                 'namespace' => $this->currentNamespace,
-                'filename' => $this->currentFilename,
+                'meta' => $this->getMeta(),
                 'name' => $statement->name,
                 'children' => $statement->stmts
             ];
