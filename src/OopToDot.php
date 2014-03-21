@@ -34,8 +34,43 @@ class OopToDot
 
             $result[] = "  node_$index [";
             $result[] = "    label=<";
-            $result[] = '<table>';
-            $result[] = '<tr><td align="center"' .  $fileUrl . '>' . $values['name'] . '</td></tr>';
+            $result[] = '<table border="1" cellpadding="2" cellspacing="0" cellborder="0">';
+            $result[] = '<tr><td align="center"' .  $fileUrl . '>' . $values['name'] . '</td></tr><hr />';
+
+            $scope = array(
+                'classifier' => '<u>%s</u>',
+                'instance' => '%s',
+            );
+            $visibility = array(
+                'public' => '+ %s',
+                'protected' => '# %s',
+                'private' => '- %s',
+            );
+
+            $properties = array_filter($values['children'], function ($item) {
+                return $item['type'] == 'attribute';
+            });
+            uasort($properties, function ($a, $b) {
+                if ($a['visibility'] <> $b['visibility']) {
+                    // public before protected before private
+                    return ($a['visibility'] > $b['visibility']) ? -1 : 1;
+                }
+                if ($a['scope'] <> $b['scope']) {
+                    // classifiers before instance
+                    return ($a['scope'] < $b['scope']) ? -1 : 1;
+                }
+                return 0;
+            });
+
+            foreach ($properties as $property) {
+                $s = sprintf($visibility[$property['visibility']], $property['name']);
+                $s = sprintf($scope[$property['scope']], $s);
+                $result[] = '<tr><td align="left">' . $s . '</td></tr>';
+
+            }
+            if(count($properties)>0){
+                $result[] = '<hr />';
+            }
 
             $methods = array_filter($values['children'], function ($item) {
                 return $item['type'] == 'method';
@@ -52,19 +87,11 @@ class OopToDot
                 return 0;
             });
             //var_dump($methods);
-            $scope = array(
-                'classifier' => '<u>%s</u>',
-                'instance' => '%s',
-            );
-            $visibility = array(
-                'public' => '+ %s',
-                'protected' => '# %s',
-                'private' => '- %s',
-            );
+
             foreach ($methods as $method) {
                 $s = sprintf($visibility[$method['visibility']], $method['name']);
                 $s = sprintf($scope[$method['scope']], $s);
-                $result[] = "<tr><td>$s</td></tr>";
+                $result[] = '<tr><td align="left">' . $s . '()</td></tr>';
 
             }
             $result[] = '</table>';
