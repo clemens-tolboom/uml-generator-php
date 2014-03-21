@@ -25,9 +25,11 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
 
     function testNamespace()
     {
-        $result = $this->traverser->traverse($this->parser->parse($this->getCode('interface')));
-        var_dump($result);
-        $this->assertEquals('interfaceNamespace', $result[0]['namespace'], "Namespace found");
+        $entities = array('interface', 'class', 'trait');
+        foreach($entities as $entity){
+            $result = $this->traverser->traverse($this->parser->parse($this->getCode($entity)));
+            $this->assertEquals($entity . 'Namespace', $result[0]['namespace'], "Namespace found");
+        }
     }
 
     function testInterface()
