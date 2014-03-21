@@ -13,10 +13,10 @@ use PhpParser\Node\Stmt;
 class OopFilter extends \PhpParser\NodeVisitorAbstract
 {
     protected $currentNamespace;
-    protected $currentFilename;
+    protected $meta;
 
-    public function setFilename($filename){
-        $this->currentFilename = $filename;
+    public function setMeta($meta){
+        $this->meta = $meta;
     }
 
     public function enterNode(Node $statement){

@@ -29,7 +29,10 @@ foreach($files as $file){
     $parser = new \PhpParser\Parser(new \PhpParser\Lexer);
     $traverser = new \PhpParser\NodeTraverser;
     $visitor = new UmlGeneratorPhp\OopFilter;
-    $visitor->setFilename($file);
+    $meta = array(
+      'file' => $file,
+    );
+    $visitor->setMeta($meta);
     $traverser->addVisitor($visitor);
     $stmts = $parser->parse($code);
     $tree = $traverser->traverse($stmts);
