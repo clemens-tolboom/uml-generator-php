@@ -19,3 +19,9 @@ or even generate SVG files
 ```
 $ bin/json2dot tests/output | xargs -I {} dot -Tsvg -O {}
 ```
+
+In case you want to monitor progress use the `xargs -t` switch
+
+```
+$ bin/json2dot tests/output | xargs -t -I {} dot -Tsvg -O {}
+```
