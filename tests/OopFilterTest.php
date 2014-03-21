@@ -11,17 +11,20 @@ namespace UmlGeneratorPhp;
 
 class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
 {
+    private $parser;
+    private $traverser;
     private $OopTreeArray;
 
     public function setUp()
     {
         $code = file_get_contents(__DIR__ . '/data/class01.php');
-        $parser = new \PhpParser\Parser(new \PhpParser\Lexer);
-        $traverser = new \PhpParser\NodeTraverser;
+        $this->parser = new \PhpParser\Parser(new \PhpParser\Lexer);
+        $this->traverser = new \PhpParser\NodeTraverser;
+
         $visitor = new OopFilter;
-        $traverser->addVisitor($visitor);
-        $stmts = $parser->parse($code);
-        $this->OopTreeArray = $traverser->traverse($stmts);
+        $this->traverser->addVisitor($visitor);
+        $stmts = $this->parser->parse($code);
+        $this->OopTreeArray = $this->traverser->traverse($stmts);
     }
 
 
@@ -35,7 +38,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
             echo "$object->type\n";
             $result = array();
             $result[] = '<table >';
-            $result[]= '<tr><td align="center">' . $object->name . '</td></tr>';
+            $result[] = '<tr><td align="center">' . $object->name . '</td></tr>';
 
             $methods = array_filter($object->children, function ($item) {
                 return $item->type == 'method';
@@ -74,5 +77,44 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    function testInterface()
+    {
+        $stmts = $this->parser->parse($this->getCode('interface'));
+        $result = $this->traverser->traverse($stmts);
+
+        $children = $result[0]['children'];
+        var_dump($children);
+        $this->assertEquals(1, count($children), "1 method found");
+        $method = $children[0];
+        $this->assertEquals('method', $method['type'], "method");
+    }
+
+    function testFunctionScope()
+    {
+        $scopes = array('', 'public', 'protected', 'private');
+        foreach ($scopes as $scope) {
+            $stmts = $this->parser->parse($this->getCode('interface', $scope));
+            $result = $this->traverser->traverse($stmts);
+
+            $children = $result[0]['children'];
+
+            $method = $children[0];
+            $this->assertEquals('method', $method['type'], "method");
+            if (empty($scope)) {
+                $scope = 'public';
+            }
+            $this->assertEquals($scope, $method['visibility'], "method");
+        }
+    }
+
+
+    function getCode($type, $scope = '')
+    {
+        return "<?php
+        $type {$type}Name {
+          $scope function testFunction();
+        }
+        ";
+
+    }
 }
- 
