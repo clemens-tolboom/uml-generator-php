@@ -11,6 +11,6 @@ namespace UmlGeneratorPhp;
 interface DocumentationInterface {
     function getSiteURL($data);
     function getObjectURL($data);
-    function getMethodURL($data);
-    function getPropertyURL($data);
+    function getMethodURL($data, $classdata);
+    function getPropertyURL($data, $classdata);
 }

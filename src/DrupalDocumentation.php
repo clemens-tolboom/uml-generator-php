@@ -25,7 +25,7 @@ class DrupalDocumentation implements DocumentationInterface
         return $this->meta['siteURL'];
     }
 
-    function getMethodURL($data)
+    function getMethodURL($data, $classdata)
     {
         $parts = array();
         $parts[] = $this->getSiteURL($data);
@@ -34,9 +34,20 @@ class DrupalDocumentation implements DocumentationInterface
         return join("/", $parts);
     }
 
-    function getPropertyURL($data)
+    function getPropertyURL($data, $classdata)
     {
-        return $this->getMethodURL($data);
+        $parts = array();
+        $parts[] = $this->getSiteURL($data);
+        $parts[] = $this->meta['component'];
+
+        $file = str_replace($this->meta['basePath'], '', $classdata['meta']['file']);
+        $parts[] = str_replace(DIRECTORY_SEPARATOR, '!', $file);
+        $parts[] = 'property';
+        $parts[] = $classdata['name'] . '::' . $data['name'];
+        $parts[] = $this->meta['version'];
+
+        return join("/", $parts);
+
     }
 
     function getObjectURL($data)

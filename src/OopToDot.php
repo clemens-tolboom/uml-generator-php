@@ -29,18 +29,21 @@ class OopToDot
      */
     function getClassDiagram($array)
     {
+        if(!is_array($array)) return;
         $result = array();
 
         $result[] = 'graph "Class Diagram" {';
         $result[] = "  node [shape=plaintext]";
         foreach ($array as $index => $values) {
             $meta = $values['meta'];
-
-            $fileUrl = $this->documenter->getObjectURL($values, $meta);
-            if (!empty($fileUrl)) {
-                $fileUrl = ' href="' . $fileUrl . '"';
+            if ($this->documenter instanceof DocumentationInterface) {
+                $fileUrl = $this->documenter->getObjectURL($values);
+                if (!empty($fileUrl)) {
+                    $fileUrl = ' href="' . $fileUrl . '"';
+                }
+            } else {
+                $fileUrl = '';
             }
-            $propertyUrl = isset($meta['propertyUrl']) ? ' href="' . $meta['propertyUrl'] . '"' : '';
 
             $result[] = "  node_$index [";
             $result[] = "    label=<";
@@ -75,8 +78,16 @@ class OopToDot
             foreach ($properties as $property) {
                 $s = sprintf($visibility[$property['visibility']], $property['name']);
                 $s = sprintf($scope[$property['scope']], $s);
-                $result[] = '<tr><td align="left">' . $s . '</td></tr>';
 
+                if ($this->documenter instanceof DocumentationInterface) {
+                    $propertyUrl = $this->documenter->getPropertyURL($property, $values);
+                    if (!empty($propertyUrl)) {
+                        $propertyUrl = ' href="' . $propertyUrl . '"';
+                    }
+                } else {
+                    $propertyUrl = '';
+                }
+                $result[] = '<tr><td align="left"' . $propertyUrl . '>' . $s . '</td></tr>';
             }
             if (count($properties) > 0) {
                 $result[] = '<hr />';
@@ -96,7 +107,6 @@ class OopToDot
                 }
                 return 0;
             });
-            //var_dump($methods);
 
             foreach ($methods as $method) {
                 $s = sprintf($visibility[$method['visibility']], $method['name']);
