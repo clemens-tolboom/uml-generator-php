@@ -22,7 +22,7 @@ $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory
 $files = new RegexIterator($files, '/\.json$/');
 
 foreach($files as $file){
-    $array = json_decode(file_get_contents($file));
+    $array = json_decode(file_get_contents($file), TRUE);
     $dot = $toDot->getClassDiagram($array);
 
     $pinfo=pathinfo($file);
