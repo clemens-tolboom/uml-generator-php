@@ -12,7 +12,13 @@ use PhpParser\Node\Stmt;
 
 class OopFilter extends \PhpParser\NodeVisitorAbstract
 {
-    var $currentnamespace = '';
+    protected  $currentnamespace;
+
+    public function enterNode(Node $statement){
+        if($statement instanceof Stmt\Namespace_){
+            $this->currentnamespace = join('\\', $statement->name->parts);
+        }
+    }
 
     public function leaveNode(Node $statement) {
         if ($statement instanceof Stmt\Class_) {
@@ -43,7 +49,6 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             }
             return [$node];
         } elseif ($statement instanceof Stmt\Namespace_){
-            $this->currentnamespace = $statement->name;
             return $statement->stmts;
         } elseif ($statement instanceof Stmt\TraitUse) {
             foreach($statement->traits as $trait){
