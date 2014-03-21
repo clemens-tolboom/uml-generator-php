@@ -10,6 +10,13 @@ namespace UmlGeneratorPhp;
 
 class OopToDot
 {
+    protected $documenter = null;
+
+    function __construct(DocumentationInterface $documenter = null)
+    {
+        $this->documenter = $documenter;
+    }
+
     /**
      * Generate an UML CLass Digram dot file based on the given objects
      *
@@ -29,13 +36,16 @@ class OopToDot
         foreach ($array as $index => $values) {
             $meta = $values['meta'];
 
-            $fileUrl = isset($meta['fileUrl']) ? ' href="' . $meta['fileUrl'] . '"' : '';
+            $fileUrl = $this->documenter->getObjectURL($values, $meta);
+            if (!empty($fileUrl)) {
+                $fileUrl = ' href="' . $fileUrl . '"';
+            }
             $propertyUrl = isset($meta['propertyUrl']) ? ' href="' . $meta['propertyUrl'] . '"' : '';
 
             $result[] = "  node_$index [";
             $result[] = "    label=<";
             $result[] = '<table border="1" cellpadding="2" cellspacing="0" cellborder="0">';
-            $result[] = '<tr><td align="center"' .  $fileUrl . '>' . $values['name'] . '</td></tr><hr />';
+            $result[] = '<tr><td align="center"' . $fileUrl . '>' . $values['name'] . '</td></tr><hr />';
 
             $scope = array(
                 'classifier' => '<u>%s</u>',

@@ -16,7 +16,16 @@ require_once(__DIR__ . '/../vendor/autoload.php');
 
 use UmlGeneratorPhp\OopToDot;
 
-$toDot = new OopToDot();
+use UmlGeneratorPhp\DrupalDocumentation;
+
+$meta = array(
+    'siteURL' => 'https://api.drupal.org/api',
+    'basePath' => '/Users/clemens/Sites/drupal/d8/www/',
+    'component' => 'drupal',
+    'version' => '8',
+);
+
+$toDot = new OopToDot(new DrupalDocumentation($meta));
 
 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
 $files = new RegexIterator($files, '/\.json$/');
