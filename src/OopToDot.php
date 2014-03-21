@@ -68,7 +68,7 @@ class OopToDot
                 $result[] = '<tr><td align="left">' . $s . '</td></tr>';
 
             }
-            if(count($properties)>0){
+            if (count($properties) > 0) {
                 $result[] = '<hr />';
             }
 

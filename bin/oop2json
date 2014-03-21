@@ -32,7 +32,7 @@ foreach($files as $file){
     $traverser = new \PhpParser\NodeTraverser;
     $visitor = new UmlGeneratorPhp\OopFilter;
     $meta = array(
-      'file' => $file,
+      'file' => $file->getPathName(),
     );
     $visitor->setMeta($meta);
     $traverser->addVisitor($visitor);

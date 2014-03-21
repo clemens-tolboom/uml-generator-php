@@ -25,7 +25,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
     }
 
     public function getMeta(){
-        return $this->meta ?: array();
+        return isset($this->meta) ? $this->meta : array();
     }
 
     public function enterNode(Node $statement){
