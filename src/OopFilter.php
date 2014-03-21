@@ -48,6 +48,17 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
                 $node['extends'] = join('\\', $statement->extends->parts);
             }
             return [$node];
+        } elseif ($statement instanceof Stmt\Trait_){
+            $node = [
+                'type' => 'trait',
+                'namespace' => $this->currentnamespace,
+                'name' => $statement->name,
+                'children' => $statement->stmts
+            ];
+            if(isset($statement->extends->parts)){
+                $node['extends'] = join('\\', $statement->extends->parts);
+            }
+            return [$node];
         } elseif ($statement instanceof Stmt\Namespace_){
             return $statement->stmts;
         } elseif ($statement instanceof Stmt\TraitUse) {
