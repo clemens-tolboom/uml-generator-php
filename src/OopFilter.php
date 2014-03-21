@@ -30,6 +30,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
 
     public function enterNode(Node $statement){
         if($statement instanceof Stmt\Namespace_){
+            //TODO: Workaround for two namespaces in some drupal files. (https://drupal.org/node/1858196 and https://drupal.org/node/1957330)
             if($statement->name===null){
                 $this->currentNamespace = '';
             }else{
