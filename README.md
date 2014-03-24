@@ -3,6 +3,20 @@ uml-generator-php
 
 [![Build Status](https://travis-ci.org/clemens-tolboom/uml-generator-php.svg?branch=master)](https://travis-ci.org/clemens-tolboom/uml-generator-php)
 
+Installation
+------------
+Clone the git repository
+```
+$ git clone git@github.com:clemens-tolboom/uml-generator-php.git
+```
+Install composer dependencies
+```
+$ cd uml-generator-php
+$ composer install
+```
+
+Usage
+-----
 To parse your source tree for Class Interface and Traits run
 
 ```
