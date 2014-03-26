@@ -33,6 +33,10 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
         return $this->index;
     }
 
+    public function clearIndex(){
+        $this->index = [];
+    }
+
     public function enterNode(Node $statement){
         if($statement instanceof Stmt\Namespace_){
             //TODO: Workaround for two namespaces in some drupal files. (https://drupal.org/node/1858196 and https://drupal.org/node/1957330)
@@ -102,7 +106,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             $implements[] = $implementname;
         }
         $node['implements'] = $implements;
-        $this->index[$this->currentNamespace . '\\' . $statement->name] = $this->getMeta()['file'];
+        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['file']);
         return [$node];
     }
 
@@ -126,7 +130,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
                 $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
             }
         }
-        $this->index[$this->currentNamespace . '\\' . $statement->name] = $this->getMeta()['file'];
+        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['file']);
         return [$node];
     }
 
@@ -150,7 +154,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
                 $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
             }
         }
-        $this->index[$this->currentNamespace . '\\' . $statement->name] = $this->getMeta()['file'];
+        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['file']);
         return [$node];
     }
 
@@ -216,5 +220,14 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
         }
 
         return [$node];
+    }
+
+    private function addIndex($fullyqualifiedname, $filename){
+        if(!isset($this->index[$fullyqualifiedname])){
+            $this->index[$fullyqualifiedname] = $filename;
+        }else{
+            throw new \UnexpectedValueException("Fully Qualified object name already in index. (" . $fullyqualifiedname . ")");
+        }
+
     }
 }
