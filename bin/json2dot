@@ -1,31 +1,48 @@
 #!/usr/bin/env php
 <?php
-
-if($argc != 2){
-    echo 'Usage: json2dot <directory>'.PHP_EOL;
-    exit();
-}
-
-$directory = $argv[1];
-
-if(!is_dir($directory)){
-    echo 'Input directory is not a directory'.PHP_EOL;
-}
-
 require_once(__DIR__ . '/../vendor/autoload.php');
-
 use UmlGeneratorPhp\OopToDot;
-
 use UmlGeneratorPhp\DrupalDocumentation;
+use Ulrichsg\Getopt\Getopt;
+use Ulrichsg\Getopt\Option;
 
-$meta = array(
-    'siteURL' => 'https://api.drupal.org/api',
-    'basePath' => '/Users/clemens/Sites/drupal/d8/www/',
-    'component' => 'drupal',
-    'version' => '8',
-);
+$getopt = new Getopt(array(
+    (new Option('d', 'directory', Getopt::REQUIRED_ARGUMENT))
+        ->setDescription('Directory containing the json files')
+        ->setValidation(function($value){return !empty($value);}),
+    (new Option('u', 'documenter', Getopt::REQUIRED_ARGUMENT))
+        ->setDescription('Set documentation url generator.')
+));
 
-$toDot = new OopToDot(new DrupalDocumentation($meta));
+try{
+    $getopt->parse();
+    if($getopt['directory']==null){
+        throw new UnexpectedValueException('Directory is a required argument');
+    }
+} catch (UnexpectedValueException $e){
+    echo "Error: ".$e->getMessage()."\n";
+    echo $getopt->getHelpText();
+    exit(1);
+}
+
+$directory = $getopt['directory'];
+
+switch(strtolower($getopt['documenter'])){
+    case "drupal":
+        $meta = array(
+            'siteURL' => 'https://api.drupal.org/api',
+            'basePath' => '/srv/http/dp8.dev/',
+            'component' => 'drupal',
+            'version' => '8',
+        );
+        $documenter = new DrupalDocumentation($meta);
+        break;
+    default:
+        $documenter = null;
+        break;
+}
+
+$toDot = new OopToDot($documenter);
 
 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
 $files = new RegexIterator($files, '/\.json$/');
