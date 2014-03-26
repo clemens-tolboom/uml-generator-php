@@ -55,7 +55,8 @@ class OopToDot
                 'instance' => '%s',
             );
             $scope_tooltip = array(
-                'classifier' => '&laquo; static &raquo; %s',
+                // TODO: fix for entity: '&laquo; static &raquo; %s',
+                'classifier' => '&lt;&lt; static &gt;&gt; %s',
                 'instance' => '%s',
             );
 
