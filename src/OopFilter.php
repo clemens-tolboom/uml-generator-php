@@ -226,7 +226,8 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
         if(!isset($this->index[$fullyqualifiedname])){
             $this->index[$fullyqualifiedname] = $filename;
         }else{
-            throw new \UnexpectedValueException("Fully Qualified object name already in index. (" . $fullyqualifiedname . ")");
+            $message = "Fully Qualified object name already in index: (%s) original file '%s', current file '%s'";
+            throw new \UnexpectedValueException(sprintf($message,$fullyqualifiedname, $this->index[$fullyqualifiedname], $filename));
         }
 
     }
