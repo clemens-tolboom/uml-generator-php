@@ -19,6 +19,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
      *   We need at least the file being processed.
      */
     protected $meta;
+    protected $index = [];
 
     public function setMeta($meta){
         $this->meta = $meta;
@@ -26,6 +27,14 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
 
     public function getMeta(){
         return isset($this->meta) ? $this->meta : array();
+    }
+
+    public function getIndex(){
+        return $this->index;
+    }
+
+    public function clearIndex(){
+        $this->index = [];
     }
 
     public function enterNode(Node $statement){
@@ -97,6 +106,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             $implements[] = $implementname;
         }
         $node['implements'] = $implements;
+        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['file']);
         return [$node];
     }
 
@@ -120,6 +130,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
                 $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
             }
         }
+        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['file']);
         return [$node];
     }
 
@@ -143,6 +154,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
                 $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
             }
         }
+        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['file']);
         return [$node];
     }
 
@@ -208,5 +220,15 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
         }
 
         return [$node];
+    }
+
+    private function addIndex($fullyqualifiedname, $filename){
+        if(!isset($this->index[$fullyqualifiedname])){
+            $this->index[$fullyqualifiedname] = $filename;
+        }else{
+            $message = "Fully Qualified object name already in index: (%s) original file '%s', current file '%s'";
+            throw new \UnexpectedValueException(sprintf($message,$fullyqualifiedname, $this->index[$fullyqualifiedname], $filename));
+        }
+
     }
 }

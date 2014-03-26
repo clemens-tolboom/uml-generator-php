@@ -24,13 +24,12 @@ require_once(__DIR__ . '/../vendor/autoload.php');
 // Scan only for .php files
 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($inputdir));
 $files = new RegexIterator($files, '/\.php$/');
-
+$visitor = new UmlGeneratorPhp\OopFilter;
 foreach($files as $file){
     // Parse file for OOP concepts
     $code = file_get_contents($file);
     $parser = new \PhpParser\Parser(new \PhpParser\Lexer);
     $traverser = new \PhpParser\NodeTraverser;
-    $visitor = new UmlGeneratorPhp\OopFilter;
     $meta = array(
       'file' => $file->getPathName(),
     );
@@ -50,4 +49,7 @@ foreach($files as $file){
         }
         file_put_contents($outputfile, $json);
     }
+    $indexdata = json_encode($visitor->getIndex());
+    $indexfile = $outputdir . 'uml-generator-php.index';
+    file_put_contents($indexfile, $indexdata);
 }

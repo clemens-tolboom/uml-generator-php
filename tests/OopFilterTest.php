@@ -13,27 +13,33 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
 {
     private $parser;
     private $traverser;
+    private $visitor;
 
     public function setUp()
     {
         $this->parser = new \PhpParser\Parser(new \PhpParser\Lexer);
         $this->traverser = new \PhpParser\NodeTraverser;
 
-        $visitor = new OopFilter;
-        $this->traverser->addVisitor($visitor);
+        $this->visitor = new OopFilter;
+        $this->visitor->setMeta([
+            'file' => 'dummy/path.php'
+        ]);
+        $this->traverser->addVisitor($this->visitor);
     }
 
     function testNamespace()
     {
+        $this->visitor->clearIndex();
         $entities = array('interface', 'class', 'trait');
         foreach($entities as $entity){
             $result = $this->traverser->traverse($this->parser->parse($this->getCode($entity)));
-            $this->assertEquals($entity . 'Namespace', $result[0]['namespace'], "Namespace found");
+            $this->assertEquals('\\' . $entity . 'Namespace', $result[0]['namespace'], "Namespace found");
         }
     }
 
     function testInterface()
     {
+        $this->visitor->clearIndex();
         $stmts = $this->parser->parse($this->getCode('interface'));
         $result = $this->traverser->traverse($stmts);
 
@@ -47,6 +53,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
     {
         $scopes = array('', 'public', 'protected', 'private');
         foreach ($scopes as $scope) {
+            $this->visitor->clearIndex();
             $stmts = $this->parser->parse($this->getCode('interface', $scope));
             $result = $this->traverser->traverse($stmts);
 
