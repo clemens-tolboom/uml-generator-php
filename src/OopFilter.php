@@ -41,46 +41,11 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
 
     public function leaveNode(Node $statement) {
         if ($statement instanceof Stmt\Class_) {
-            $node = [
-                'type' => 'class',
-                'namespace' => $this->currentNamespace,
-                'meta' => $this->getMeta(),
-                'name' => $statement->name,
-                'children' => $statement->stmts
-            ];
-            if(isset($statement->extends->parts)){
-                $node['extends'] = join('\\', $statement->extends->parts);
-            }
-            $implements = [];
-            foreach($statement->implements as $implement){
-                $implements[] = join('\\', $implement->parts);
-            }
-            $node['implements'] = $implements;
-            return [$node];
+            return $this->parseClass($statement);
         } elseif ($statement instanceof Stmt\Interface_){
-            $node = [
-                'type' => 'interface',
-                'namespace' => $this->currentNamespace,
-                'meta' => $this->getMeta(),
-                'name' => $statement->name,
-                'children' => $statement->stmts
-            ];
-            if(isset($statement->extends->parts)){
-                $node['extends'] = join('\\', $statement->extends->parts);
-            }
-            return [$node];
+            return $this->parseInterface($statement);
         } elseif ($statement instanceof Stmt\Trait_){
-            $node = [
-                'type' => 'trait',
-                'namespace' => $this->currentNamespace,
-                'meta' => $this->getMeta(),
-                'name' => $statement->name,
-                'children' => $statement->stmts
-            ];
-            if(isset($statement->extends->parts)){
-                $node['extends'] = join('\\', $statement->extends->parts);
-            }
-            return [$node];
+            return $this->parseTrait($statement);
         } elseif ($statement instanceof Stmt\Namespace_){
             return $statement->stmts;
         } elseif ($statement instanceof Stmt\TraitUse) {
@@ -93,58 +58,138 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             }
 
         } elseif ($statement instanceof Stmt\Property) {
-            $node = [
-                'type' => 'attribute',
-                'name' => $statement->props[0]->name
-            ];
-            $node['visibility'] = 'public';
-            if ($statement->type & Stmt\Class_::MODIFIER_PUBLIC) {
-                $node['visibility'] = 'public';
-            } elseif ($statement->type & Stmt\Class_::MODIFIER_PROTECTED) {
-                $node['visibility'] = 'protected';
-            } elseif ($statement->type & Stmt\Class_::MODIFIER_PRIVATE) {
-                $node['visibility'] = 'private';
-            }
-            if ($statement->type & Stmt\Class_::MODIFIER_STATIC) {
-                $node['scope'] = 'classifier';
-            } else {
-                $node['scope'] = 'instance';
-            }
-            return [$node];
+            return $this->parseProperty($statement);
         } elseif ($statement instanceof Stmt\ClassMethod) {
-            $node = [
-                'type' => 'method',
-                'name' => $statement->name,
-                'scope' => $statement->getType()
-            ];
-            $params = [];
-            foreach ($statement->params as $param) {
-                $params[] = [
-                    'name' => $param->name,
-                    'type' => $param->type
-                ];
-            }
-            $node['parameters'] = $params;
-
-            //TODO: Workaround for issue https://github.com/clemens-tolboom/uml-generator-php/issues/4
-            $node['visibility'] = 'public';
-            if ($statement->type & Stmt\Class_::MODIFIER_PUBLIC) {
-                $node['visibility'] = 'public';
-            } elseif ($statement->type & Stmt\Class_::MODIFIER_PROTECTED) {
-                $node['visibility'] = 'protected';
-            } elseif ($statement->type & Stmt\Class_::MODIFIER_PRIVATE) {
-                $node['visibility'] = 'private';
-            }
-            if ($statement->type & Stmt\Class_::MODIFIER_STATIC) {
-                $node['scope'] = 'classifier';
-            } else {
-                $node['scope'] = 'instance';
-            }
-
-            return [$node];
+            return $this->parseMethod($statement);
         }
         if($statement instanceof Stmt\PropertyProperty) return;
         if($statement instanceof Node\Name) return;
         return false;
+    }
+
+    /**
+     * @param Node $statement
+     * @return array
+     */
+    private function parseClass(Node $statement)
+    {
+        $node = [
+            'type' => 'class',
+            'namespace' => $this->currentNamespace,
+            'meta' => $this->getMeta(),
+            'name' => $statement->name,
+            'children' => $statement->stmts
+        ];
+        if (isset($statement->extends->parts)) {
+            $node['extends'] = join('\\', $statement->extends->parts);
+        }
+        $implements = [];
+        foreach ($statement->implements as $implement) {
+            $implements[] = join('\\', $implement->parts);
+        }
+        $node['implements'] = $implements;
+        return [$node];
+    }
+
+    /**
+     * @param Node $statement
+     * @return array
+     */
+    private function parseInterface(Node $statement)
+    {
+        $node = [
+            'type' => 'interface',
+            'namespace' => $this->currentNamespace,
+            'meta' => $this->getMeta(),
+            'name' => $statement->name,
+            'children' => $statement->stmts
+        ];
+        if (isset($statement->extends->parts)) {
+            $node['extends'] = join('\\', $statement->extends->parts);
+        }
+        return [$node];
+    }
+
+    /**
+     * @param Node $statement
+     * @return array
+     */
+    private function parseTrait(Node $statement)
+    {
+        $node = [
+            'type' => 'trait',
+            'namespace' => $this->currentNamespace,
+            'meta' => $this->getMeta(),
+            'name' => $statement->name,
+            'children' => $statement->stmts
+        ];
+        if (isset($statement->extends->parts)) {
+            $node['extends'] = join('\\', $statement->extends->parts);
+        }
+        return [$node];
+    }
+
+    /**
+     * @param Node $statement
+     * @return array
+     */
+    private function parseProperty(Node $statement)
+    {
+        $node = [
+            'type' => 'attribute',
+            'name' => $statement->props[0]->name
+        ];
+        $node['visibility'] = 'public';
+        if ($statement->type & Stmt\Class_::MODIFIER_PUBLIC) {
+            $node['visibility'] = 'public';
+        } elseif ($statement->type & Stmt\Class_::MODIFIER_PROTECTED) {
+            $node['visibility'] = 'protected';
+        } elseif ($statement->type & Stmt\Class_::MODIFIER_PRIVATE) {
+            $node['visibility'] = 'private';
+        }
+        if ($statement->type & Stmt\Class_::MODIFIER_STATIC) {
+            $node['scope'] = 'classifier';
+        } else {
+            $node['scope'] = 'instance';
+        }
+        return [$node];
+    }
+
+    /**
+     * @param Node $statement
+     * @return array
+     */
+    private function parseMethod(Node $statement)
+    {
+        $node = [
+            'type' => 'method',
+            'name' => $statement->name,
+            'scope' => $statement->getType()
+        ];
+        $params = [];
+        foreach ($statement->params as $param) {
+            $params[] = [
+                'name' => $param->name,
+                'type' => $param->type
+            ];
+        }
+        $node['parameters'] = $params;
+
+        //TODO: Workaround for issue https://github.com/clemens-tolboom/uml-generator-php/issues/4
+        $node['visibility'] = 'public';
+        if ($statement->type & Stmt\Class_::MODIFIER_PUBLIC) {
+            $node['visibility'] = 'public';
+        } elseif ($statement->type & Stmt\Class_::MODIFIER_PROTECTED) {
+            $node['visibility'] = 'protected';
+        } elseif ($statement->type & Stmt\Class_::MODIFIER_PRIVATE) {
+            $node['visibility'] = 'private';
+        }
+        if ($statement->type & Stmt\Class_::MODIFIER_STATIC) {
+            $node['scope'] = 'classifier';
+        } else {
+            $node['scope'] = 'instance';
+        }
+
+        return [$node];
     }
 }
