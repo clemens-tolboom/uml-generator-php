@@ -48,16 +48,26 @@ class OopToDot
             $result[] = "  node_$index [";
             $result[] = "    label=<";
             $result[] = '<table border="1" cellpadding="2" cellspacing="0" cellborder="0">';
-            $result[] = '<tr><td align="center"' . $fileUrl . '>' . $values['name'] . '</td></tr><hr />';
+            $result[] = '<tr><td align="center"' . $fileUrl . ' title="' . $values['type'] . ' ' . $values['name'] . '">' . $values['name'] . '</td></tr><hr />';
 
             $scope = array(
                 'classifier' => '<u>%s</u>',
                 'instance' => '%s',
             );
+            $scope_tooltip = array(
+                'classifier' => '&laquo; static &raquo; %s',
+                'instance' => '%s',
+            );
+
             $visibility = array(
                 'public' => '+ %s',
                 'protected' => '# %s',
                 'private' => '- %s',
+            );
+            $visibility_tooltip = array(
+                'public' => 'public %s',
+                'protected' => 'protected %s',
+                'private' => 'private %s',
             );
 
             $properties = array_filter($values['children'], function ($item) {
@@ -78,12 +88,14 @@ class OopToDot
             foreach ($properties as $property) {
                 $s = sprintf($visibility[$property['visibility']], $property['name']);
                 $s = sprintf($scope[$property['scope']], $s);
+                $t = sprintf($visibility_tooltip[$property['visibility']], $property['name']);
+                $t = sprintf($scope_tooltip[$property['scope']], $t);
 
                 $propertyUrl = $this->documenter->getPropertyURL($property, $values);
                 if (!empty($propertyUrl)) {
                     $propertyUrl = ' href="' . $propertyUrl . '"';
                 }
-                $result[] = '<tr><td align="left"' . $propertyUrl . '>' . $s . '</td></tr>';
+                $result[] = '<tr><td align="left"' . $propertyUrl . ' title="' . $t . '">' . $s . '</td></tr>';
             }
             if (count($properties) > 0) {
                 $result[] = '<hr />';
@@ -107,13 +119,16 @@ class OopToDot
             foreach ($methods as $method) {
                 $s = sprintf($visibility[$method['visibility']], $method['name']);
                 $s = sprintf($scope[$method['scope']], $s);
+                $t = sprintf($visibility_tooltip[$method['visibility']], $method['name']);
+                $t = sprintf($scope_tooltip[$method['scope']], $t);
 
                 $methodUrl = $this->documenter->getMethodURL($method, $values);
                 if (!empty($methodUrl)) {
                     $methodUrl = ' href="' . $methodUrl . '"';
+
                 }
 
-                $result[] = '<tr><td align="left"' . $methodUrl . '>' . $s . '()</td></tr>';
+                $result[] = '<tr><td align="left"' . $methodUrl . ' title="' . $t . '">' . $s . '()</td></tr>';
 
             }
             $result[] = '</table>';
