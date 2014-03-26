@@ -32,9 +32,9 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
         if($statement instanceof Stmt\Namespace_){
             //TODO: Workaround for two namespaces in some drupal files. (https://drupal.org/node/1858196 and https://drupal.org/node/1957330)
             if($statement->name===null){
-                $this->currentNamespace = '';
+                $this->currentNamespace = '\\';
             }else{
-                $this->currentNamespace = join('\\', $statement->name->parts);
+                $this->currentNamespace = '\\' . join('\\', $statement->name->parts);
             }
         }
     }
@@ -81,11 +81,20 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             'children' => $statement->stmts
         ];
         if (isset($statement->extends->parts)) {
-            $node['extends'] = join('\\', $statement->extends->parts);
+            if($statement->extends instanceof Node\Name\FullyQualified){
+                $node['extends'] = '\\' . join('\\', $statement->extends->parts);
+            }else{
+                $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
+            }
         }
         $implements = [];
         foreach ($statement->implements as $implement) {
-            $implements[] = join('\\', $implement->parts);
+            if($implement instanceof Node\Name\FullyQualified){
+                $implementname = '\\' . join('\\', $implement->parts);
+            }else{
+                $implementname = $this->currentNamespace . '\\' . join('\\', $implement->parts);
+            }
+            $implements[] = $implementname;
         }
         $node['implements'] = $implements;
         return [$node];
@@ -105,7 +114,11 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             'children' => $statement->stmts
         ];
         if (isset($statement->extends->parts)) {
-            $node['extends'] = join('\\', $statement->extends->parts);
+            if($statement->extends instanceof Node\Name\FullyQualified){
+                $node['extends'] = '\\' . join('\\', $statement->extends->parts);
+            }else{
+                $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
+            }
         }
         return [$node];
     }
@@ -124,7 +137,11 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             'children' => $statement->stmts
         ];
         if (isset($statement->extends->parts)) {
-            $node['extends'] = join('\\', $statement->extends->parts);
+            if($statement->extends instanceof Node\Name\FullyQualified){
+                $node['extends'] = '\\' . join('\\', $statement->extends->parts);
+            }else{
+                $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
+            }
         }
         return [$node];
     }
