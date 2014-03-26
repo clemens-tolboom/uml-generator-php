@@ -21,7 +21,11 @@ class OopToDotTest extends \PHPUnit_Framework_TestCase
     {
         $this->parser = new \PhpParser\Parser(new \PhpParser\Lexer);
         $this->traverser = new \PhpParser\NodeTraverser;
-        $this->traverser->addVisitor(new OopFilter);
+        $filter = new OopFilter;
+        $filter->setMeta([
+            'file' => '/dummy/path.php'
+        ]);
+        $this->traverser->addVisitor($filter);
     }
 
     public function testGenerateHTML()

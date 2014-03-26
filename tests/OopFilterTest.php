@@ -20,6 +20,9 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->traverser = new \PhpParser\NodeTraverser;
 
         $visitor = new OopFilter;
+        $visitor->setMeta([
+            'file' => 'dummy/path.php'
+        ]);
         $this->traverser->addVisitor($visitor);
     }
 
@@ -28,7 +31,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
         $entities = array('interface', 'class', 'trait');
         foreach($entities as $entity){
             $result = $this->traverser->traverse($this->parser->parse($this->getCode($entity)));
-            $this->assertEquals($entity . 'Namespace', $result[0]['namespace'], "Namespace found");
+            $this->assertEquals('\\' . $entity . 'Namespace', $result[0]['namespace'], "Namespace found");
         }
     }
 
