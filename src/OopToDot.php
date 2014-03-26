@@ -97,10 +97,10 @@ class OopToDot
                 }
                 $result[] = '<tr><td align="left"' . $propertyUrl . ' title="' . $t . '">' . $s . '</td></tr>';
             }
-            if (count($properties) > 0) {
-                $result[] = '<hr />';
+            if (count($properties) == 0) {
+                $result[] = '<tr><td></td></tr>';
             }
-
+            $result[] = '<hr />';
             $methods = array_filter($values['children'], function ($item) {
                 return $item['type'] == 'method';
             });
@@ -130,6 +130,9 @@ class OopToDot
 
                 $result[] = '<tr><td align="left"' . $methodUrl . ' title="' . $t . '">' . $s . '()</td></tr>';
 
+            }
+            if (count($methods) == 0) {
+                $result[] = '<tr><td>&nbsp;</td></tr>';
             }
             $result[] = '</table>';
             $result[] = "  >";
