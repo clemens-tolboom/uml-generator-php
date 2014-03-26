@@ -8,9 +8,9 @@
 
 namespace UmlGeneratorPhp;
 
-use UmlGeneratorPhp\DocumentationInterface;
+use UmlGeneratorPhp\Documentation;
 
-class DrupalDocumentation implements DocumentationInterface
+class DrupalDocumentation extends Documentation
 {
 
     protected $meta;

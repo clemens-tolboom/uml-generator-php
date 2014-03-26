@@ -12,8 +12,11 @@ class OopToDot
 {
     protected $documenter = null;
 
-    function __construct(DocumentationInterface $documenter = null)
+    function __construct(Documentation $documenter = null)
     {
+        if (empty($documenter)) {
+            $documenter = new Documentation();
+        }
         $this->documenter = $documenter;
     }
 
@@ -36,13 +39,10 @@ class OopToDot
         $result[] = "  node [shape=plaintext]";
         foreach ($array as $index => $values) {
             $meta = $values['meta'];
-            if ($this->documenter instanceof DocumentationInterface) {
-                $fileUrl = $this->documenter->getObjectURL($values);
-                if (!empty($fileUrl)) {
-                    $fileUrl = ' href="' . $fileUrl . '"';
-                }
-            } else {
-                $fileUrl = '';
+
+            $fileUrl = $this->documenter->getObjectURL($values);
+            if (!empty($fileUrl)) {
+                $fileUrl = ' href="' . $fileUrl . '"';
             }
 
             $result[] = "  node_$index [";
@@ -79,13 +79,9 @@ class OopToDot
                 $s = sprintf($visibility[$property['visibility']], $property['name']);
                 $s = sprintf($scope[$property['scope']], $s);
 
-                if ($this->documenter instanceof DocumentationInterface) {
-                    $propertyUrl = $this->documenter->getPropertyURL($property, $values);
-                    if (!empty($propertyUrl)) {
-                        $propertyUrl = ' href="' . $propertyUrl . '"';
-                    }
-                } else {
-                    $propertyUrl = '';
+                $propertyUrl = $this->documenter->getPropertyURL($property, $values);
+                if (!empty($propertyUrl)) {
+                    $propertyUrl = ' href="' . $propertyUrl . '"';
                 }
                 $result[] = '<tr><td align="left"' . $propertyUrl . '>' . $s . '</td></tr>';
             }
@@ -111,13 +107,10 @@ class OopToDot
             foreach ($methods as $method) {
                 $s = sprintf($visibility[$method['visibility']], $method['name']);
                 $s = sprintf($scope[$method['scope']], $s);
-                if ($this->documenter instanceof DocumentationInterface) {
-                    $methodUrl = $this->documenter->getMethodURL($method, $values);
-                    if (!empty($methodUrl)) {
-                        $methodUrl = ' href="' . $methodUrl . '"';
-                    }
-                } else {
-                    $methodUrl = '';
+
+                $methodUrl = $this->documenter->getMethodURL($method, $values);
+                if (!empty($methodUrl)) {
+                    $methodUrl = ' href="' . $methodUrl . '"';
                 }
 
                 $result[] = '<tr><td align="left"' . $methodUrl . '>' . $s . '()</td></tr>';
