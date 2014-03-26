@@ -19,6 +19,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
      *   We need at least the file being processed.
      */
     protected $meta;
+    protected $index = [];
 
     public function setMeta($meta){
         $this->meta = $meta;
@@ -26,6 +27,10 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
 
     public function getMeta(){
         return isset($this->meta) ? $this->meta : array();
+    }
+
+    public function getIndex(){
+        return $this->index;
     }
 
     public function enterNode(Node $statement){
@@ -97,6 +102,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             $implements[] = $implementname;
         }
         $node['implements'] = $implements;
+        $this->index[$this->currentNamespace . '\\' . $statement->name] = $this->getMeta()['file'];
         return [$node];
     }
 
@@ -120,6 +126,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
                 $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
             }
         }
+        $this->index[$this->currentNamespace . '\\' . $statement->name] = $this->getMeta()['file'];
         return [$node];
     }
 
@@ -143,6 +150,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
                 $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
             }
         }
+        $this->index[$this->currentNamespace . '\\' . $statement->name] = $this->getMeta()['file'];
         return [$node];
     }
 
