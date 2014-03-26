@@ -11,13 +11,15 @@ namespace UmlGeneratorPhp;
 class OopToDot
 {
     protected $documenter = null;
+    protected $merge;
 
-    function __construct(Documentation $documenter = null)
+    function __construct(Documentation $documenter = null, $merge = false)
     {
         if (empty($documenter)) {
             $documenter = new Documentation();
         }
         $this->documenter = $documenter;
+        $this->merge = $merge;
     }
 
     /**
@@ -35,8 +37,9 @@ class OopToDot
         if(!is_array($array)) return;
         $result = array();
 
-        $result[] = 'graph "Class Diagram" {';
+        $result[] = 'digraph "Class Diagram" {';
         $result[] = "  node [shape=plaintext]";
+        $links = [];
         foreach ($array as $index => $values) {
             $meta = $values['meta'];
 
@@ -44,8 +47,23 @@ class OopToDot
             if (!empty($fileUrl)) {
                 $fileUrl = ' href="' . $fileUrl . '"';
             }
+            $safename = $this->getSafeName($values['namespace'].'\\'.$values['name']);
+            if(isset($values['implements'])){
+                foreach($values['implements'] as $implement){
+                    $links[]=[
+                        'from' => $this->getSafeName($implement),
+                        'to' => $safename
+                    ];
+                }
+            }
+            if(isset($values['extends'])){
+                $links[]=[
+                    'from' => $this->getSafeName($values['extends']),
+                    'to' => $safename
+                ];
+            }
 
-            $result[] = "  node_$index [";
+            $result[] = "  $safename [";
             $result[] = "    label=<";
             $result[] = '<table border="1" cellpadding="2" cellspacing="0" cellborder="0">';
             $result[] = '<tr><td align="center"' . $fileUrl . ' title="' . $values['type'] . ' ' . $values['name'] . '">' . $values['name'] . '</td></tr><hr />';
@@ -140,10 +158,18 @@ class OopToDot
 
             $result[] = "  ];";
         }
+        foreach($links as $link){
+            $result[] = $link['from'] . ' -> ' . $link['to'] . ';' . PHP_EOL;
+        }
         $result[] = "}";
 
         return join(PHP_EOL, $result);
 
+    }
+
+    private function getSafeName($namespace){
+        $safename = preg_replace('/[^a-zA-Z0-9]/', '_', substr($namespace,1));
+        return $safename;
     }
 
 }

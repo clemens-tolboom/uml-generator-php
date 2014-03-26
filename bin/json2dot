@@ -11,7 +11,9 @@ $getopt = new Getopt(array(
         ->setDescription('Directory containing the json files')
         ->setValidation(function($value){return !empty($value);}),
     (new Option('u', 'documenter', Getopt::REQUIRED_ARGUMENT))
-        ->setDescription('Set documentation url generator.')
+        ->setDescription('Set documentation url generator.'),
+    (new Option('m', 'merge', Getopt::NO_ARGUMENT))
+        ->setDescription('Merge linked classes in one file.')
 ));
 
 try{
@@ -26,6 +28,7 @@ try{
 }
 
 $directory = $getopt['directory'];
+$merge = $getopt['merge'] > 0;
 
 switch(strtolower($getopt['documenter'])){
     case "drupal":
@@ -42,10 +45,15 @@ switch(strtolower($getopt['documenter'])){
         break;
 }
 
-$toDot = new OopToDot($documenter);
+$toDot = new OopToDot($documenter, $merge);
 
 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
 $files = new RegexIterator($files, '/\.json$/');
+
+if(!is_file($directory . 'uml-generator-php.index') && $merge){
+    echo 'Uml-generator-php.index is not found. This is required for merge mode.'.PHP_EOL;
+    exit(1);
+}
 
 foreach($files as $file){
     $array = json_decode(file_get_contents($file), TRUE);
