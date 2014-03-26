@@ -15,7 +15,7 @@ $ cd uml-generator-php
 $ composer install
 ```
 And install graphviz with your distro's package manager or from git. 
-uml-generator-php requires graphviz versions later than 15 September 2013 (See issue #16)
+uml-generator-php requires graphviz versions later than 15 September 2013 (See [issue #16](https://github.com/clemens-tolboom/uml-generator-php/issues/16))
 
 Usage
 -----
