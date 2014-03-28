@@ -11,18 +11,26 @@ namespace UmlGeneratorPhp;
 class OopToDot
 {
     protected $documenter = null;
-    protected $merge;
 
-    function __construct(Documentation $documenter = null, $merge = false)
+    function __construct(Documentation $documenter = null)
     {
         if (empty($documenter)) {
             $documenter = new Documentation();
         }
         $this->documenter = $documenter;
-        $this->merge = $merge;
     }
 
-    function getMergedDiagram($array, $index){
+    /**
+     * Merge parents into diagram.
+     *
+     * By using the file index we add all parents into the diagram.
+     *
+     * @param $array
+     * @param $file_index
+     * @return string
+     */
+    function getMergedDiagram($array, $file_index)
+    {
         $loadedfiles = [];
         foreach ($array as $values) {
             if (isset($values['implements'])) {
