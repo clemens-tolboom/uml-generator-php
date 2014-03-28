@@ -21,22 +21,63 @@ class OopToDot
     }
 
     /**
-     * Generate an UML CLass Digram dot file based on the given objects
+     * Merge parents into diagram.
      *
-     * TODO: alignments
+     * By using the file index we add all parents into the diagram.
+     *
+     * @param $array
+     * @param $file_index
+     * @return string
+     */
+    function getMergedDiagram($array, $file_index)
+    {
+        $loadedfiles = [];
+        foreach ($array as $values) {
+            if (isset($values['implements'])) {
+                foreach ($values['implements'] as $implement) {
+                    if (isset($file_index[$implement])) {
+                        echo $file_index[$implement];
+                        if (!isset($loadedfiles[$implement])) {
+                            $source = json_decode(file_get_contents($file_index[$implement]), true);
+                            $array = array_merge($array, $source);
+                            $loadedfiles[$implement] = true;
+                        }
+                    } else {
+                        echo 'Not found: ' . $implement . PHP_EOL;
+                    }
+                }
+            }
+            if (isset($values['extends'])) {
+                if (isset($file_index[$values['extends']])) {
+                    if (!isset($loadedfiles[$values['extends']])) {
+                        $array = array_merge($array, json_decode(file_get_contents($file_index[$values['extends']]), true));
+                        $loadedfiles[$values['extends']] = true;
+                    }
+                } else {
+                    echo 'Not found: ' . $values['extends'] . PHP_EOL;
+                }
+            }
+
+        }
+        return $this->getClassDiagram($array);
+    }
+
+    /**
+     * Generate an UML Class Diagram dot file based on the given objects.
+     *
      * TODO: links to Name, vars and methods
-     * TODO: add stereotype: <<class>>, <<interface>>, <<trait>>
      *
      * @param $array
      * @return string
      */
     function getClassDiagram($array)
     {
-        if(!is_array($array)) return;
+        if (!is_array($array)) return;
         $result = array();
 
-        $result[] = 'graph "Class Diagram" {';
+        $result[] = 'digraph "Class Diagram" {';
         $result[] = "  node [shape=plaintext]";
+        $links = [];
         foreach ($array as $index => $values) {
             $meta = $values['meta'];
 
@@ -44,8 +85,25 @@ class OopToDot
             if (!empty($fileUrl)) {
                 $fileUrl = ' href="' . $fileUrl . '"';
             }
+            $safename = $this->getSafeName($values['namespace'] . '\\' . $values['name']);
+            if (isset($values['implements'])) {
+                foreach ($values['implements'] as $implement) {
+                    $links[$this->getSafeName($implement) . $safename] = [
+                        'from' => $this->getSafeName($implement),
+                        'to' => $safename,
+                        'type' => 'implement'
+                    ];
+                }
+            }
+            if (isset($values['extends'])) {
+                $links[$this->getSafeName($values['extends']) . $safename] = [
+                    'from' => $this->getSafeName($values['extends']),
+                    'to' => $safename,
+                    'type' => 'extend'
+                ];
+            }
 
-            $result[] = "  node_$index [";
+            $result[] = "  $safename [";
             $result[] = "    label=<";
             $result[] = '<table border="1" cellpadding="2" cellspacing="0" cellborder="0">';
             $result[] = '<tr><td align="center"' . $fileUrl . ' title="' . $values['type'] . ' ' . $values['name'] . '">' . $values['name'] . '</td></tr><hr />';
@@ -140,10 +198,23 @@ class OopToDot
 
             $result[] = "  ];";
         }
+        foreach ($links as $link) {
+            if ($link['type'] == 'extend') {
+                $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty"];' . PHP_EOL;
+            } else {
+                $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty" style="dashed"];' . PHP_EOL;
+            }
+        }
         $result[] = "}";
 
         return join(PHP_EOL, $result);
 
+    }
+
+    private function getSafeName($namespace)
+    {
+        $safename = preg_replace('/[^a-zA-Z0-9]/', '_', substr($namespace, 1));
+        return $safename;
     }
 
 }
