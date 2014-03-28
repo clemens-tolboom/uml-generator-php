@@ -52,7 +52,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
 
     function testFunctionScope()
     {
-        $scopes = array('', 'public', 'protected', 'private');
+        $scopes = array('', 'public', 'protected', 'private', 'static');
         foreach ($scopes as $scope) {
             $this->visitor->clearIndex();
             $stmts = $this->parser->parse($this->getCode('interface', $scope));
@@ -62,8 +62,12 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
             $methods = array_values(array_filter($children, [$this, 'isMethod']));
             $method = $methods[0];
             $this->assertEquals('method', $method['type'], "method");
+
             if (empty($scope)) {
                 $scope = 'public';
+            }
+            if ($method['scope'] == 'classifier'){
+                $method['visibility'] = 'static';
             }
             $this->assertEquals($scope, $method['visibility'], "method");
         }
@@ -71,7 +75,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
 
     function testAttributeScope()
     {
-        $scopes = array('', 'public', 'protected', 'private');
+        $scopes = array('', 'public', 'protected', 'private', 'static');
         foreach ($scopes as $scope) {
             $this->visitor->clearIndex();
             $stmts = $this->parser->parse($this->getCode('class', $scope));
@@ -83,6 +87,9 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals('attribute', $attribute['type'], "attribute");
             if (empty($scope)) {
                 $scope = 'public';
+            }
+            if ($attribute['scope'] == 'classifier'){
+                $attribute['visibility'] = 'static';
             }
             $this->assertEquals($scope, $attribute['visibility'], "attribute");
         }
