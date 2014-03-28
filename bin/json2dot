@@ -9,20 +9,22 @@ use Ulrichsg\Getopt\Option;
 $getopt = new Getopt(array(
     (new Option('d', 'directory', Getopt::REQUIRED_ARGUMENT))
         ->setDescription('Directory containing the json files')
-        ->setValidation(function($value){return !empty($value);}),
+        ->setValidation(function ($value) {
+            return !empty($value);
+        }),
     (new Option('u', 'documenter', Getopt::REQUIRED_ARGUMENT))
         ->setDescription('Set documentation url generator.'),
     (new Option('m', 'merge', Getopt::NO_ARGUMENT))
         ->setDescription('Merge linked classes in one file.')
 ));
 
-try{
+try {
     $getopt->parse();
-    if($getopt['directory']==null){
+    if ($getopt['directory'] == null) {
         throw new UnexpectedValueException('Directory is a required argument');
     }
-} catch (UnexpectedValueException $e){
-    echo "Error: ".$e->getMessage()."\n";
+} catch (UnexpectedValueException $e) {
+    echo "Error: " . $e->getMessage() . "\n";
     echo $getopt->getHelpText();
     exit(1);
 }
@@ -30,7 +32,7 @@ try{
 $directory = $getopt['directory'];
 $merge = $getopt['merge'] > 0;
 
-switch(strtolower($getopt['documenter'])){
+switch (strtolower($getopt['documenter'])) {
     case "drupal":
         $meta = array(
             'siteURL' => 'https://api.drupal.org/api',
@@ -45,25 +47,25 @@ switch(strtolower($getopt['documenter'])){
         break;
 }
 
-$toDot = new OopToDot($documenter, $merge);
+$toDot = new OopToDot($documenter);
 
 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
 $files = new RegexIterator($files, '/\.json$/');
 
-if(!is_file($directory . 'uml-generator-php.index') && $merge){
-    echo 'Uml-generator-php.index is not found. This is required for merge mode.'.PHP_EOL;
+if (!is_file($directory . 'uml-generator-php.index') && $merge) {
+    echo 'Uml-generator-php.index is not found. This is required for merge mode.' . PHP_EOL;
     exit(1);
 }
-$index = json_decode(file_get_contents($directory . 'uml-generator-php.index'), true);
-foreach($files as $file){
+foreach ($files as $file) {
     $array = json_decode(file_get_contents($file), TRUE);
-    if($merge){
-        $dot = $toDot->getMergedDiagram($array, $index);
-    }else{
+    if ($merge) {
+        $file_index = json_decode(file_get_contents($directory . 'uml-generator-php.index'), true);
+        $dot = $toDot->getMergedDiagram($array, $file_index);
+    } else {
         $dot = $toDot->getClassDiagram($array);
     }
 
-    $pinfo=pathinfo($file);
+    $pinfo = pathinfo($file);
     $outputfile = $pinfo['dirname'] . '/' . $pinfo['filename'] . '.dot';
     echo $outputfile . PHP_EOL;
     file_put_contents($outputfile, $dot);

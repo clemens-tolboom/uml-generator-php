@@ -24,29 +24,29 @@ class OopToDot
 
     function getMergedDiagram($array, $index){
         $loadedfiles = [];
-        foreach($array as $values){
-            if(isset($values['implements'])){
-                foreach($values['implements'] as $implement){
-                    if(isset($index[$implement])){
-                        echo $index[$implement];
-                        if(!isset($loadedfiles[$implement])){
-                            $source = json_decode(file_get_contents($index[$implement]), true);
+        foreach ($array as $values) {
+            if (isset($values['implements'])) {
+                foreach ($values['implements'] as $implement) {
+                    if (isset($file_index[$implement])) {
+                        echo $file_index[$implement];
+                        if (!isset($loadedfiles[$implement])) {
+                            $source = json_decode(file_get_contents($file_index[$implement]), true);
                             $array = array_merge($array, $source);
                             $loadedfiles[$implement] = true;
                         }
-                    }else{
-                        echo 'Not found: '.$implement.PHP_EOL;
+                    } else {
+                        echo 'Not found: ' . $implement . PHP_EOL;
                     }
                 }
             }
-            if(isset($values['extends'])){
-                if(isset($index[$values['extends']])){
-                    if(!isset($loadedfiles[$values['extends']])){
-                        $array = array_merge($array, json_decode(file_get_contents($index[$values['extends']]), true));
+            if (isset($values['extends'])) {
+                if (isset($file_index[$values['extends']])) {
+                    if (!isset($loadedfiles[$values['extends']])) {
+                        $array = array_merge($array, json_decode(file_get_contents($file_index[$values['extends']]), true));
                         $loadedfiles[$values['extends']] = true;
                     }
-                }else{
-                    echo 'Not found: '.$values['extends'].PHP_EOL;
+                } else {
+                    echo 'Not found: ' . $values['extends'] . PHP_EOL;
                 }
             }
 
@@ -55,18 +55,16 @@ class OopToDot
     }
 
     /**
-     * Generate an UML CLass Digram dot file based on the given objects
+     * Generate an UML Class Diagram dot file based on the given objects.
      *
-     * TODO: alignments
      * TODO: links to Name, vars and methods
-     * TODO: add stereotype: <<class>>, <<interface>>, <<trait>>
      *
      * @param $array
      * @return string
      */
     function getClassDiagram($array)
     {
-        if(!is_array($array)) return;
+        if (!is_array($array)) return;
         $result = array();
 
         $result[] = 'digraph "Class Diagram" {';
@@ -79,18 +77,18 @@ class OopToDot
             if (!empty($fileUrl)) {
                 $fileUrl = ' href="' . $fileUrl . '"';
             }
-            $safename = $this->getSafeName($values['namespace'].'\\'.$values['name']);
-            if(isset($values['implements'])){
-                foreach($values['implements'] as $implement){
-                    $links[$this->getSafeName($implement).$safename]=[
+            $safename = $this->getSafeName($values['namespace'] . '\\' . $values['name']);
+            if (isset($values['implements'])) {
+                foreach ($values['implements'] as $implement) {
+                    $links[$this->getSafeName($implement) . $safename] = [
                         'from' => $this->getSafeName($implement),
                         'to' => $safename,
                         'type' => 'implement'
                     ];
                 }
             }
-            if(isset($values['extends'])){
-                $links[$this->getSafeName($values['extends']) . $safename]=[
+            if (isset($values['extends'])) {
+                $links[$this->getSafeName($values['extends']) . $safename] = [
                     'from' => $this->getSafeName($values['extends']),
                     'to' => $safename,
                     'type' => 'extend'
@@ -192,10 +190,10 @@ class OopToDot
 
             $result[] = "  ];";
         }
-        foreach($links as $link){
-            if($link['type']=='extend'){
+        foreach ($links as $link) {
+            if ($link['type'] == 'extend') {
                 $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty"];' . PHP_EOL;
-            }else{
+            } else {
                 $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty" style="dashed"];' . PHP_EOL;
             }
         }
@@ -205,8 +203,9 @@ class OopToDot
 
     }
 
-    private function getSafeName($namespace){
-        $safename = preg_replace('/[^a-zA-Z0-9]/', '_', substr($namespace,1));
+    private function getSafeName($namespace)
+    {
+        $safename = preg_replace('/[^a-zA-Z0-9]/', '_', substr($namespace, 1));
         return $safename;
     }
 
