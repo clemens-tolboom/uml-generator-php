@@ -84,14 +84,16 @@ class OopToDot
                 foreach($values['implements'] as $implement){
                     $links[$this->getSafeName($implement).$safename]=[
                         'from' => $this->getSafeName($implement),
-                        'to' => $safename
+                        'to' => $safename,
+                        'type' => 'implement'
                     ];
                 }
             }
             if(isset($values['extends'])){
                 $links[$this->getSafeName($values['extends']) . $safename]=[
                     'from' => $this->getSafeName($values['extends']),
-                    'to' => $safename
+                    'to' => $safename,
+                    'type' => 'extend'
                 ];
             }
 
@@ -191,7 +193,11 @@ class OopToDot
             $result[] = "  ];";
         }
         foreach($links as $link){
-            $result[] = $link['from'] . ' -> ' . $link['to'] . ';' . PHP_EOL;
+            if($link['type']=='extend'){
+                $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty"];' . PHP_EOL;
+            }else{
+                $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty" style="dashed"];' . PHP_EOL;
+            }
         }
         $result[] = "}";
 
