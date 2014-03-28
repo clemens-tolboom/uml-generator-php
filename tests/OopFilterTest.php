@@ -44,8 +44,9 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
         $result = $this->traverser->traverse($stmts);
 
         $children = $result[0]['children'];
-        $this->assertEquals(1, count($children), "1 method found");
-        $method = $children[0];
+        $methods = array_values(array_filter($children, [$this, 'isMethod']));
+        $this->assertEquals(1, count($methods), "1 method found");
+        $method = $methods[0];
         $this->assertEquals('method', $method['type'], "method");
     }
 
@@ -58,13 +59,32 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
             $result = $this->traverser->traverse($stmts);
 
             $children = $result[0]['children'];
-
-            $method = $children[0];
+            $methods = array_values(array_filter($children, [$this, 'isMethod']));
+            $method = $methods[0];
             $this->assertEquals('method', $method['type'], "method");
             if (empty($scope)) {
                 $scope = 'public';
             }
             $this->assertEquals($scope, $method['visibility'], "method");
+        }
+    }
+
+    function testAttributeScope()
+    {
+        $scopes = array('', 'public', 'protected', 'private');
+        foreach ($scopes as $scope) {
+            $this->visitor->clearIndex();
+            $stmts = $this->parser->parse($this->getCode('class', $scope));
+            $result = $this->traverser->traverse($stmts);
+
+            $children = $result[0]['children'];
+            $attributes = array_values(array_filter($children, [$this, 'isAttribute']));
+            $attribute = $attributes[0];
+            $this->assertEquals('attribute', $attribute['type'], "attribute");
+            if (empty($scope)) {
+                $scope = 'public';
+            }
+            $this->assertEquals($scope, $attribute['visibility'], "attribute");
         }
     }
 
@@ -78,13 +98,27 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     function getCode($type, $scope = '')
     {
-        return "<?php
+        $code = "<?php
         namespace {$type}Namespace;
 
         $type {$type}Name {
-          $scope function testFunction();
-        }
         ";
+        if($type != 'interface'){
+            $prefix = $scope == '' ? 'var' : $scope;
+            $code .= "$prefix \${$scope}Attribute;" . PHP_EOL;
+        }
+        $code .= "$scope function testFunction();" . PHP_EOL;
+        $code .= "}
+        ";
+        echo $code;
+        return $code;
+    }
 
+    function isMethod($node){
+        return $node['type'] == 'method';
+    }
+
+    function isAttribute($node){
+        return $node['type'] == 'attribute';
     }
 }

@@ -37,7 +37,7 @@ class OopToDotTest extends \PHPUnit_Framework_TestCase
         $toDot = new OopToDot();
         $dot = $toDot->getClassDiagram($data);
 
-        var_dump($dot);
+
     }
 
 }
