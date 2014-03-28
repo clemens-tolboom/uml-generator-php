@@ -23,7 +23,8 @@ class OopToDotTest extends \PHPUnit_Framework_TestCase
         $this->traverser = new \PhpParser\NodeTraverser;
         $filter = new OopFilter;
         $filter->setMeta([
-            'file' => '/dummy/path.php'
+            'file' => '/dummy/path.php',
+            'output' => 'dummy/output',
         ]);
         $this->traverser->addVisitor($filter);
     }
