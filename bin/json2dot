@@ -54,10 +54,14 @@ if(!is_file($directory . 'uml-generator-php.index') && $merge){
     echo 'Uml-generator-php.index is not found. This is required for merge mode.'.PHP_EOL;
     exit(1);
 }
-
+$index = json_decode(file_get_contents($directory . 'uml-generator-php.index'), true);
 foreach($files as $file){
     $array = json_decode(file_get_contents($file), TRUE);
-    $dot = $toDot->getClassDiagram($array);
+    if($merge){
+        $dot = $toDot->getMergedDiagram($array, $index);
+    }else{
+        $dot = $toDot->getClassDiagram($array);
+    }
 
     $pinfo=pathinfo($file);
     $outputfile = $pinfo['dirname'] . '/' . $pinfo['filename'] . '.dot';

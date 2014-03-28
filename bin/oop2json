@@ -30,8 +30,14 @@ foreach($files as $file){
     $code = file_get_contents($file);
     $parser = new \PhpParser\Parser(new \PhpParser\Lexer);
     $traverser = new \PhpParser\NodeTraverser;
+
+    $pinfo=pathinfo($file);
+    $outputfiledir = str_replace($inputdir, $outputdir, $pinfo['dirname']);
+    $outputfile = $outputfiledir . '/' . $pinfo['filename'] . '.json';
+
     $meta = array(
       'file' => $file->getPathName(),
+      'output' => $outputfile
     );
     $visitor->setMeta($meta);
     $traverser->addVisitor($visitor);
@@ -39,9 +45,7 @@ foreach($files as $file){
     $tree = $traverser->traverse($stmts);
 
     echo $file.PHP_EOL;
-    $pinfo=pathinfo($file);
-    $outputfiledir = str_replace($inputdir, $outputdir, $pinfo['dirname']);
-    $outputfile = $outputfiledir . '/' . $pinfo['filename'] . '.json';
+
     $json = json_encode($tree);
     if($json != '[]'){
         if(!is_dir($outputfiledir)){

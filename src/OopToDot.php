@@ -22,6 +22,31 @@ class OopToDot
         $this->merge = $merge;
     }
 
+    function getMergedDiagram($array, $index){
+        foreach($array as $values){
+            if(isset($values['implements'])){
+                foreach($values['implements'] as $implement){
+                    if(isset($index[$implement])){
+                        echo $index[$implement];
+                        $source = json_decode(file_get_contents($index[$implement]), true);
+                        $array = array_merge($array, $source);
+                    }else{
+                        echo 'Not found: '.$implement.PHP_EOL;
+                    }
+                }
+            }
+            if(isset($values['extends'])){
+                if(isset($index[$values['extends']])){
+                    $array = array_merge($array, json_decode(file_get_contents($index[$values['extends']]), true));
+                }else{
+                    echo 'Not found: '.$values['extends'].PHP_EOL;
+                }
+            }
+
+        }
+        return $this->getClassDiagram($array);
+    }
+
     /**
      * Generate an UML CLass Digram dot file based on the given objects
      *

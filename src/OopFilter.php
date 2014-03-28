@@ -110,7 +110,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             $implements[] = $implementname;
         }
         $node['implements'] = $implements;
-        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['file']);
+        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['output']);
         return [$node];
     }
 
@@ -134,7 +134,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
                 $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
             }
         }
-        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['file']);
+        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['output']);
         return [$node];
     }
 
@@ -158,7 +158,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
                 $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
             }
         }
-        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['file']);
+        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['output']);
         return [$node];
     }
 
@@ -241,7 +241,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             $this->index[$fullyqualifiedname] = $filename;
         }else{
             $message = "Fully Qualified object name already in index: (%s) original file '%s', current file '%s'";
-            throw new \UnexpectedValueException(sprintf($message,$fullyqualifiedname, $this->index[$fullyqualifiedname], $filename));
+            //throw new \UnexpectedValueException(sprintf($message,$fullyqualifiedname, $this->index[$fullyqualifiedname], $filename));
         }
 
     }
