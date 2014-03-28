@@ -14,8 +14,8 @@ $getopt = new Getopt(array(
         }),
     (new Option('u', 'documenter', Getopt::REQUIRED_ARGUMENT))
         ->setDescription('Set documentation url generator.'),
-    (new Option('m', 'merge', Getopt::NO_ARGUMENT))
-        ->setDescription('Merge linked classes in one file.')
+    (new Option('p', 'with-parents', Getopt::NO_ARGUMENT))
+        ->setDescription('Add parents into file.')
 ));
 
 try {
@@ -30,7 +30,7 @@ try {
 }
 
 $directory = $getopt['directory'];
-$merge = $getopt['merge'] > 0;
+$with_parents = $getopt['with-parents'] > 0;
 
 switch (strtolower($getopt['documenter'])) {
     case "drupal":
@@ -52,13 +52,14 @@ $toDot = new OopToDot($documenter);
 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
 $files = new RegexIterator($files, '/\.json$/');
 
-if (!is_file($directory . 'uml-generator-php.index') && $merge) {
-    echo 'Uml-generator-php.index is not found. This is required for merge mode.' . PHP_EOL;
+if ($with_parents && !is_file($directory . 'uml-generator-php.index')) {
+    echo 'Uml-generator-php.index is not found. This is required for with-parents mode.' . PHP_EOL;
     exit(1);
 }
+
 foreach ($files as $file) {
     $array = json_decode(file_get_contents($file), TRUE);
-    if ($merge) {
+    if ($with_parents) {
         $file_index = json_decode(file_get_contents($directory . 'uml-generator-php.index'), true);
         $dot = $toDot->getMergedDiagram($array, $file_index);
     } else {
