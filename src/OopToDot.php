@@ -23,13 +23,17 @@ class OopToDot
     }
 
     function getMergedDiagram($array, $index){
+        $loadedfiles = [];
         foreach($array as $values){
             if(isset($values['implements'])){
                 foreach($values['implements'] as $implement){
                     if(isset($index[$implement])){
                         echo $index[$implement];
-                        $source = json_decode(file_get_contents($index[$implement]), true);
-                        $array = array_merge($array, $source);
+                        if(!isset($loadedfiles[$implement])){
+                            $source = json_decode(file_get_contents($index[$implement]), true);
+                            $array = array_merge($array, $source);
+                            $loadedfiles[$implement] = true;
+                        }
                     }else{
                         echo 'Not found: '.$implement.PHP_EOL;
                     }
@@ -37,7 +41,10 @@ class OopToDot
             }
             if(isset($values['extends'])){
                 if(isset($index[$values['extends']])){
-                    $array = array_merge($array, json_decode(file_get_contents($index[$values['extends']]), true));
+                    if(!isset($loadedfiles[$values['extends']])){
+                        $array = array_merge($array, json_decode(file_get_contents($index[$values['extends']]), true));
+                        $loadedfiles[$values['extends']] = true;
+                    }
                 }else{
                     echo 'Not found: '.$values['extends'].PHP_EOL;
                 }
@@ -75,14 +82,14 @@ class OopToDot
             $safename = $this->getSafeName($values['namespace'].'\\'.$values['name']);
             if(isset($values['implements'])){
                 foreach($values['implements'] as $implement){
-                    $links[]=[
+                    $links[$this->getSafeName($implement).$safename]=[
                         'from' => $this->getSafeName($implement),
                         'to' => $safename
                     ];
                 }
             }
             if(isset($values['extends'])){
-                $links[]=[
+                $links[$this->getSafeName($values['extends']) . $safename]=[
                     'from' => $this->getSafeName($values['extends']),
                     'to' => $safename
                 ];
