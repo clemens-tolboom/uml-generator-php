@@ -70,9 +70,13 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             return $this->parseProperty($statement);
         } elseif ($statement instanceof Stmt\ClassMethod) {
             return $this->parseMethod($statement);
+        } elseif ($statement instanceof Stmt\ClassConst) {
+            return $this->parseConstant($statement);
         }
         if($statement instanceof Stmt\PropertyProperty) return;
         if($statement instanceof Node\Name) return;
+        if($statement instanceof Node\Const_) return;
+        if($statement instanceof Node\Scalar) return;
         return false;
     }
 
@@ -155,6 +159,16 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             }
         }
         $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['file']);
+        return [$node];
+    }
+
+    private function parseConstant(Stmt\ClassConst $statement)
+    {
+        $node = [
+            'type' => 'constant',
+            'name' => $statement->consts[0]->name,
+            'value' => $statement->consts[0]->name
+        ];
         return [$node];
     }
 
