@@ -22,7 +22,8 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
 
         $this->visitor = new OopFilter;
         $this->visitor->setMeta([
-            'file' => 'dummy/path.php'
+            'file' => 'dummy/path.php',
+            'output' => 'dummy/output',
         ]);
         $this->traverser->addVisitor($this->visitor);
     }
