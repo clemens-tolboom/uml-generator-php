@@ -95,6 +95,16 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    function testConstant()
+    {
+        $this->visitor->clearIndex();
+        $result = $this->traverser->traverse($this->parser->parse($this->getCode('class')));
+        $children = $result[0]['children'];
+        $constants = array_values(array_filter($children, [$this, 'isConstant']));
+        $this->assertEquals(1, count($constants), "1 constant found");
+        $constant = $constants[0];
+        $this->assertEquals('constant', $constant['type'], "Constant found");
+    }
 
     /**
      * @param $type
@@ -109,6 +119,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
         namespace {$type}Namespace;
 
         $type {$type}Name {
+            const TESTCONST='TEST';
         ";
         if($type != 'interface'){
             $prefix = $scope == '' ? 'var' : $scope;
@@ -117,7 +128,6 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
         $code .= "$scope function testFunction();" . PHP_EOL;
         $code .= "}
         ";
-        echo $code;
         return $code;
     }
 
@@ -127,5 +137,9 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
 
     function isAttribute($node){
         return $node['type'] == 'attribute';
+    }
+
+    function isConstant($node){
+        return $node['type'] == 'constant';
     }
 }
