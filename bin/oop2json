@@ -7,7 +7,8 @@ if($argc != 3){
 }
 
 list(,$inputdir,$outputdir) = $argv;
-
+$inputdir = realpath($inputdir);
+$outputdir = realpath($outputdir);
 if(!is_dir($inputdir)){
     echo 'Input directory is not a directory'.PHP_EOL;
     die;
