@@ -40,7 +40,21 @@
             <h3>
                 <a name="example-output" class="anchor" href="#example-output"><span class="octicon octicon-link"></span></a>Example output.
             </h3>
-            <p></p>
+            <p>
+                This is some example output generated from the Drupal 8 master branch. Some rendering issues may occur because of broken SVG renderers in browsers.
+                All methods and properties are clickable and link to the Drupal 8 api documentation website.
+            </p>
+            <p>
+                <div class="svgexample">
+                    <a href="images/output/entity.svg"><img src="images/output/entity.svg"></a><br>
+                    EntityFormController from Drupal
+                </div>
+                <div class="svgexample">
+                    <a href="images/output/diff.svg"><img src="images/output/diff.svg"></a><br>
+                    Diff from Drupal
+                </div>
+                <br style="clear: both;">
+            </p>
 
             <h3>
                 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation instructions.
@@ -56,6 +70,29 @@ $ composer install
             And install graphviz with your distro's package manager or from git.<br>
             uml-generator-php requires graphviz versions later than 15 September 2013 (See <a href="https://github.com/clemens-tolboom/uml-generator-php/issues/16">issue #16</a>)
 
+            <h3>
+                <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage example.
+            </h3>
+            <p>
+                To parse your source tree for Class Interface and Traits run
+            </p>
+            <pre><code>$ mkdir tests/output
+$ bin/oop2json /Users/clemens/Sites/drupal/d8/www tests/output</code></pre>
+
+            <p>
+                Next generate their dot files by running
+            </p>
+            <pre><code>$ bin/json2dot -u drupal -d tests/output</code></pre>
+
+            <p>
+                Then use the graphviz tools to render SVG or image output
+            </p>
+            <pre><code>$ bin/json2dot -u drupal -d tests/output | xargs -I {} dot -Tsvg -O {}</code></pre>
+
+            <p>
+                If you want to monitor progress use the <kbd>xargs -t</kbd> option
+            </p>
+    <pre><code>$ bin/json2dot -u drupal -d tests/output | xargs -t -I {} dot -Tsvg -O {}</code></pre>
 
         </section>
 
