@@ -1,63 +1,83 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print"/>
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     <title>Uml-generator-php by clemens-tolboom</title>
-  </head>
+</head>
 
-  <body>
-    <header>
-      <div class="inner">
+<body>
+<header>
+    <div class="inner">
         <h1>Uml-generator-php</h1>
+
         <h2></h2>
-        <a href="https://github.com/clemens-tolboom/uml-generator-php" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
+        <a href="https://github.com/clemens-tolboom/uml-generator-php" class="button">
+            <small>View project on</small>
+            GitHub</a>
+    </div>
+</header>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
+<div id="content-wrapper">
+    <div class="inner clearfix">
         <section id="main-content">
-          <h3>
-            <a name="generate-uml-diagrams-for-your-php-code" class="anchor" href="#generate-uml-diagrams-for-your-php-code"><span class="octicon octicon-link"></span></a>Generate UML diagrams for your PHP code.
-          </h3>
+            <h3>
+                <a name="generate-uml-diagrams-for-your-php-code" class="anchor"
+                   href="#generate-uml-diagrams-for-your-php-code"><span class="octicon octicon-link"></span></a>Generate
+                UML diagrams for your PHP code.
+            </h3>
 
-            <p>This tool wil generate UML diagrams with all class, interface and trait definitions in your PHP project without depending on autoloaders. Instead it uses the PHP Abstract Language Tree from <a href="https://github.com/nikic/php-parser">php-parser</a> to build the class graph.</p>
-            <p>The project is divided in 2 tools. One parses all your PHP code and generates a new directory structure containing JSON files. The other parses the JSON structure and generates .dot files for <a href="http://graphviz.org/">Graphviz</a>. Then you can use the Graphviz toolkit to render the diagrams to your image format of choice.</p>
-            <p>If you happen to choose the SVG output format and defined a documentation module for <kbd>json2dot</kbd> the class and method names will be clickable and lead to the defined URLs. The repo currently contains a documentation module for api.drupal.org.</p>
+            <p>This tool wil generate UML diagrams with all class, interface and trait definitions in your PHP project
+                without depending on autoloaders. Instead it uses the PHP Abstract Language Tree from <a
+                        href="https://github.com/nikic/php-parser">php-parser</a> to build the class graph.</p>
+
+            <p>The project is divided in 2 tools. One parses all your PHP code and generates a new directory structure
+                containing JSON files. The other parses the JSON structure and generates .dot files for <a
+                        href="http://graphviz.org/">Graphviz</a>. Then you can use the Graphviz toolkit to render the
+                diagrams to your image format of choice.</p>
+
+            <p>If you happen to choose the SVG output format and defined a documentation module for <code>json2dot</code>
+                the class and method names will be clickable and lead to the defined URLs. The repo currently contains a
+                documentation module for api.drupal.org.</p>
 
 
             <h3>
-                <a name="example-output" class="anchor" href="#example-output"><span class="octicon octicon-link"></span></a>Example output.
+                <a name="example-output" class="anchor" href="#example-output"><span
+                        class="octicon octicon-link"></span></a>Example output.
             </h3>
+
             <p>
-                This is some example output generated from the Drupal 8 master branch. Some rendering issues may occur because of broken SVG renderers in browsers.
+                This is some example output generated from the Drupal 8 master branch. Some rendering issues may occur
+                because of broken SVG renderers in browsers.
                 All methods and properties are clickable and link to the Drupal 8 api documentation website.
             </p>
+
             <p>
-                <div class="svgexample">
-                    <a href="images/output/entity.svg"><img src="images/output/entity.svg"></a><br>
-                    EntityFormController from Drupal
-                </div>
-                <div class="svgexample">
-                    <a href="images/output/diff.svg"><img src="images/output/diff.svg"></a><br>
-                    Diff from Drupal
-                </div>
-                <br style="clear: both;">
+
+            <div class="svgexample">
+                <a href="images/output/entity.svg"><img src="images/output/entity.svg"></a><br>
+                EntityFormController from Drupal
+            </div>
+            <div class="svgexample">
+                <a href="images/output/diff.svg"><img src="images/output/diff.svg"></a><br>
+                Diff from Drupal
+            </div>
+            <br style="clear: both;">
             </p>
 
             <h3>
-                <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation instructions.
+                <a name="installation" class="anchor" href="#installation"><span
+                        class="octicon octicon-link"></span></a>Installation instructions.
             </h3>
 
             Clone the git repository
@@ -66,13 +86,16 @@
             Install composer dependencies
             <pre><code>$ cd uml-generator-php
 $ composer install
-</code></pre>
+            </code></pre>
             And install graphviz with your distro's package manager or from git.<br>
-            uml-generator-php requires graphviz versions later than 15 September 2013 (See <a href="https://github.com/clemens-tolboom/uml-generator-php/issues/16">issue #16</a>)
+            uml-generator-php requires graphviz versions later than 15 September 2013 (See <a
+                href="https://github.com/clemens-tolboom/uml-generator-php/issues/16">issue #16</a>)
 
             <h3>
-                <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage example.
+                <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage
+                example.
             </h3>
+
             <p>
                 To parse your source tree for Class Interface and Traits run
             </p>
@@ -90,29 +113,32 @@ $ bin/oop2json /Users/clemens/Sites/drupal/d8/www tests/output</code></pre>
             <pre><code>$ bin/json2dot -u drupal -d tests/output | xargs -I {} dot -Tsvg -O {}</code></pre>
 
             <p>
-                If you want to monitor progress use the <kbd>xargs -t</kbd> option
+                If you want to monitor progress use the <code>xargs -t</code> option
             </p>
-    <pre><code>$ bin/json2dot -u drupal -d tests/output | xargs -t -I {} dot -Tsvg -O {}</code></pre>
+            <pre><code>$ bin/json2dot -u drupal -d tests/output | xargs -t -I {} dot -Tsvg -O {}</code></pre>
 
         </section>
 
         <aside id="sidebar">
-          <a href="https://github.com/clemens-tolboom/uml-generator-php/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/clemens-tolboom/uml-generator-php/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+            <a href="https://github.com/clemens-tolboom/uml-generator-php/zipball/master" class="button">
+                <small>Download</small>
+                .zip file
+            </a>
+            <a href="https://github.com/clemens-tolboom/uml-generator-php/tarball/master" class="button">
+                <small>Download</small>
+                .tar.gz file
+            </a>
 
-          <p class="repo-owner"><a href="https://github.com/clemens-tolboom/uml-generator-php"></a> is maintained by <a href="https://github.com/clemens-tolboom">clemens-tolboom</a> and <a href="https://github.com/MartijnBraam">MartijnBraam</a>.</p>
+            <p class="repo-owner"><a href="https://github.com/clemens-tolboom/uml-generator-php"></a> is maintained by
+                <a href="https://github.com/clemens-tolboom">clemens-tolboom</a> and <a
+                        href="https://github.com/MartijnBraam">MartijnBraam</a>.</p>
 
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+            <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme
+                by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
         </aside>
-      </div>
     </div>
+</div>
 
-  
-  </body>
+
+</body>
 </html>
