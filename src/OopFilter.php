@@ -77,6 +77,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
         if($statement instanceof Node\Name) return;
         if($statement instanceof Node\Const_) return;
         if($statement instanceof Node\Scalar) return;
+        if($statement instanceof Node\Param) return;
         return false;
     }
 
