@@ -186,8 +186,15 @@ class OopToDot
                     $methodUrl = ' href="' . $methodUrl . '"';
 
                 }
-
-                $result[] = '<tr><td align="left"' . $methodUrl . ' title="' . $t . '">' . $s . '()</td></tr>';
+                $parameters = array();
+                foreach($method['parameters'] as $parameter){
+                    if($parameter['type'] == null){
+                        $parameter['type'] = 'mixed';
+                    }
+                    $parameters[] = $parameter['name'] . ' : ' . $parameter['type'];
+                }
+                $parameters = implode(', ', $parameters);
+                $result[] = '<tr><td align="left"' . $methodUrl . ' title="' . $t . '">' . $s . '(' . $parameters . ')</td></tr>';
 
             }
             if (count($methods) == 0) {
