@@ -3,6 +3,11 @@ uml-generator-php
 
 [![Build Status](https://travis-ci.org/clemens-tolboom/uml-generator-php.svg?branch=master)](https://travis-ci.org/clemens-tolboom/uml-generator-php)
 
+Website
+-------
+
+Visit our [website](http://clemens-tolboom.github.io/uml-generator-php/).
+
 Installation
 ------------
 Clone the git repository
