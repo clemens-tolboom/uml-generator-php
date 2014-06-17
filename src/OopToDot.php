@@ -8,6 +8,8 @@
 
 namespace UmlGeneratorPhp;
 
+use Alom\Graphviz\Digraph;
+
 class OopToDot
 {
     protected $documenter = null;
@@ -73,10 +75,8 @@ class OopToDot
     function getClassDiagram($array)
     {
         if (!is_array($array)) return;
-        $result = array();
-
-        $result[] = 'digraph "Class Diagram" {';
-        $result[] = "  node [shape=plaintext]";
+        $graph = new Digraph('Class Diagram');
+        $graph->attr('node', array('shape' => 'plaintext'));
         $links = [];
         foreach ($array as $index => $values) {
             $meta = $values['meta'];
@@ -103,10 +103,8 @@ class OopToDot
                 ];
             }
 
-            $result[] = "  $safename [";
-            $result[] = "    label=<";
-            $result[] = '<table border="1" cellpadding="2" cellspacing="0" cellborder="0">';
-            $result[] = '<tr><td align="center"' . $fileUrl . ' title="' . $values['type'] . ' ' . $values['name'] . '">' . $values['name'] . '</td></tr><hr />';
+            $label = '<<table border="1" cellpadding="2" cellspacing="0" cellborder="0">';
+            $label .= '<tr><td align="center"' . $fileUrl . ' title="' . $values['type'] . ' ' . $values['name'] . '">' . $values['name'] . '</td></tr><hr />';
 
             $scope = array(
                 'classifier' => '<u>%s</u>',
@@ -154,12 +152,12 @@ class OopToDot
                 if (!empty($propertyUrl)) {
                     $propertyUrl = ' href="' . $propertyUrl . '"';
                 }
-                $result[] = '<tr><td align="left"' . $propertyUrl . ' title="' . $t . '">' . $s . '</td></tr>';
+                $label .= '<tr><td align="left"' . $propertyUrl . ' title="' . $t . '">' . $s . '</td></tr>';
             }
             if (count($properties) == 0) {
-                $result[] = '<tr><td></td></tr>';
+                $label .= '<tr><td></td></tr>';
             }
-            $result[] = '<hr />';
+            $label .= '<hr />';
             $methods = array_filter($values['children'], function ($item) {
                 return $item['type'] == 'method';
             });
@@ -194,28 +192,25 @@ class OopToDot
                     $parameters[] = $parameter['name'] . ' : ' . $parameter['type'];
                 }
                 $parameters = implode(', ', $parameters);
-                $result[] = '<tr><td align="left"' . $methodUrl . ' title="' . $t . '">' . $s . '(' . $parameters . ')</td></tr>';
+                $label .= '<tr><td align="left"' . $methodUrl . ' title="' . $t . '">' . $s . '(' . $parameters . ')</td></tr>';
 
             }
             if (count($methods) == 0) {
-                $result[] = '<tr><td>&nbsp;</td></tr>';
+                $label .= '<tr><td>&nbsp;</td></tr>';
             }
-            $result[] = '</table>';
-            $result[] = "  >";
-
-            $result[] = "  ];";
+            $label .= '</table>';
+            $label .= "  >";
+            $graph->node($safename, array('label' => $label));
         }
         foreach ($links as $link) {
-            if ($link['type'] == 'extend') {
-                $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty"];' . PHP_EOL;
-            } else {
-                $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty" style="dashed"];' . PHP_EOL;
+            $attributes = array('arrowhead' => 'empty');
+            if ($link['type'] != 'extend') {
+                $attributes['style'] = 'dashed';
             }
+            $graph->edge(array($link['from'], $link['to']), $attributes);
         }
-        $result[] = "}";
 
-        return join(PHP_EOL, $result);
-
+        return $graph->render();
     }
 
     private function getSafeName($namespace)
