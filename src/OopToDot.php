@@ -36,7 +36,6 @@ class OopToDot
             if (isset($values['implements'])) {
                 foreach ($values['implements'] as $implement) {
                     if (isset($file_index[$implement])) {
-                        echo $file_index[$implement];
                         if (!isset($loadedfiles[$implement])) {
                             $source = json_decode(file_get_contents($file_index[$implement]), true);
                             $array = array_merge($array, $source);
