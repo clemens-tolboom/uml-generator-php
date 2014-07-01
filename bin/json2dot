@@ -29,7 +29,13 @@ try {
     exit(1);
 }
 
-$directory = $getopt['directory'];
+$directory = realpath($getopt['directory']);
+
+if( !is_file($directory . '/uml-generator-php.index')) {
+  echo "No index file found. You need to run oop2json first." . PHP_EOL;
+  exit(2);
+};
+
 $with_parents = $getopt['with-parents'] > 0;
 
 switch (strtolower($getopt['documenter'])) {
@@ -52,15 +58,10 @@ $toDot = new OopToDot($documenter);
 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
 $files = new RegexIterator($files, '/\.json$/');
 
-if ($with_parents && !is_file($directory . 'uml-generator-php.index')) {
-    echo 'Uml-generator-php.index is not found. This is required for with-parents mode.' . PHP_EOL;
-    exit(1);
-}
-
 foreach ($files as $file) {
     $array = json_decode(file_get_contents($file), TRUE);
     if ($with_parents) {
-        $file_index = json_decode(file_get_contents($directory . 'uml-generator-php.index'), true);
+        $file_index = json_decode(file_get_contents($directory . '/uml-generator-php.index'), true);
         $dot = $toDot->getMergedDiagram($array, $file_index);
     } else {
         $dot = $toDot->getClassDiagram($array);
