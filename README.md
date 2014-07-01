@@ -46,5 +46,5 @@ $ bin/json2dot --documenter=drupal --directory=tests/output | xargs -I {} dot -T
 In case you want to monitor progress use the `xargs -t` switch
 
 ```
-$ bin/json2dot  --documenter=drupal --directory=tests/output | xargs -t -I {} dot -Tsvg -O {}
+$ bin/json2dot --documenter=drupal --directory=tests/output | xargs -t -I {} dot -Tsvg -O {}
 ```
