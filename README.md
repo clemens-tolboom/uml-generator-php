@@ -45,6 +45,5 @@ You may notice the 'Not found: '. For more info see #50
 ### Generate SVG files
 
 ```bash
-bin/json2dot --documenter=drupal --directory=tests/output
 find tests/output -type f -name "*.dot" -exec dot -Tsvg -O {} \;
 ```
