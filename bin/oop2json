@@ -62,6 +62,6 @@ foreach($files as $file){
         file_put_contents($outputfile, $json);
     }
     $indexdata = json_encode($visitor->getIndex());
-    $indexfile = $outputdir . 'uml-generator-php.index';
+    $indexfile = $outputdir . '/uml-generator-php.index';
     file_put_contents($indexfile, $indexdata);
 }
