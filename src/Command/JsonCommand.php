@@ -65,16 +65,14 @@ class JsonCommand extends Command
               'file' => $file->getPathName(),
               'output' => $outputfile
             );
-
+            $output->writeln($file->getPathName());
             try {
                 $visitor->setMeta($meta);
                 $traverser->addVisitor($visitor);
                 $stmts = $parser->parse($code);
                 $tree = $traverser->traverse($stmts);
-
-                $output->writeln($file);
             }
-            catch (Exception $e) {
+            catch (\Exception $e) {
                 file_put_contents('php://stderr', "ERROR " . $e->getMessage() . PHP_EOL, FILE_APPEND);
                 file_put_contents('php://stderr', "  SKIPPING " . $file . PHP_EOL, FILE_APPEND);
                 continue;

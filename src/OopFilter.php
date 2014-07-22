@@ -20,6 +20,7 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
      */
     protected $meta;
     protected $index = [];
+    protected $useIndex = [];
 
     public function setMeta($meta){
         $this->meta = $meta;
@@ -37,6 +38,12 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
         $this->index = [];
     }
 
+    public function beforeTraverse(array $nodes)
+    {
+        $this->useIndex = array();
+        $this->currentNamespace = null;
+    }
+
     public function enterNode(Node $statement){
         if($statement instanceof Stmt\Namespace_){
             //TODO: Workaround for two namespaces in some drupal files. (https://drupal.org/node/1858196 and https://drupal.org/node/1957330)
@@ -45,6 +52,8 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             }else{
                 $this->currentNamespace = '\\' . join('\\', $statement->name->parts);
             }
+        }elseif($statement instanceof Stmt\UseUse){
+            $this->parseUse($statement);
         }
     }
 
@@ -58,10 +67,10 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
         } elseif ($statement instanceof Stmt\Namespace_){
             return $statement->stmts;
         } elseif ($statement instanceof Stmt\TraitUse) {
-            foreach($statement->traits as $trait){
+            foreach ($statement->traits as $trait) {
                 $node = [
-                    'type' => 'traituse',
-                    'name' => join('\\', $trait->parts)
+                  'type' => 'traituse',
+                  'name' => join('\\', $trait->parts)
                 ];
                 return [$node];
             }
@@ -98,7 +107,11 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             if($statement->extends instanceof Node\Name\FullyQualified){
                 $node['extends'] = '\\' . join('\\', $statement->extends->parts);
             }else{
-                $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
+                if(isset($this->useIndex[join('\\', $statement->extends->parts)])){
+                    $node['extends'] = $this->useIndex[join('\\', $statement->extends->parts)];
+                }else{
+                    $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
+                }
             }
         }
         $implements = [];
@@ -106,7 +119,11 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             if($implement instanceof Node\Name\FullyQualified){
                 $implementname = '\\' . join('\\', $implement->parts);
             }else{
-                $implementname = $this->currentNamespace . '\\' . join('\\', $implement->parts);
+                if(isset($this->useIndex[join('\\', $implement->parts)])){
+                    $implementname = $this->useIndex[join('\\', $implement->parts)];
+                }else{
+                    $implementname = $this->currentNamespace . '\\' . join('\\', $implement->parts);
+                }
             }
             $implements[] = $implementname;
         }
@@ -197,6 +214,11 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             $node['scope'] = 'instance';
         }
         return [$node];
+    }
+
+    private function parseUse(Node $statement){
+        $path = '\\' . implode('\\', $statement->name->parts);
+        $this->useIndex[$statement->alias] = $path;
     }
 
     /**

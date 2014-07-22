@@ -87,7 +87,7 @@ class DotCommand extends Command
 
             $pinfo = pathinfo($file);
             $outputfile = $pinfo['dirname'] . '/' . $pinfo['filename'] . '.dot';
-            $output->writeln($outputfile);
+            //$output->writeln($outputfile);
             file_put_contents($outputfile, $dot);
 
         }
