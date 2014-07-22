@@ -121,7 +121,8 @@ class OopToDot
             $result[] = "  $safename [";
             $result[] = "    label=<";
             $result[] = '<table border="1" cellpadding="2" cellspacing="0" cellborder="0">';
-            $result[] = '<tr><td align="center"' . $fileUrl . ' title="' . $values['type'] . ' ' . $values['name'] . '">' . $values['name'] . '</td></tr><hr />';
+            $escaped = str_replace('\\', '\\\\', $values['namespace'] . '\\' . $values['name']);
+            $result[] = '<tr><td align="center"' . $fileUrl . ' title="' . $values['type'] . ' ' . $values['name'] . '">' . $escaped . '</td></tr><hr />';
 
             $scope = array(
               'classifier' => '<u>%s</u>',
