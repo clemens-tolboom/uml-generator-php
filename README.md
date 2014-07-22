@@ -25,11 +25,10 @@ uml-generator-php requires graphviz versions later than 15 September 2013 (See [
 
 ### Parse PHP into json
 
-To parse your source tree for Class Interface and Traits run
+To parse your source tree for Classes, Interfaces and Traits run
 
 ```
-$ mkdir tests/output
-$ bin/oop2json /Users/clemens/Sites/drupal/d8/www tests/output
+$ bin/uml-generator-php generate:json /Users/clemens/Sites/drupal/d8/www tests/output
 ```
 
 ### Generate DOT files
@@ -37,7 +36,7 @@ $ bin/oop2json /Users/clemens/Sites/drupal/d8/www tests/output
 Next generate their dot files by running
 
 ```
-$ bin/json2dot --documenter drupal --directory=tests/output
+$ bin/uml-generator-php --documenter drupal tests/output
 ```
 
 You may notice the 'Not found: '. For more info see #50
