@@ -38,38 +38,5 @@ if( !is_file($directory . '/uml-generator-php.index')) {
 
 $with_parents = $getopt['with-parents'] > 0;
 
-switch (strtolower($getopt['documenter'])) {
-    case "drupal":
-        $meta = array(
-            'siteURL' => 'https://api.drupal.org/api',
-            'basePath' => '/srv/http/dp8.dev/',
-            'component' => 'drupal',
-            'version' => '8',
-        );
-        $documenter = new DrupalDocumentation($meta);
-        break;
-    default:
-        $documenter = null;
-        break;
-}
 
-$toDot = new OopToDot($documenter);
 
-$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
-$files = new RegexIterator($files, '/\.json$/');
-
-foreach ($files as $file) {
-    $array = json_decode(file_get_contents($file), TRUE);
-    if ($with_parents) {
-        $file_index = json_decode(file_get_contents($directory . '/uml-generator-php.index'), true);
-        $dot = $toDot->getMergedDiagram($array, $file_index);
-    } else {
-        $dot = $toDot->getClassDiagram($array);
-    }
-
-    $pinfo = pathinfo($file);
-    $outputfile = $pinfo['dirname'] . '/' . $pinfo['filename'] . '.dot';
-    echo $outputfile . PHP_EOL;
-    file_put_contents($outputfile, $dot);
-
-}
