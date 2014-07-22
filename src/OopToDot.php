@@ -31,34 +31,50 @@ class OopToDot
      */
     function getMergedDiagram($array, $file_index)
     {
-        $loadedfiles = [];
+        $array = $this->loadParentDiagram($array, $file_index);
+        return $this->getClassDiagram($array);
+    }
+
+    function loadParentDiagram($array, $file_index, $loaded_files = [])
+    {
+        if(empty($loaded_files)){
+            echo 'new merge for ' . $array[0]['meta']['file'] . PHP_EOL;
+        }
         foreach ($array as $values) {
             if (isset($values['implements'])) {
                 foreach ($values['implements'] as $implement) {
                     if (isset($file_index[$implement])) {
-                        if (!isset($loadedfiles[$implement])) {
+                        if (!isset($loaded_files[$implement])) {
+                            echo 'Recurse: ' . $implement . PHP_EOL;
                             $source = json_decode(file_get_contents($file_index[$implement]), true);
+                            $loaded_files[$implement] = true;
+                            $source = $this->loadParentDiagram($source, $file_index, $loaded_files);
                             $array = array_merge($array, $source);
-                            $loadedfiles[$implement] = true;
                         }
                     } else {
                         echo 'Not found: ' . $implement . PHP_EOL;
+                        $loaded_files[$implement] = true;
                     }
                 }
             }
             if (isset($values['extends'])) {
                 if (isset($file_index[$values['extends']])) {
-                    if (!isset($loadedfiles[$values['extends']])) {
-                        $array = array_merge($array, json_decode(file_get_contents($file_index[$values['extends']]), true));
-                        $loadedfiles[$values['extends']] = true;
+                    if (!isset($loaded_files[$values['extends']])) {
+                        echo 'Recurse: ' . $values['extends'] . PHP_EOL;
+                        $source = json_decode(file_get_contents($file_index[$values['extends']]), true);
+                        $loaded_files[$values['extends']] = true;
+                        $source = $this->loadParentDiagram($source, $file_index, $loaded_files);
+                        $array = array_merge($array, $source);
+
                     }
                 } else {
                     echo 'Not found: ' . $values['extends'] . PHP_EOL;
+                    $loaded_files[$values['extends']] = true;
                 }
             }
 
         }
-        return $this->getClassDiagram($array);
+        return $array;
     }
 
     /**
@@ -88,17 +104,17 @@ class OopToDot
             if (isset($values['implements'])) {
                 foreach ($values['implements'] as $implement) {
                     $links[$this->getSafeName($implement) . $safename] = [
-                        'from' => $this->getSafeName($implement),
-                        'to' => $safename,
-                        'type' => 'implement'
+                      'from' => $this->getSafeName($implement),
+                      'to' => $safename,
+                      'type' => 'implement'
                     ];
                 }
             }
             if (isset($values['extends'])) {
                 $links[$this->getSafeName($values['extends']) . $safename] = [
-                    'from' => $this->getSafeName($values['extends']),
-                    'to' => $safename,
-                    'type' => 'extend'
+                  'from' => $this->getSafeName($values['extends']),
+                  'to' => $safename,
+                  'type' => 'extend'
                 ];
             }
 
@@ -108,24 +124,24 @@ class OopToDot
             $result[] = '<tr><td align="center"' . $fileUrl . ' title="' . $values['type'] . ' ' . $values['name'] . '">' . $values['name'] . '</td></tr><hr />';
 
             $scope = array(
-                'classifier' => '<u>%s</u>',
-                'instance' => '%s',
+              'classifier' => '<u>%s</u>',
+              'instance' => '%s',
             );
             $scope_tooltip = array(
                 // TODO: fix for entity: '&laquo; static &raquo; %s',
-                'classifier' => '&lt;&lt; static &gt;&gt; %s',
-                'instance' => '%s',
+              'classifier' => '&lt;&lt; static &gt;&gt; %s',
+              'instance' => '%s',
             );
 
             $visibility = array(
-                'public' => '+ %s',
-                'protected' => '# %s',
-                'private' => '- %s',
+              'public' => '+ %s',
+              'protected' => '# %s',
+              'private' => '- %s',
             );
             $visibility_tooltip = array(
-                'public' => 'public %s',
-                'protected' => 'protected %s',
-                'private' => 'private %s',
+              'public' => 'public %s',
+              'protected' => 'protected %s',
+              'private' => 'private %s',
             );
 
             $properties = array_filter($values['children'], function ($item) {
@@ -186,8 +202,8 @@ class OopToDot
 
                 }
                 $parameters = array();
-                foreach($method['parameters'] as $parameter){
-                    if($parameter['type'] == null){
+                foreach ($method['parameters'] as $parameter) {
+                    if ($parameter['type'] == null) {
                         $parameter['type'] = 'mixed';
                     }
                     $parameters[] = $parameter['name'] . ' : ' . $parameter['type'];
