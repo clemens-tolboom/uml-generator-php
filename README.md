@@ -36,7 +36,7 @@ $ bin/uml-generator-php generate:json /Users/clemens/Sites/drupal/d8/www tests/o
 Next generate their dot files by running
 
 ```
-$ bin/uml-generator-php --documenter drupal tests/output
+$ bin/uml-generator-php generate:dot --documenter drupal tests/output
 ```
 
 You may notice the 'Not found: '. For more info see #50
