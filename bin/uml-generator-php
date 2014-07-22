@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+require_once(__DIR__ . '/../vendor/autoload.php');
+
+use Symfony\Component\Console\Application;
+use UmlGeneratorPhp\Command\DotCommand;
+use UmlGeneratorPhp\Command\JsonCommand;
+
+$console = new Application();
+$console->add(new JsonCommand);
+$console->add(new DotCommand());
+$console->run();
