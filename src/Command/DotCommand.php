@@ -2,14 +2,12 @@
 
 namespace UmlGeneratorPhp\Command;
 
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
-use RegexIterator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Finder;
 use UmlGeneratorPhp;
 use UmlGeneratorPhp\DrupalDocumentation;
 use UmlGeneratorPhp\OopToDot;
@@ -43,17 +41,17 @@ class DotCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $directory = realpath($input->getArgument('directory'));
-        if($directory === false){
+        if ($directory === false) {
             $output->writeln('<error>Directory not found</error>');
             exit(1);
         }
 
-        if( !is_file($directory . '/uml-generator-php.index')) {
+        if (!is_file($directory . '/uml-generator-php.index')) {
             $output->writeln("<error>No index file found. You need to run `uml-generator-php generate:json` first.</error>");
             exit(1);
         };
 
-        $with_parents= $input->getOption('parents');
+        $with_parents = $input->getOption('parents');
 
         switch (strtolower($input->getOption('documenter'))) {
             case "drupal":
@@ -73,12 +71,14 @@ class DotCommand extends Command
 
         $toDot = new OopToDot($documenter);
 
-        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
-        $files = new RegexIterator($files, '/\.json$/');
+        $finder = new Finder();
+        $finder->files()->ignoreUnreadableDirs()->in($directory);
+        $files = $finder->name('*.json');
+
 
         foreach ($files as $file) {
             $array = json_decode(file_get_contents($file), TRUE);
-            if($array !== null || !$this->checkValidJson($array)) {
+            if ($array !== null || !$this->checkValidJson($array)) {
                 if ($with_parents) {
                     $file_index = json_decode(file_get_contents($directory . '/uml-generator-php.index'), true);
                     $dot = $toDot->getMergedDiagram($array, $file_index);
@@ -102,10 +102,11 @@ class DotCommand extends Command
      * @param array $json
      * @return bool
      */
-    private function checkValidJson(array $json){
-        if(!isset($json[0])) return false;
-        if(!isset($json[0]['type'])) return false;
-        if(!isset($json[0]['name'])) return false;
+    private function checkValidJson(array $json)
+    {
+        if (!isset($json[0])) return false;
+        if (!isset($json[0]['type'])) return false;
+        if (!isset($json[0]['name'])) return false;
         return true;
     }
 
