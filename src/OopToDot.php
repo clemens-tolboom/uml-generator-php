@@ -29,10 +29,10 @@ class OopToDot
      * @param $file_index
      * @return string
      */
-    function getMergedDiagram($array, $file_index, $limit)
+    function getMergedDiagram($array, $file_index, $limit, $legacy)
     {
         $array = $this->loadParentDiagram($array, $file_index, $limit);
-        return $this->getClassDiagram($array);
+        return $this->getClassDiagram($array, $legacy);
     }
 
     function loadParentDiagram($array, $file_index, $limit, $loaded_files = [])
@@ -103,10 +103,18 @@ class OopToDot
      * @param $array
      * @return string
      */
-    function getClassDiagram($array)
+    function getClassDiagram($array, $legacy)
     {
         if (!is_array($array)) return;
         $result = array();
+
+        $laquo = '&laquo;';
+        $raquo = '&raquo;';
+
+        if ($legacy) {
+            $laquo = '&lt;&lt;';
+            $raquo = '&gt;&gt;';
+        }
 
         $result[] = 'digraph "Class Diagram" {';
         $result[] = "  node [shape=plaintext]";
@@ -149,7 +157,7 @@ class OopToDot
             $result[] = "    label=<";
             $result[] = '<table border="1" cellpadding="2" cellspacing="0" cellborder="0">';
             $escaped = str_replace('\\', '\\\\', $values['namespace'] . '\\' . $values['name']);
-            $result[] = '<tr><td align="center">&lt;&lt; ' . $values['type'] . ' &gt;&gt;</td></tr>';
+            $result[] = '<tr><td align="center">' . $laquo . ' ' . $values['type'] . ' ' . $raquo . '</td></tr>';
 
             $result[] = '<tr><td align="center"' . $fileUrl . ' title="' . $values['type'] . ' ' . $values['name'] . '">' . $escaped . '</td></tr><hr />';
 
@@ -159,7 +167,7 @@ class OopToDot
             );
             $scope_tooltip = array(
                 // TODO: fix for entity: '&laquo; static &raquo; %s',
-              'classifier' => '&lt;&lt; static &gt;&gt; %s',
+              'classifier' => $laquo . ' static ' . $raquo . ' %s',
               'instance' => '%s',
             );
 

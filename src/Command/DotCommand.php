@@ -42,6 +42,12 @@ class DotCommand extends Command
             InputOption::VALUE_REQUIRED,
             'Limits the max depth of parents in a single graphviz file (all by default)',
             PHP_INT_MAX
+          )
+          ->addOption(
+            'legacy',
+            null,
+            InputOption::VALUE_NONE,
+            'Disables output that crashes graphviz 2.28'
           );
     }
 
@@ -83,15 +89,16 @@ class DotCommand extends Command
         $files = $finder->name('*.json');
 
         $limit = $input->getOption('parent-limit');
+        $legacy = $input->getOption('legacy');
 
         foreach ($files as $file) {
             $array = json_decode(file_get_contents($file), TRUE);
             if ($array !== null || !$this->checkValidJson($array)) {
                 if ($with_parents) {
                     $file_index = json_decode(file_get_contents($directory . '/uml-generator-php.index'), true);
-                    $dot = $toDot->getMergedDiagram($array, $file_index, $limit);
+                    $dot = $toDot->getMergedDiagram($array, $file_index, $limit, $legacy);
                 } else {
-                    $dot = $toDot->getClassDiagram($array);
+                    $dot = $toDot->getClassDiagram($array, $legacy);
                 }
 
                 $pinfo = pathinfo($file);
