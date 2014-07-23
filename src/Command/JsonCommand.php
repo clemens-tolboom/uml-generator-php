@@ -32,6 +32,12 @@ class JsonCommand extends Command
             's',
             InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED,
             'A directory or file to skip (relative to input directory)'
+          )
+          ->addOption(
+            'only',
+            'o',
+            InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED,
+            'Run only on files that match this path (relative to input directory)'
           );
     }
 
@@ -59,6 +65,12 @@ class JsonCommand extends Command
         if (is_array($skipped)) {
             foreach ($skipped as $skip) {
                 $finder = $finder->notPath($skip);
+            }
+        }
+        $only = $input->getOption('only');
+        if (is_array($only)) {
+            foreach ($only as $filter) {
+                $finder = $finder->Path($filter);
             }
         }
         $files = $finder->name('*.php');
