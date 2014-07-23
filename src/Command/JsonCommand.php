@@ -5,6 +5,7 @@ namespace UmlGeneratorPhp\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use UmlGeneratorPhp;
@@ -25,6 +26,12 @@ class JsonCommand extends Command
             'output',
             InputArgument::REQUIRED,
             'The directory to write the JSON files to.'
+          )
+          ->addOption(
+            'skip',
+            's',
+            InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED,
+            'A directory or file to skip (relative to input directory)'
           );
     }
 
@@ -48,6 +55,12 @@ class JsonCommand extends Command
         // Scan only for .php files
         $finder = new Finder();
         $finder->files()->ignoreUnreadableDirs()->in($inputDirectory);
+        $skipped = $input->getOption('skip');
+        if (is_array($skipped)) {
+            foreach ($skipped as $skip) {
+                $finder = $finder->notPath($skip);
+            }
+        }
         $files = $finder->name('*.php');
 
         $visitor = new UmlGeneratorPhp\OopFilter;
