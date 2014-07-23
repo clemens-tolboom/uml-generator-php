@@ -82,13 +82,14 @@ $ bin/uml-generator-php generate:dot -p --documenter drupal tests/output
 
 The `--documenter` parameter set the `Documentation` subclass used to generate the urls for all clickable elements in the SVG output.
 currently only the `DrupalDocumentation` class is provided. This class generates urls for all fields, classes and methods to the drupal
-api website.
+api website. Read the [create your own documenter][documenter] page to learn how to add your own documenter.
 
 The `-p` (or `--parents`) flag enables including the parent classess and interfaces into the generated SVG output.
 
 You may notice the 'Not found: '. For more info see [#50][issue50]
 
 [issue50]: https://github.com/clemens-tolboom/uml-generator-php/issues/50
+[documenter]: documenter.html
 
 #### Generate SVG files
 
