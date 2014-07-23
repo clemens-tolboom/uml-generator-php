@@ -48,36 +48,43 @@ $ cd uml-generator-php
 $ composer install
 ```
 
-And install graphviz with your distro's package manager or from git.<br>
+And install graphviz with your package manager of choise or from git.<br>
 uml-generator-php requires graphviz versions later than 15 September 2013 (See [issue #16][issue16])
+ 
+[php-parser]: https://github.com/nikic/php-parser
+[graphviz]: http://graphviz.org/
+[issue16]: https://github.com/clemens-tolboom/uml-generator-php/issues/16
 
 ### Usage example.
 
-To parse your source tree for Class Interface and Traits run
+#### Parse PHP into json
 
-```bash
-$ mkdir tests/output
-$ bin/oop2json /Users/clemens/Sites/drupal/d8/www tests/output
+To parse your source tree for Classes, Interfaces and Traits run
+
 ```
+$ bin/uml-generator-php generate:json /Users/clemens/Sites/drupal/d8/www tests/output
+```
+
+To exclude directories or files you can use the `--skip` parameter (use it multiple times to exclude more directories or files)
+The path provided to `--skip` should be a path relative to the input directory.
+
+To generate only the json files for a subdirectory set the `input` to your project root like normal and use the `--only` flag
+to set a directory relative to the input to scan. The `--only` flag can be used multiple times to generate json for more directories
+or files.
+
+#### Generate DOT files
 
 Next generate their dot files by running
 
-```bash
-$ bin/json2dot -u drupal -d tests/output
+```
+$ bin/uml-generator-php generate:dot --documenter drupal tests/output
 ```
 
-Then use the graphviz tools to render SVG or image output
+You may notice the 'Not found: '. For more info see #50
+
+#### Generate SVG files
 
 ```bash
-$ bin/json2dot -u drupal -d tests/output | xargs -I {} dot -Tsvg -O {}
+find tests/output -type f -name "*.dot" -exec dot -Tsvg -O {} \;
 ```
 
-If you want to monitor progress use the `xargs -t` option
-
-```bash
-$ bin/json2dot -u drupal -d tests/output | xargs -t -I {} dot -Tsvg -O {}
-```
-
-  [php-parser]: https://github.com/nikic/php-parser
-  [graphviz]: http://graphviz.org/
-  [issue16]: https://github.com/clemens-tolboom/uml-generator-php/issues/16
