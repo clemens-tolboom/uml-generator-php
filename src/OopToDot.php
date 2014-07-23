@@ -147,6 +147,8 @@ class OopToDot
             $result[] = "    label=<";
             $result[] = '<table border="1" cellpadding="2" cellspacing="0" cellborder="0">';
             $escaped = str_replace('\\', '\\\\', $values['namespace'] . '\\' . $values['name']);
+            $result[] = '<tr><td align="center">&lt;&lt; ' . $values['type'] . ' &gt;&gt;</td></tr>';
+
             $result[] = '<tr><td align="center"' . $fileUrl . ' title="' . $values['type'] . ' ' . $values['name'] . '">' . $escaped . '</td></tr><hr />';
 
             $scope = array(
