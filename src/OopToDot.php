@@ -29,63 +29,65 @@ class OopToDot
      * @param $file_index
      * @return string
      */
-    function getMergedDiagram($array, $file_index)
+    function getMergedDiagram($array, $file_index, $limit)
     {
-        $array = $this->loadParentDiagram($array, $file_index);
+        $array = $this->loadParentDiagram($array, $file_index, $limit);
         return $this->getClassDiagram($array);
     }
 
-    function loadParentDiagram($array, $file_index, $loaded_files = [])
+    function loadParentDiagram($array, $file_index, $limit, $loaded_files = [])
     {
-        if(empty($loaded_files)){
+        if (empty($loaded_files)) {
             echo 'new merge for ' . $array[0]['meta']['file'] . PHP_EOL;
         }
-        foreach ($array as $values) {
-            if (isset($values['implements'])) {
-                foreach ($values['implements'] as $implement) {
-                    if (isset($file_index[$implement])) {
-                        if (!isset($loaded_files[$implement])) {
-                            echo 'Recurse: ' . $implement . PHP_EOL;
-                            $source = json_decode(file_get_contents($file_index[$implement]), true);
+        if ($limit > 0) {
+            foreach ($array as $values) {
+                if (isset($values['implements'])) {
+                    foreach ($values['implements'] as $implement) {
+                        if (isset($file_index[$implement])) {
+                            if (!isset($loaded_files[$implement])) {
+                                echo 'Recurse: ' . $implement . PHP_EOL;
+                                $source = json_decode(file_get_contents($file_index[$implement]), true);
+                                $loaded_files[$implement] = true;
+                                $source = $this->loadParentDiagram($source, $file_index, $limit - 1, $loaded_files);
+                                $array = array_merge($array, $source);
+                            }
+                        } else {
+                            echo 'Not found: ' . $implement . PHP_EOL;
                             $loaded_files[$implement] = true;
-                            $source = $this->loadParentDiagram($source, $file_index, $loaded_files);
-                            $array = array_merge($array, $source);
                         }
-                    } else {
-                        echo 'Not found: ' . $implement . PHP_EOL;
-                        $loaded_files[$implement] = true;
                     }
                 }
-            }
-            if (isset($values['traits'])) {
-                foreach ($values['traits'] as $trait) {
-                    if (isset($file_index[$trait])) {
-                        if (!isset($loaded_files[$trait])) {
-                            echo 'Recurse: ' . $trait . PHP_EOL;
-                            $source = json_decode(file_get_contents($file_index[$trait]), true);
+                if (isset($values['traits'])) {
+                    foreach ($values['traits'] as $trait) {
+                        if (isset($file_index[$trait])) {
+                            if (!isset($loaded_files[$trait])) {
+                                echo 'Recurse: ' . $trait . PHP_EOL;
+                                $source = json_decode(file_get_contents($file_index[$trait]), true);
+                                $loaded_files[$trait] = true;
+                                $source = $this->loadParentDiagram($source, $file_index, $limit - 1, $loaded_files);
+                                $array = array_merge($array, $source);
+                            }
+                        } else {
+                            echo 'Not found: ' . $trait . PHP_EOL;
                             $loaded_files[$trait] = true;
-                            $source = $this->loadParentDiagram($source, $file_index, $loaded_files);
-                            $array = array_merge($array, $source);
                         }
-                    } else {
-                        echo 'Not found: ' . $trait . PHP_EOL;
-                        $loaded_files[$trait] = true;
                     }
                 }
-            }
-            if (isset($values['extends'])) {
-                if (isset($file_index[$values['extends']])) {
-                    if (!isset($loaded_files[$values['extends']])) {
-                        echo 'Recurse: ' . $values['extends'] . PHP_EOL;
-                        $source = json_decode(file_get_contents($file_index[$values['extends']]), true);
-                        $loaded_files[$values['extends']] = true;
-                        $source = $this->loadParentDiagram($source, $file_index, $loaded_files);
-                        $array = array_merge($array, $source);
+                if (isset($values['extends'])) {
+                    if (isset($file_index[$values['extends']])) {
+                        if (!isset($loaded_files[$values['extends']])) {
+                            echo 'Recurse: ' . $values['extends'] . PHP_EOL;
+                            $source = json_decode(file_get_contents($file_index[$values['extends']]), true);
+                            $loaded_files[$values['extends']] = true;
+                            $source = $this->loadParentDiagram($source, $file_index, $limit - 1, $loaded_files);
+                            $array = array_merge($array, $source);
 
+                        }
+                    } else {
+                        echo 'Not found: ' . $values['extends'] . PHP_EOL;
+                        $loaded_files[$values['extends']] = true;
                     }
-                } else {
-                    echo 'Not found: ' . $values['extends'] . PHP_EOL;
-                    $loaded_files[$values['extends']] = true;
                 }
             }
 
@@ -249,7 +251,7 @@ class OopToDot
             $result[] = "  ];";
         }
         foreach ($links as $link) {
-            switch($link['type']){
+            switch ($link['type']) {
                 case "extend":
                     $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty"];' . PHP_EOL;
                     break;

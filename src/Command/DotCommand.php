@@ -35,6 +35,13 @@ class DotCommand extends Command
             'd',
             InputOption::VALUE_REQUIRED,
             'Set documentation url generator.'
+          )
+          ->addOption(
+            'parent-limit',
+            'l',
+            InputOption::VALUE_REQUIRED,
+            'Limits the max depth of parents in a single graphviz file (all by default)',
+            PHP_INT_MAX
           );
     }
 
@@ -75,13 +82,14 @@ class DotCommand extends Command
         $finder->files()->ignoreUnreadableDirs()->in($directory);
         $files = $finder->name('*.json');
 
+        $limit = $input->getOption('parent-limit');
 
         foreach ($files as $file) {
             $array = json_decode(file_get_contents($file), TRUE);
             if ($array !== null || !$this->checkValidJson($array)) {
                 if ($with_parents) {
                     $file_index = json_decode(file_get_contents($directory . '/uml-generator-php.index'), true);
-                    $dot = $toDot->getMergedDiagram($array, $file_index);
+                    $dot = $toDot->getMergedDiagram($array, $file_index, $limit);
                 } else {
                     $dot = $toDot->getClassDiagram($array);
                 }
