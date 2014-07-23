@@ -21,6 +21,24 @@ $ composer install
 And install graphviz with your distro's package manager or from git.
 uml-generator-php requires graphviz versions later than 15 September 2013 (See [issue #16](https://github.com/clemens-tolboom/uml-generator-php/issues/16))
 
+#### Old graphviz versions
+
+Some linux distributions (like debian and centos) have very old versions of graphviz. For these situations a `--legacy` switch is added to `generate:dot`. With
+this switch the output can be rendered with graphviz 2.26.3 (2010.01.26.1600)
+
+List of distro versions:
+
+| Distro    | Release      | Version |
+|-----------|--------------|---------|
+| Debian    | wheezy       | *2.26*  |
+| Debian    | jessie       | *2.26*  |
+| Debian    | sid          | 2.38    |
+| Ubuntu    | 12.04 LTS    | *2.26*  |
+| Ubuntu    | 14.04 LTS    | 2.36    |
+| Centos    | 6            | *2.26*  |
+| Archlinux | rolling      | 2.38    |
+
+
 ## Usage
 
 ### Parse PHP into json
