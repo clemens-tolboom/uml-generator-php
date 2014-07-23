@@ -78,19 +78,35 @@ class DotCommand extends Command
 
         foreach ($files as $file) {
             $array = json_decode(file_get_contents($file), TRUE);
-            if ($with_parents) {
-                $file_index = json_decode(file_get_contents($directory . '/uml-generator-php.index'), true);
-                $dot = $toDot->getMergedDiagram($array, $file_index);
-            } else {
-                $dot = $toDot->getClassDiagram($array);
+            if($array !== null || !$this->checkValidJson($array)) {
+                if ($with_parents) {
+                    $file_index = json_decode(file_get_contents($directory . '/uml-generator-php.index'), true);
+                    $dot = $toDot->getMergedDiagram($array, $file_index);
+                } else {
+                    $dot = $toDot->getClassDiagram($array);
+                }
+
+                $pinfo = pathinfo($file);
+                $outputfile = $pinfo['dirname'] . '/' . $pinfo['filename'] . '.dot';
+                //$output->writeln($outputfile);
+                file_put_contents($outputfile, $dot);
             }
-
-            $pinfo = pathinfo($file);
-            $outputfile = $pinfo['dirname'] . '/' . $pinfo['filename'] . '.dot';
-            //$output->writeln($outputfile);
-            file_put_contents($outputfile, $dot);
-
         }
+    }
+
+
+    /**
+     * This method checks if the json structure looks at least something like a parseable
+     * php definition from uml-generator-php generate:json
+     *
+     * @param array $json
+     * @return bool
+     */
+    private function checkValidJson(array $json){
+        if(!isset($json[0])) return false;
+        if(!isset($json[0]['type'])) return false;
+        if(!isset($json[0]['name'])) return false;
+        return true;
     }
 
 } 
