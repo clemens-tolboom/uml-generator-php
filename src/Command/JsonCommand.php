@@ -75,6 +75,15 @@ class JsonCommand extends Command
         }
         $files = $finder->name('*.php');
 
+        $indexfile = $outputDirectory . '/uml-generator-php.index';
+        if (file_exists($indexfile)) {
+            $lastRunTimestamp = filemtime($indexfile);
+        } else {
+            $lastRunTimestamp = 0;
+        }
+
+        $files->date('since @' . $lastRunTimestamp);
+
         $visitor = new UmlGeneratorPhp\OopFilter;
         foreach ($files as $file) {
             // Parse file for OOP concepts
@@ -111,7 +120,7 @@ class JsonCommand extends Command
                 file_put_contents($outputfile, $json);
             }
             $indexdata = json_encode($visitor->getIndex());
-            $indexfile = $outputDirectory . '/uml-generator-php.index';
+
             file_put_contents($indexfile, $indexdata);
         }
 
