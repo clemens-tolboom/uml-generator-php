@@ -71,3 +71,32 @@ You may notice the 'Not found: '. For more info see #50
 ```bash
 find tests/output -type f -name "*.dot" -exec dot -Tsvg -O {} \;
 ```
+
+### Run from config file
+
+Uml-generator-php supports running from a config file in your project root. Create the file `.uml-generator-php.yml` in your project
+root with the contents:
+
+```yaml
+# Required
+outputdir: tests/output  # The output directory relative to the project root
+
+# Optional
+parents:
+    enabled: true  # Include parents classes, interfaces and traits in svg output (default false)
+    depth: 10  # Add max 10 parents of depth per SVG file (default PHP_MAX_INT)
+
+skip:
+    - tests  # Skip the tests directory in your project root
+    
+only:
+    - src/commands  # Only parse the files in src/commands
+    
+legacy: true  # Enable legacy output for graphiz 2.28 (default false)
+```
+
+After creating the config file run uml-generator-php anywhere in your project:
+
+```bash
+$ uml-generator-php run
+```

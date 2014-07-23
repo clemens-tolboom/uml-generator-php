@@ -1,0 +1,3 @@
+outputdir: tests/output
+parents:
+    enabled: true
