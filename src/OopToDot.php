@@ -267,8 +267,9 @@ class OopToDot
 
     private function getSafeName($namespace)
     {
-        $safename = preg_replace('/[^a-zA-Z0-9]/', '_', substr($namespace, 1));
-        return $safename;
+        $safename = preg_replace('/[^a-zA-Z0-9\\\\]/', '_', substr($namespace, 1));
+        $safename = addslashes($safename);
+        return '"\\\\' . $safename . '"';
     }
 
 }
