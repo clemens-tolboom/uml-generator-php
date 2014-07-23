@@ -57,6 +57,22 @@ class OopToDot
                     }
                 }
             }
+            if (isset($values['traits'])) {
+                foreach ($values['traits'] as $trait) {
+                    if (isset($file_index[$trait])) {
+                        if (!isset($loaded_files[$trait])) {
+                            echo 'Recurse: ' . $trait . PHP_EOL;
+                            $source = json_decode(file_get_contents($file_index[$trait]), true);
+                            $loaded_files[$trait] = true;
+                            $source = $this->loadParentDiagram($source, $file_index, $loaded_files);
+                            $array = array_merge($array, $source);
+                        }
+                    } else {
+                        echo 'Not found: ' . $trait . PHP_EOL;
+                        $loaded_files[$trait] = true;
+                    }
+                }
+            }
             if (isset($values['extends'])) {
                 if (isset($file_index[$values['extends']])) {
                     if (!isset($loaded_files[$values['extends']])) {
@@ -116,6 +132,15 @@ class OopToDot
                   'to' => $safename,
                   'type' => 'extend'
                 ];
+            }
+            if (isset($values['traits'])) {
+                foreach ($values['traits'] as $trait) {
+                    $links[$this->getSafeName($trait) . $safename] = [
+                      'from' => $this->getSafeName($trait),
+                      'to' => $safename,
+                      'type' => 'trait'
+                    ];
+                }
             }
 
             $result[] = "  $safename [";
@@ -222,10 +247,16 @@ class OopToDot
             $result[] = "  ];";
         }
         foreach ($links as $link) {
-            if ($link['type'] == 'extend') {
-                $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty"];' . PHP_EOL;
-            } else {
-                $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty" style="dashed"];' . PHP_EOL;
+            switch($link['type']){
+                case "extend":
+                    $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty"];' . PHP_EOL;
+                    break;
+                case "implement":
+                    $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty" style="dashed"];' . PHP_EOL;
+                    break;
+                case "trait":
+                    $result[] = $link['from'] . ' -> ' . $link['to'] . ' [arrowhead="empty" style="dotted"];' . PHP_EOL;
+                    break;
             }
         }
         $result[] = "}";
