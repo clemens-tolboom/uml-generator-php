@@ -2,13 +2,11 @@
 
 namespace UmlGeneratorPhp\Command;
 
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
-use RegexIterator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Finder;
 use UmlGeneratorPhp;
 
 class JsonCommand extends Command
@@ -35,11 +33,11 @@ class JsonCommand extends Command
         $inputDirectory = realpath($input->getArgument('input'));
         $outputDirectory = realpath($input->getArgument('output'));
 
-        if(!is_dir($inputDirectory)){
+        if (!is_dir($inputDirectory)) {
             $output->writeln('<error>Input is not a directory</error>');
             die;
         }
-        if(!is_dir($outputDirectory)){
+        if (!is_dir($outputDirectory)) {
             $output->writeln('<comment>' . $input->getArgument('output') . ' not found</comment>');
             $output->writeln('<comment>Creating output directory</comment>');
             mkdir($input->getArgument('output'), 0777, true);
@@ -47,17 +45,19 @@ class JsonCommand extends Command
         }
 
 
-// Scan only for .php files
-        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($inputDirectory));
-        $files = new RegexIterator($files, '/\.php$/');
+        // Scan only for .php files
+        $finder = new Finder();
+        $finder->files()->ignoreUnreadableDirs()->in($inputDirectory);
+        $files = $finder->name('*.php');
+
         $visitor = new UmlGeneratorPhp\OopFilter;
-        foreach($files as $file){
+        foreach ($files as $file) {
             // Parse file for OOP concepts
             $code = file_get_contents($file);
             $parser = new \PhpParser\Parser(new \PhpParser\Lexer);
             $traverser = new \PhpParser\NodeTraverser;
 
-            $pinfo=pathinfo($file);
+            $pinfo = pathinfo($file);
             $outputfiledir = str_replace($inputDirectory, $outputDirectory, $pinfo['dirname']);
             $outputfile = $outputfiledir . '/' . $pinfo['filename'] . '.json';
 
@@ -71,8 +71,7 @@ class JsonCommand extends Command
                 $traverser->addVisitor($visitor);
                 $stmts = $parser->parse($code);
                 $tree = $traverser->traverse($stmts);
-            }
-            catch (\Exception $e) {
+            } catch (\Exception $e) {
                 file_put_contents('php://stderr', "ERROR " . $e->getMessage() . PHP_EOL, FILE_APPEND);
                 file_put_contents('php://stderr', "  SKIPPING " . $file . PHP_EOL, FILE_APPEND);
                 continue;
@@ -80,9 +79,9 @@ class JsonCommand extends Command
 
 
             $json = json_encode($tree);
-            if($json != '[]'){
-                if(!is_dir($outputfiledir)){
-                    mkdir($outputfiledir,0777,true);
+            if ($json != '[]') {
+                if (!is_dir($outputfiledir)) {
+                    mkdir($outputfiledir, 0777, true);
                 }
                 file_put_contents($outputfile, $json);
             }
