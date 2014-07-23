@@ -24,12 +24,12 @@ because of broken SVG renderers in browsers. All methods and properties are clic
 documentation website.
 
 <div class="svgexample">
-    <a href="images/output/entity.svg"><img src="images/output/entity.svg"></a><br>
-    EntityFormController from Drupal
+    <a href="images/output/ShellException.svg"><img src="images/output/ShellException.svg"></a><br>
+    ShellException from Symfony Finder
 </div>
 <div class="svgexample">
-    <a href="images/output/diff.svg"><img src="images/output/diff.svg"></a><br>
-    Diff from Drupal
+    <a href="images/output/OopFilter.svg"><img src="images/output/OopFilter.svg"></a><br>
+    OopFilter from uml-generator-php
 </div>
 <br style="clear: both;">
 
@@ -50,7 +50,7 @@ $ composer install
 
 And install graphviz with your package manager of choise or from git.<br>
 uml-generator-php requires graphviz versions later than 15 September 2013 (See [issue #16][issue16])
- 
+
 [php-parser]: https://github.com/nikic/php-parser
 [graphviz]: http://graphviz.org/
 [issue16]: https://github.com/clemens-tolboom/uml-generator-php/issues/16
@@ -87,4 +87,3 @@ You may notice the 'Not found: '. For more info see #50
 ```bash
 find tests/output -type f -name "*.dot" -exec dot -Tsvg -O {} \;
 ```
-
