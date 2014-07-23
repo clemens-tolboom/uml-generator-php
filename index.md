@@ -12,7 +12,7 @@ The project is divided in 2 tools. One parses all your PHP code and generates a 
 containing JSON files. The other parses the JSON structure and generates .dot files for [Graphviz][graphviz].
 Then you can use the Graphviz toolkit to render the diagrams to your image format of choice.
 
-If you happen to choose the SVG output format and defined a documentation module for `json2dot`
+If you happen to choose the SVG output format and defined a documentation module for `generate:dot`
 the class and method names will be clickable and lead to the defined URLs. The repo currently contains a
 documentation module for api.drupal.org.
 
@@ -77,13 +77,23 @@ or files.
 Next generate their dot files by running
 
 ```
-$ bin/uml-generator-php generate:dot --documenter drupal tests/output
+$ bin/uml-generator-php generate:dot -p --documenter drupal tests/output
 ```
 
-You may notice the 'Not found: '. For more info see #50
+The `--documenter` parameter set the `Documentation` subclass used to generate the urls for all clickable elements in the SVG output.
+currently only the `DrupalDocumentation` class is provided. This class generates urls for all fields, classes and methods to the drupal
+api website.
+
+The `-p` (or `--parents`) flag enables including the parent classess and interfaces into the generated SVG output.
+
+You may notice the 'Not found: '. For more info see [#50][issue50]
+
+[issue50]: https://github.com/clemens-tolboom/uml-generator-php/issues/50
 
 #### Generate SVG files
 
 ```bash
 find tests/output -type f -name "*.dot" -exec dot -Tsvg -O {} \;
 ```
+
+This command runs the `dot` command from the `graphviz` package for every generated .dot file in the `tests/output` directory.
