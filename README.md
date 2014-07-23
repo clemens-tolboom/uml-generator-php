@@ -31,6 +31,13 @@ To parse your source tree for Classes, Interfaces and Traits run
 $ bin/uml-generator-php generate:json /Users/clemens/Sites/drupal/d8/www tests/output
 ```
 
+To exclude directories or files you can use the `--skip` parameter (use it multiple times to exclude more directories or files)
+The path provided to `--skip` should be a path relative to the input directory.
+
+To generate only the json files for a subdirectory set the `input` to your project root like normal and use the `--only` flag
+to set a directory relative to the input to scan. The `--only` flag can be used multiple times to generate json for more directories
+or files.
+
 ### Generate DOT files
 
 Next generate their dot files by running
