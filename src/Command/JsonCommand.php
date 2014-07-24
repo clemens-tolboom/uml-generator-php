@@ -119,9 +119,12 @@ class JsonCommand extends Command
                 }
                 file_put_contents($outputfile, $json);
             }
-            $indexdata = json_encode($visitor->getIndex());
+            $indexData = json_encode($visitor->getIndex());
 
-            file_put_contents($indexfile, $indexdata);
+            file_put_contents($indexfile, $indexData);
+            $sourceHtmlFile = __DIR__ . '/../../web/index.html';
+            $indexHtmlFile = $outputDirectory . '/index.html';
+            file_put_contents($indexHtmlFile, file_get_contents($sourceHtmlFile));
         }
 
     }

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+
+  .node {
+    stroke: #fff;
+    stroke-width: 1.5px;
+  }
+
+  .link {
+    stroke: #999;
+    stroke-opacity: .6;
+    stroke: url(#line-gradient);
+  }
+
+  .link.extends {
+    stroke: #f00;
+    stroke: url(#line-gradient-extends);
+  }
+
+  .link.trait {
+    stroke: #09f;
+    stroke: url(#line-gradient-trait);
+  }
+
+  .link.implements {
+    stroke: #0f9;
+    stroke: url(#line-gradient-implements);
+  }
+
+  </style>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script>
+    // Add arrow? : http://stackoverflow.com/questions/15054804/d3-drawing-arrows-tips
+
+    /*
+      {
+         "\\UmlGeneratorPhp\\Command\\DotCommand": {
+         "file": "/Users/clemens/lib/uml-generator-php/tests/output/src/Command/DotCommand.json",
+         "relations": {
+           "implement": [],
+           "trait": [],
+           "extend": "\\Symfony\\Component\\Console\\Command\\Command"
+         }
+       },
+     */
+    d3.json('uml-generator-php.index', function(data){
+      //data = dummy();
+      var graph = [];
+      var nodes = [];
+      var links = [];
+      for(var key in data) {
+        if(data.hasOwnProperty(key)) {
+          id = key.replace('\\', '_');
+          nodes.push({
+            id: id
+          });
+
+          if (data[key].relations.extend) {
+            tid = data[key].relations.extend;
+            tid = tid.replace('\\', '_');
+            value = {
+              source: id,
+              target: tid,
+              style: 'extends'
+            }
+            links.push(value);
+          }
+          if (data[key].relations.implement) {
+            var list = data[key].relations.implement;
+            if (list.length) {
+              for(var i=0;i< list.length; i++) {
+                tid = list[i];
+                tid = tid.replace('\\', '_');
+                value = {
+                  source: id,
+                  target: tid,
+                  style: 'implements'
+                }
+                links.push(value);
+              }
+            }
+          }
+          if (data[key].relations.trait) {
+            var list = data[key].relations.trait;
+            if (list.length) {
+              for(var i=0;i< list.length; i++) {
+                tid = list[i];
+                tid = tid.replace('\\', '_');
+                value = {
+                  source: id,
+                  target: tid,
+                  style: 'trait'
+                }
+                links.push(value);
+              }
+            }
+          }
+
+        }
+      }
+
+      graph = {
+        nodes: nodes,
+        links: []
+      };
+
+      graph.links = [];
+      links.forEach(function(e) {
+          // Get the source and target nodes
+          var sourceNode = graph.nodes.filter(function(n) { return n.id === e.source; })[0],
+              targetNode = graph.nodes.filter(function(n) { return n.id === e.target; })[0];
+
+        if (sourceNode && targetNode) {
+          // Add the edge to the array
+          graph.links.push({
+            source: sourceNode,
+            target: targetNode,
+            style: e.style
+          });
+        }
+      });
+      //console.log(graph);
+      buildGraph(graph);
+    });
+
+    function dummy() {
+      return {
+        "A": {
+          "file": "A.json",
+          "relations": {
+            "implement": [],
+            "trait": [],
+            "extend": "B"
+          }
+        },
+        "B": {
+          "file": "B.json",
+          "relations": {
+            "implement": [],
+            "trait": [],
+            "extend": "C"
+          }
+        },
+        "C": {
+          "file": "C.json",
+          "relations": {
+            "implement": [ ''],
+            "trait": []
+          }
+        },
+        "I": {
+          "file": "D.json",
+          "relations": {
+            "implement": [ 'A', 'B'],
+            "trait": ['T']
+          }
+        },
+        "T": {
+          "file": "D.json",
+          "relations": {
+            "implement": [],
+            "trait": []
+          }
+        },
+      }
+    }
+
+    function addGradient(svg, name, startColor, stopColor) {
+      svg.append("radialGradient")
+        .attr("id", "line-gradient-" + name)
+        .selectAll("stop")
+        .data([
+            {offset: "0%", color: stopColor},
+            {offset: "100%", color: startColor}
+        ])
+        .enter()
+        .append("stop")
+        .attr("offset", function(d) { return d.offset; })
+        .attr("stop-color", function(d) { return d.color;})
+        ;
+    }
+
+    function buildGraph(graph) {
+      window.console.log(graph);
+
+      var width = 2500;
+      var height = 1400;
+
+      var color = d3.scale.category20();
+
+      var force = d3.layout.force()
+        .charge(-120)
+        .linkDistance(30)
+        .size([width, height]);
+
+      var svg = d3.select("body").append("svg")
+          .attr("width", width)
+          .attr("height", height);
+
+
+      addGradient(svg, 'extends', "red", "green");
+      addGradient(svg, 'trait', "orange", "pink");
+      addGradient(svg, 'implements', "blue", "black");
+
+      force
+          .nodes(graph.nodes)
+          .links(graph.links)
+          .start();
+
+      var link = svg.selectAll(".link")
+        .data(graph.links)
+        .enter().append("line")
+        .attr("class", function(d){ return "link " + d.style;})
+        .style("stroke-width", 10);
+
+      var node = svg.selectAll(".node")
+        .data(graph.nodes)
+        .enter().append("circle")
+        .attr("class", "node")
+        .attr("r", 5)
+        .call(force.drag)
+      ;
+
+      node.append("title")
+        .text(function(d) { return d.id; });
+
+      force.on("tick", function() {
+        link.attr("x1", function(d) { return d.source.x; })
+            .attr("y1", function(d) { return d.source.y; })
+            .attr("x2", function(d) { return d.target.x; })
+            .attr("y2", function(d) { return d.target.y; });
+
+        node.attr("cx", function(d) { return d.x; })
+            .attr("cy", function(d) { return d.y; });
+      });
+    }
+  </script>
+</head>
+<body>
+  <div id="graph"></div>
+</body>
+</html>
