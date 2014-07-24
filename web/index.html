@@ -228,7 +228,12 @@
       node.append("title")
         .text(function(d) { return d.id; });
 
+      var waitTime = Date.now();
       force.on("tick", function() {
+          if (waitTime + 10 * 1000 > Date.now()) {
+              console.log("Waiting");
+               return;
+          }
         link.attr("x1", function(d) { return d.source.x; })
             .attr("y1", function(d) { return d.source.y; })
             .attr("x2", function(d) { return d.target.x; })
