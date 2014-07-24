@@ -22,19 +22,21 @@ class RunCommand extends Command
     {
         // Find the project root containing .uml-generator-php.yml
         $projectRoot = getcwd();
-        $projectRoot = realpath($projectRoot) . '/';
+        $projectRoot = realpath($projectRoot);
+        $output->writeln("Scanning for .uml-generator-php.yml");
         while ($projectRoot !== '/') {
-            if (file_exists($projectRoot . '.uml-generator-php.yml')) {
+            $output->writeln("  scanning dir: " . $projectRoot);
+            if (file_exists($projectRoot . '/.uml-generator-php.yml')) {
                 break;
             } else {
-                $projectRoot = realpath($projectRoot . '..') . '/';
+                $projectRoot = realpath($projectRoot . '/..');
             }
         }
         if ($projectRoot == '/') {
-            $output->writeln('<error>.uml-generator-php.yml not found.</error>');
+            $output->writeln('<error>.uml-generator-php.yml not found.</error> Please run : cp ' .  realpath(__DIR__ . '/../../uml-generator-php.yml.dist') . ' ' . getcwd() . '/.uml-generator-php.yml');
             exit(1);
         }
-        $config = Yaml::parse(file_get_contents($projectRoot . '.uml-generator-php.yml'));
+        $config = Yaml::parse(file_get_contents($projectRoot . '/.uml-generator-php.yml'));
         chdir($projectRoot);
 
         // Run generate:json
