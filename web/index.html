@@ -55,14 +55,12 @@
       var links = [];
       for(var key in data) {
         if(data.hasOwnProperty(key)) {
-          id = key.replace('\\', '_');
           nodes.push({
             id: id
           });
 
           if (data[key].relations.extend) {
             tid = data[key].relations.extend;
-            tid = tid.replace('\\', '_');
             value = {
               source: id,
               target: tid,
@@ -75,7 +73,6 @@
             if (list.length) {
               for(var i=0;i< list.length; i++) {
                 tid = list[i];
-                tid = tid.replace('\\', '_');
                 value = {
                   source: id,
                   target: tid,
@@ -90,7 +87,6 @@
             if (list.length) {
               for(var i=0;i< list.length; i++) {
                 tid = list[i];
-                tid = tid.replace('\\', '_');
                 value = {
                   source: id,
                   target: tid,
@@ -188,8 +184,8 @@
     function buildGraph(graph) {
       window.console.log(graph);
 
-      var width = 10000;
-      var height = 10000;
+      var width = 6000;
+      var height = 6000;
 
       var color = d3.scale.category20();
 
