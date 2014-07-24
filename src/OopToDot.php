@@ -47,7 +47,7 @@ class OopToDot
                         if (isset($file_index[$implement])) {
                             if (!isset($loaded_files[$implement])) {
                                 echo 'Recurse: ' . $implement . PHP_EOL;
-                                $source = json_decode(file_get_contents($file_index[$implement]), true);
+                                $source = json_decode(file_get_contents($file_index[$implement]['file']), true);
                                 $loaded_files[$implement] = true;
                                 $source = $this->loadParentDiagram($source, $file_index, $limit - 1, $loaded_files);
                                 $array = array_merge($array, $source);
@@ -63,7 +63,7 @@ class OopToDot
                         if (isset($file_index[$trait])) {
                             if (!isset($loaded_files[$trait])) {
                                 echo 'Recurse: ' . $trait . PHP_EOL;
-                                $source = json_decode(file_get_contents($file_index[$trait]), true);
+                                $source = json_decode(file_get_contents($file_index[$trait]['file']), true);
                                 $loaded_files[$trait] = true;
                                 $source = $this->loadParentDiagram($source, $file_index, $limit - 1, $loaded_files);
                                 $array = array_merge($array, $source);
@@ -78,7 +78,7 @@ class OopToDot
                     if (isset($file_index[$values['extends']])) {
                         if (!isset($loaded_files[$values['extends']])) {
                             echo 'Recurse: ' . $values['extends'] . PHP_EOL;
-                            $source = json_decode(file_get_contents($file_index[$values['extends']]), true);
+                            $source = json_decode(file_get_contents($file_index[$values['extends']]['file']), true);
                             $loaded_files[$values['extends']] = true;
                             $source = $this->loadParentDiagram($source, $file_index, $limit - 1, $loaded_files);
                             $array = array_merge($array, $source);
