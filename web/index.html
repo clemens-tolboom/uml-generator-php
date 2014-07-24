@@ -17,16 +17,19 @@
   .link.extends {
     stroke: #f00;
     stroke: url(#line-gradient-extends);
+    stroke-width: 3px;
   }
 
   .link.trait {
     stroke: #09f;
     stroke: url(#line-gradient-trait);
+    stroke-width: 2px;
   }
 
   .link.implements {
     stroke: #0f9;
     stroke: url(#line-gradient-implements);
+    stroke-width: 2px;
   }
 
   </style>
@@ -163,7 +166,7 @@
             "implement": [],
             "trait": []
           }
-        },
+        }
       }
     }
 
@@ -213,7 +216,6 @@
         .data(graph.links)
         .enter().append("line")
         .attr("class", function(d){ return "link " + d.style;})
-        .style("stroke-width", 10);
 
       var node = svg.selectAll(".node")
         .data(graph.nodes)
