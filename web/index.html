@@ -36,7 +36,7 @@ d3.json('uml-generator-php.index', function (data) {
                     source: id,
                     target: tid,
                     style: 'extends'
-                }
+                };
                 links.push(value);
             }
             if (data[key].relations.implement) {
@@ -48,7 +48,7 @@ d3.json('uml-generator-php.index', function (data) {
                             source: id,
                             target: tid,
                             style: 'implements'
-                        }
+                        };
                         links.push(value);
                     }
                 }
@@ -62,7 +62,7 @@ d3.json('uml-generator-php.index', function (data) {
                             source: id,
                             target: tid,
                             style: 'trait'
-                        }
+                        };
                         links.push(value);
                     }
                 }
