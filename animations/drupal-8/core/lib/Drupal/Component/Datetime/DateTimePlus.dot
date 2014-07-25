@@ -1,0 +1,40 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Datetime\\DateTimePlus" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class DateTimePlus">\\Drupal\\Component\\Datetime\\DateTimePlus</td></tr><hr />
+<tr><td align="left" title="&laquo; static &raquo; protected dateParts"><u># dateParts</u></td></tr>
+<tr><td align="left" title="protected inputFormatAdjusted"># inputFormatAdjusted</td></tr>
+<tr><td align="left" title="protected langcode"># langcode</td></tr>
+<tr><td align="left" title="protected errors"># errors</td></tr>
+<tr><td align="left" title="protected inputFormatRaw"># inputFormatRaw</td></tr>
+<tr><td align="left" title="protected inputTimeZoneAdjusted"># inputTimeZoneAdjusted</td></tr>
+<tr><td align="left" title="protected inputTimeRaw"># inputTimeRaw</td></tr>
+<tr><td align="left" title="protected inputTimeAdjusted"># inputTimeAdjusted</td></tr>
+<tr><td align="left" title="protected inputTimeZoneRaw"># inputTimeZoneRaw</td></tr>
+<hr />
+<tr><td align="left" title="&laquo; static &raquo; public checkArray"><u>+ checkArray</u>(array : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public datePad"><u>+ datePad</u>(value : mixed, size : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public createFromDateTime"><u>+ createFromDateTime</u>(datetime : mixed, settings : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public arrayToISO"><u>+ arrayToISO</u>(array : mixed, force_valid_date : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public prepareArray"><u>+ prepareArray</u>(array : mixed, force_valid_date : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public createFromArray"><u>+ createFromArray</u>(date_parts : array, timezone : mixed, settings : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public createFromTimestamp"><u>+ createFromTimestamp</u>(timestamp : mixed, timezone : mixed, settings : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public createFromFormat"><u>+ createFromFormat</u>(format : mixed, time : mixed, timezone : mixed, settings : mixed)</td></tr>
+<tr><td align="left" title="public getErrors">+ getErrors()</td></tr>
+<tr><td align="left" title="public hasErrors">+ hasErrors()</td></tr>
+<tr><td align="left" title="public format">+ format(format : mixed, settings : mixed)</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(time : mixed, timezone : mixed, settings : mixed)</td></tr>
+<tr><td align="left" title="public __toString">+ __toString()</td></tr>
+<tr><td align="left" title="public checkErrors">+ checkErrors()</td></tr>
+<tr><td align="left" title="protected prepareFormat"># prepareFormat(format : mixed)</td></tr>
+<tr><td align="left" title="protected prepareTime"># prepareTime(time : mixed)</td></tr>
+<tr><td align="left" title="protected prepareTimezone"># prepareTimezone(timezone : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\DateTime" -> "\\Drupal\\Component\\Datetime\\DateTimePlus" [arrowhead="empty"];
+
+}

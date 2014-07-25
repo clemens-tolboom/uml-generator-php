@@ -1,0 +1,68 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Gettext\\PoStreamReader" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class PoStreamReader">\\Drupal\\Component\\Gettext\\PoStreamReader</td></tr><hr />
+<tr><td align="left" title="private _header">- _header</td></tr>
+<tr><td align="left" title="private _last_item">- _last_item</td></tr>
+<tr><td align="left" title="private _finished">- _finished</td></tr>
+<tr><td align="left" title="private _errors">- _errors</td></tr>
+<tr><td align="left" title="private _fd">- _fd</td></tr>
+<tr><td align="left" title="private _langcode">- _langcode</td></tr>
+<tr><td align="left" title="private _context">- _context</td></tr>
+<tr><td align="left" title="private _current_item">- _current_item</td></tr>
+<tr><td align="left" title="private _current_plural_index">- _current_plural_index</td></tr>
+<tr><td align="left" title="private _uri">- _uri</td></tr>
+<tr><td align="left" title="private _line_number">- _line_number</td></tr>
+<hr />
+<tr><td align="left" title="public setSeek">+ setSeek(seek : mixed)</td></tr>
+<tr><td align="left" title="public readItem">+ readItem()</td></tr>
+<tr><td align="left" title="public getSeek">+ getSeek()</td></tr>
+<tr><td align="left" title="public setItemFromArray">+ setItemFromArray(value : mixed)</td></tr>
+<tr><td align="left" title="public parseQuoted">+ parseQuoted(string : mixed)</td></tr>
+<tr><td align="left" title="public getLangcode">+ getLangcode()</td></tr>
+<tr><td align="left" title="public close">+ close()</td></tr>
+<tr><td align="left" title="public open">+ open()</td></tr>
+<tr><td align="left" title="public getHeader">+ getHeader()</td></tr>
+<tr><td align="left" title="public setLangcode">+ setLangcode(langcode : mixed)</td></tr>
+<tr><td align="left" title="public setHeader">+ setHeader(header : mixed)</td></tr>
+<tr><td align="left" title="public getURI">+ getURI()</td></tr>
+<tr><td align="left" title="public setURI">+ setURI(uri : mixed)</td></tr>
+<tr><td align="left" title="private shortenComments">- shortenComments(comment : mixed)</td></tr>
+<tr><td align="left" title="private readHeader">- readHeader()</td></tr>
+<tr><td align="left" title="private readLine">- readLine()</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Gettext\\PoStreamInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface PoStreamInterface">\\Drupal\\Component\\Gettext\\PoStreamInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public setURI">+ setURI(uri : mixed)</td></tr>
+<tr><td align="left" title="public getURI">+ getURI()</td></tr>
+<tr><td align="left" title="public close">+ close()</td></tr>
+<tr><td align="left" title="public open">+ open()</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Gettext\\PoReaderInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface PoReaderInterface">\\Drupal\\Component\\Gettext\\PoReaderInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public readItem">+ readItem()</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Component\\Gettext\\PoStreamInterface" -> "\\Drupal\\Component\\Gettext\\PoStreamReader" [arrowhead="empty" style="dashed"];
+
+"\\Drupal\\Component\\Gettext\\PoReaderInterface" -> "\\Drupal\\Component\\Gettext\\PoStreamReader" [arrowhead="empty" style="dashed"];
+
+}

@@ -1,0 +1,17 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Utility\\Random" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class Random">\\Drupal\\Component\\Utility\\Random</td></tr><hr />
+<tr><td align="left" title="protected names"># names</td></tr>
+<tr><td align="left" title="protected strings"># strings</td></tr>
+<hr />
+<tr><td align="left" title="public object">+ object(size : mixed)</td></tr>
+<tr><td align="left" title="public name">+ name(length : mixed, unique : mixed)</td></tr>
+<tr><td align="left" title="public string">+ string(length : mixed, unique : mixed, validator : mixed)</td></tr>
+</table>
+  >
+  ];
+}

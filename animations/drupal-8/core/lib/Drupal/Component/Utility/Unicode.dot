@@ -1,0 +1,30 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Utility\\Unicode" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class Unicode">\\Drupal\\Component\\Utility\\Unicode</td></tr><hr />
+<tr><td align="left" title="&laquo; static &raquo; protected status"><u># status</u></td></tr>
+<hr />
+<tr><td align="left" title="&laquo; static &raquo; public truncate"><u>+ truncate</u>(string : mixed, max_length : mixed, wordsafe : mixed, add_ellipsis : mixed, min_wordsafe_length : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public substr"><u>+ substr</u>(text : mixed, start : mixed, length : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public ucwords"><u>+ ucwords</u>(text : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public mimeHeaderEncode"><u>+ mimeHeaderEncode</u>(string : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public mimeHeaderDecode"><u>+ mimeHeaderDecode</u>(header : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public validateUtf8"><u>+ validateUtf8</u>(text : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public caseFlip"><u>+ caseFlip</u>(matches : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public lcfirst"><u>+ lcfirst</u>(text : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public ucfirst"><u>+ ucfirst</u>(text : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public convertToUtf8"><u>+ convertToUtf8</u>(data : mixed, encoding : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public check"><u>+ check</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public setStatus"><u>+ setStatus</u>(status : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public truncateBytes"><u>+ truncateBytes</u>(string : mixed, len : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public strlen"><u>+ strlen</u>(text : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public strtolower"><u>+ strtolower</u>(text : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public strtoupper"><u>+ strtoupper</u>(text : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public getStatus"><u>+ getStatus</u>()</td></tr>
+</table>
+  >
+  ];
+}

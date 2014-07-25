@@ -1,0 +1,51 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Annotation\\Plugin\\Discovery\\AnnotatedClassDiscovery" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class AnnotatedClassDiscovery">\\Drupal\\Component\\Annotation\\Plugin\\Discovery\\AnnotatedClassDiscovery</td></tr><hr />
+<tr><td align="left" title="protected annotationReader"># annotationReader</td></tr>
+<tr><td align="left" title="protected pluginDefinitionAnnotationName"># pluginDefinitionAnnotationName</td></tr>
+<tr><td align="left" title="protected pluginNamespaces"># pluginNamespaces</td></tr>
+<hr />
+<tr><td align="left" title="public __construct">+ __construct(plugin_namespaces : mixed, plugin_definition_annotation_name : mixed)</td></tr>
+<tr><td align="left" title="public getDefinitions">+ getDefinitions()</td></tr>
+<tr><td align="left" title="protected getPluginNamespaces"># getPluginNamespaces()</td></tr>
+<tr><td align="left" title="protected prepareAnnotationDefinition"># prepareAnnotationDefinition(annotation : mixed, class : mixed)</td></tr>
+<tr><td align="left" title="protected getAnnotationReader"># getAnnotationReader()</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface DiscoveryInterface">\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public hasDefinition">+ hasDefinition(plugin_id : mixed)</td></tr>
+<tr><td align="left" title="public getDefinitions">+ getDefinitions()</td></tr>
+<tr><td align="left" title="public getDefinition">+ getDefinition(plugin_id : mixed, exception_on_invalid : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryTrait" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; trait &raquo;</td></tr>
+<tr><td align="center" title="trait DiscoveryTrait">\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryTrait</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public hasDefinition">+ hasDefinition(plugin_id : mixed)</td></tr>
+<tr><td align="left" title="public getDefinition">+ getDefinition(plugin_id : mixed, exception_on_invalid : mixed)</td></tr>
+<tr><td align="left" title="public getDefinitions">+ getDefinitions()</td></tr>
+<tr><td align="left" title="protected doGetDefinition"># doGetDefinition(definitions : array, plugin_id : mixed, exception_on_invalid : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryInterface" -> "\\Drupal\\Component\\Annotation\\Plugin\\Discovery\\AnnotatedClassDiscovery" [arrowhead="empty" style="dashed"];
+
+"\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryTrait" -> "\\Drupal\\Component\\Annotation\\Plugin\\Discovery\\AnnotatedClassDiscovery" [arrowhead="empty" style="dotted"];
+
+}

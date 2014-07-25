@@ -1,0 +1,16 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Asset\\Exception\\IncompleteLibraryDefinitionException" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class IncompleteLibraryDefinitionException">\\Drupal\\Core\\Asset\\Exception\\IncompleteLibraryDefinitionException</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td>&nbsp;</td></tr>
+</table>
+  >
+  ];
+"\\RuntimeException" -> "\\Drupal\\Core\\Asset\\Exception\\IncompleteLibraryDefinitionException" [arrowhead="empty"];
+
+}

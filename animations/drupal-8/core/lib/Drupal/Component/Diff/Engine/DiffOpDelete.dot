@@ -1,0 +1,32 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Diff\\Engine\\DiffOpDelete" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class DiffOpDelete">\\Drupal\\Component\\Diff\\Engine\\DiffOpDelete</td></tr><hr />
+<tr><td align="left" title="public type">+ type</td></tr>
+<hr />
+<tr><td align="left" title="public reverse">+ reverse()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(lines : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Diff\\Engine\\DiffOp" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class DiffOp">\\Drupal\\Component\\Diff\\Engine\\DiffOp</td></tr><hr />
+<tr><td align="left" title="public closing">+ closing</td></tr>
+<tr><td align="left" title="public orig">+ orig</td></tr>
+<tr><td align="left" title="public type">+ type</td></tr>
+<hr />
+<tr><td align="left" title="public nclosing">+ nclosing()</td></tr>
+<tr><td align="left" title="public norig">+ norig()</td></tr>
+<tr><td align="left" title="public reverse">+ reverse()</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Component\\Diff\\Engine\\DiffOp" -> "\\Drupal\\Component\\Diff\\Engine\\DiffOpDelete" [arrowhead="empty"];
+
+}

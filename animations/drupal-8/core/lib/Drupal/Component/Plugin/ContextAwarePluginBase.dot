@@ -1,0 +1,91 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Plugin\\ContextAwarePluginBase" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class ContextAwarePluginBase">\\Drupal\\Component\\Plugin\\ContextAwarePluginBase</td></tr><hr />
+<tr><td align="left" title="protected context"># context</td></tr>
+<hr />
+<tr><td align="left" title="public getContextValues">+ getContextValues()</td></tr>
+<tr><td align="left" title="public getContextValue">+ getContextValue(name : mixed)</td></tr>
+<tr><td align="left" title="public setContextValue">+ setContextValue(name : mixed, value : mixed)</td></tr>
+<tr><td align="left" title="public validateContexts">+ validateContexts()</td></tr>
+<tr><td align="left" title="public setContext">+ setContext(name : mixed, context : mixed)</td></tr>
+<tr><td align="left" title="public getContext">+ getContext(name : mixed)</td></tr>
+<tr><td align="left" title="public getContextDefinitions">+ getContextDefinitions()</td></tr>
+<tr><td align="left" title="public getContextDefinition">+ getContextDefinition(name : mixed)</td></tr>
+<tr><td align="left" title="public getContexts">+ getContexts()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(configuration : array, plugin_id : mixed, plugin_definition : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\ContextAwarePluginInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface ContextAwarePluginInterface">\\Drupal\\Component\\Plugin\\ContextAwarePluginInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public setContext">+ setContext(name : mixed, context : mixed)</td></tr>
+<tr><td align="left" title="public setContextValue">+ setContextValue(name : mixed, value : mixed)</td></tr>
+<tr><td align="left" title="public validateContexts">+ validateContexts()</td></tr>
+<tr><td align="left" title="public getContextValue">+ getContextValue(name : mixed)</td></tr>
+<tr><td align="left" title="public getContextValues">+ getContextValues()</td></tr>
+<tr><td align="left" title="public getContextDefinition">+ getContextDefinition(name : mixed)</td></tr>
+<tr><td align="left" title="public getContexts">+ getContexts()</td></tr>
+<tr><td align="left" title="public getContext">+ getContext(name : mixed)</td></tr>
+<tr><td align="left" title="public getContextDefinitions">+ getContextDefinitions()</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\PluginBase" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class PluginBase">\\Drupal\\Component\\Plugin\\PluginBase</td></tr><hr />
+<tr><td align="left" title="protected configuration"># configuration</td></tr>
+<tr><td align="left" title="protected pluginDefinition"># pluginDefinition</td></tr>
+<tr><td align="left" title="protected pluginId"># pluginId</td></tr>
+<hr />
+<tr><td align="left" title="public getPluginDefinition">+ getPluginDefinition()</td></tr>
+<tr><td align="left" title="public getDerivativeId">+ getDerivativeId()</td></tr>
+<tr><td align="left" title="public getBaseId">+ getBaseId()</td></tr>
+<tr><td align="left" title="public getPluginId">+ getPluginId()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(configuration : array, plugin_id : mixed, plugin_definition : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\PluginInspectionInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface PluginInspectionInterface">\\Drupal\\Component\\Plugin\\PluginInspectionInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public getPluginDefinition">+ getPluginDefinition()</td></tr>
+<tr><td align="left" title="public getPluginId">+ getPluginId()</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\DerivativeInspectionInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface DerivativeInspectionInterface">\\Drupal\\Component\\Plugin\\DerivativeInspectionInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public getDerivativeId">+ getDerivativeId()</td></tr>
+<tr><td align="left" title="public getBaseId">+ getBaseId()</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Component\\Plugin\\ContextAwarePluginInterface" -> "\\Drupal\\Component\\Plugin\\ContextAwarePluginBase" [arrowhead="empty" style="dashed"];
+
+"\\Drupal\\Component\\Plugin\\PluginBase" -> "\\Drupal\\Component\\Plugin\\ContextAwarePluginBase" [arrowhead="empty"];
+
+"\\Drupal\\Component\\Plugin\\PluginInspectionInterface" -> "\\Drupal\\Component\\Plugin\\PluginBase" [arrowhead="empty" style="dashed"];
+
+"\\Drupal\\Component\\Plugin\\DerivativeInspectionInterface" -> "\\Drupal\\Component\\Plugin\\PluginBase" [arrowhead="empty" style="dashed"];
+
+}

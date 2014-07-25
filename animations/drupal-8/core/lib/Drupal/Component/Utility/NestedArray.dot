@@ -1,0 +1,19 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Utility\\NestedArray" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class NestedArray">\\Drupal\\Component\\Utility\\NestedArray</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="&laquo; static &raquo; public mergeDeep"><u>+ mergeDeep</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public mergeDeepArray"><u>+ mergeDeepArray</u>(arrays : array, preserve_integer_keys : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public keyExists"><u>+ keyExists</u>(array : array, parents : array)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public unsetValue"><u>+ unsetValue</u>(array : array, parents : array, key_existed : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public setValue"><u>+ setValue</u>(array : array, parents : array, value : mixed, force : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public getValue"><u>+ getValue</u>(array : array, parents : array, key_exists : mixed)</td></tr>
+</table>
+  >
+  ];
+}

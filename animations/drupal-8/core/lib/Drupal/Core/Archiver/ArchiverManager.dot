@@ -1,0 +1,118 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Archiver\\ArchiverManager" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class ArchiverManager">\\Drupal\\Core\\Archiver\\ArchiverManager</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public getInstance">+ getInstance(options : array)</td></tr>
+<tr><td align="left" title="public createInstance">+ createInstance(plugin_id : mixed, configuration : array)</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(namespaces : mixed, cache_backend : mixed, module_handler : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\Plugin\\DefaultPluginManager" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class DefaultPluginManager">\\Drupal\\Core\\Plugin\\DefaultPluginManager</td></tr><hr />
+<tr><td align="left" title="protected moduleHandler"># moduleHandler</td></tr>
+<tr><td align="left" title="protected defaults"># defaults</td></tr>
+<tr><td align="left" title="protected subdir"># subdir</td></tr>
+<tr><td align="left" title="protected alterHook"># alterHook</td></tr>
+<tr><td align="left" title="protected cacheKey"># cacheKey</td></tr>
+<tr><td align="left" title="protected cacheTags"># cacheTags</td></tr>
+<tr><td align="left" title="protected cacheBackend"># cacheBackend</td></tr>
+<hr />
+<tr><td align="left" title="public __construct">+ __construct(subdir : mixed, namespaces : mixed, module_handler : mixed, plugin_definition_annotation_name : mixed)</td></tr>
+<tr><td align="left" title="public processDefinition">+ processDefinition(definition : mixed, plugin_id : mixed)</td></tr>
+<tr><td align="left" title="public getDefinitions">+ getDefinitions()</td></tr>
+<tr><td align="left" title="public clearCachedDefinitions">+ clearCachedDefinitions()</td></tr>
+<tr><td align="left" title="public setCacheBackend">+ setCacheBackend(cache_backend : mixed, cache_key : mixed, cache_tags : array)</td></tr>
+<tr><td align="left" title="protected findDefinitions"># findDefinitions()</td></tr>
+<tr><td align="left" title="protected setCachedDefinitions"># setCachedDefinitions(definitions : mixed)</td></tr>
+<tr><td align="left" title="protected getCachedDefinitions"># getCachedDefinitions()</td></tr>
+<tr><td align="left" title="protected alterInfo"># alterInfo(alter_hook : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\PluginManagerInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface PluginManagerInterface">\\Drupal\\Component\\Plugin\\PluginManagerInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td>&nbsp;</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\Discovery\\CachedDiscoveryInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface CachedDiscoveryInterface">\\Drupal\\Component\\Plugin\\Discovery\\CachedDiscoveryInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public clearCachedDefinitions">+ clearCachedDefinitions()</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryCachedTrait" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; trait &raquo;</td></tr>
+<tr><td align="center" title="trait DiscoveryCachedTrait">\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryCachedTrait</td></tr><hr />
+<tr><td align="left" title="protected definitions"># definitions</td></tr>
+<hr />
+<tr><td align="left" title="public getDefinition">+ getDefinition(plugin_id : mixed, exception_on_invalid : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\PluginManagerBase" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class PluginManagerBase">\\Drupal\\Component\\Plugin\\PluginManagerBase</td></tr><hr />
+<tr><td align="left" title="protected mapper"># mapper</td></tr>
+<tr><td align="left" title="protected factory"># factory</td></tr>
+<tr><td align="left" title="protected discovery"># discovery</td></tr>
+<hr />
+<tr><td align="left" title="public getInstance">+ getInstance(options : array)</td></tr>
+<tr><td align="left" title="public createInstance">+ createInstance(plugin_id : mixed, configuration : array)</td></tr>
+<tr><td align="left" title="public getDefinitions">+ getDefinitions()</td></tr>
+<tr><td align="left" title="public getDefinition">+ getDefinition(plugin_id : mixed, exception_on_invalid : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryTrait" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; trait &raquo;</td></tr>
+<tr><td align="center" title="trait DiscoveryTrait">\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryTrait</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public hasDefinition">+ hasDefinition(plugin_id : mixed)</td></tr>
+<tr><td align="left" title="public getDefinition">+ getDefinition(plugin_id : mixed, exception_on_invalid : mixed)</td></tr>
+<tr><td align="left" title="public getDefinitions">+ getDefinitions()</td></tr>
+<tr><td align="left" title="protected doGetDefinition"># doGetDefinition(definitions : array, plugin_id : mixed, exception_on_invalid : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Core\\Plugin\\DefaultPluginManager" -> "\\Drupal\\Core\\Archiver\\ArchiverManager" [arrowhead="empty"];
+
+"\\Drupal\\Component\\Plugin\\PluginManagerInterface" -> "\\Drupal\\Core\\Plugin\\DefaultPluginManager" [arrowhead="empty" style="dashed"];
+
+"\\Drupal\\Component\\Plugin\\Discovery\\CachedDiscoveryInterface" -> "\\Drupal\\Core\\Plugin\\DefaultPluginManager" [arrowhead="empty" style="dashed"];
+
+"\\Drupal\\Component\\Plugin\\PluginManagerBase" -> "\\Drupal\\Core\\Plugin\\DefaultPluginManager" [arrowhead="empty"];
+
+"\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryCachedTrait" -> "\\Drupal\\Core\\Plugin\\DefaultPluginManager" [arrowhead="empty" style="dotted"];
+
+"\\Drupal\\Component\\Plugin\\PluginManagerInterface" -> "\\Drupal\\Component\\Plugin\\PluginManagerBase" [arrowhead="empty" style="dashed"];
+
+"\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryTrait" -> "\\Drupal\\Component\\Plugin\\PluginManagerBase" [arrowhead="empty" style="dotted"];
+
+}

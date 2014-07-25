@@ -1,0 +1,43 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Ajax\\SetDialogTitleCommand" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class SetDialogTitleCommand">\\Drupal\\Core\\Ajax\\SetDialogTitleCommand</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public __construct">+ __construct(selector : mixed, title : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\Ajax\\SetDialogOptionCommand" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class SetDialogOptionCommand">\\Drupal\\Core\\Ajax\\SetDialogOptionCommand</td></tr><hr />
+<tr><td align="left" title="protected optionValue"># optionValue</td></tr>
+<tr><td align="left" title="protected optionName"># optionName</td></tr>
+<tr><td align="left" title="protected selector"># selector</td></tr>
+<hr />
+<tr><td align="left" title="public render">+ render()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(selector : mixed, option_name : mixed, option_value : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\Ajax\\CommandInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface CommandInterface">\\Drupal\\Core\\Ajax\\CommandInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public render">+ render()</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Core\\Ajax\\SetDialogOptionCommand" -> "\\Drupal\\Core\\Ajax\\SetDialogTitleCommand" [arrowhead="empty"];
+
+"\\Drupal\\Core\\Ajax\\CommandInterface" -> "\\Drupal\\Core\\Ajax\\SetDialogOptionCommand" [arrowhead="empty" style="dashed"];
+
+}

@@ -1,0 +1,18 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Asset\\LibraryDiscoveryParser" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class LibraryDiscoveryParser">\\Drupal\\Core\\Asset\\LibraryDiscoveryParser</td></tr><hr />
+<tr><td align="left" title="protected moduleHandler"># moduleHandler</td></tr>
+<hr />
+<tr><td align="left" title="public __construct">+ __construct(module_handler : mixed)</td></tr>
+<tr><td align="left" title="public buildByExtension">+ buildByExtension(extension : mixed)</td></tr>
+<tr><td align="left" title="protected fileValidUri"># fileValidUri(source : mixed)</td></tr>
+<tr><td align="left" title="protected parseLibraryInfo"># parseLibraryInfo(extension : mixed, library_file : mixed)</td></tr>
+<tr><td align="left" title="protected drupalGetPath"># drupalGetPath(type : mixed, name : mixed)</td></tr>
+</table>
+  >
+  ];
+}

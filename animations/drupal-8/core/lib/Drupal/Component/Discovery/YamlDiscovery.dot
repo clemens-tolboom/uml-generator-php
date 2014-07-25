@@ -1,0 +1,30 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Discovery\\YamlDiscovery" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class YamlDiscovery">\\Drupal\\Component\\Discovery\\YamlDiscovery</td></tr><hr />
+<tr><td align="left" title="protected directories"># directories</td></tr>
+<tr><td align="left" title="protected name"># name</td></tr>
+<hr />
+<tr><td align="left" title="public __construct">+ __construct(name : mixed, directories : array)</td></tr>
+<tr><td align="left" title="public findAll">+ findAll()</td></tr>
+<tr><td align="left" title="protected findFiles"># findFiles()</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Discovery\\DiscoverableInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface DiscoverableInterface">\\Drupal\\Component\\Discovery\\DiscoverableInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public findAll">+ findAll()</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Component\\Discovery\\DiscoverableInterface" -> "\\Drupal\\Component\\Discovery\\YamlDiscovery" [arrowhead="empty" style="dashed"];
+
+}

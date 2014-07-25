@@ -1,0 +1,23 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Utility\\UrlHelper" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class UrlHelper">\\Drupal\\Component\\Utility\\UrlHelper</td></tr><hr />
+<tr><td align="left" title="&laquo; static &raquo; protected allowedProtocols"><u># allowedProtocols</u></td></tr>
+<hr />
+<tr><td align="left" title="&laquo; static &raquo; public filterBadProtocol"><u>+ filterBadProtocol</u>(string : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public setAllowedProtocols"><u>+ setAllowedProtocols</u>(protocols : array)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public stripDangerousProtocols"><u>+ stripDangerousProtocols</u>(uri : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public isValid"><u>+ isValid</u>(url : mixed, absolute : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public externalIsLocal"><u>+ externalIsLocal</u>(url : mixed, base_url : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public isExternal"><u>+ isExternal</u>(path : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public filterQueryParameters"><u>+ filterQueryParameters</u>(query : array, exclude : array, parent : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public parse"><u>+ parse</u>(url : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public encodePath"><u>+ encodePath</u>(path : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public buildQuery"><u>+ buildQuery</u>(query : array, parent : mixed)</td></tr>
+</table>
+  >
+  ];
+}

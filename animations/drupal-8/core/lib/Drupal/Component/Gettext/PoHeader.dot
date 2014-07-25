@@ -1,0 +1,31 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Gettext\\PoHeader" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class PoHeader">\\Drupal\\Component\\Gettext\\PoHeader</td></tr><hr />
+<tr><td align="left" title="private _languageName">- _languageName</td></tr>
+<tr><td align="left" title="private _projectName">- _projectName</td></tr>
+<tr><td align="left" title="private _po_date">- _po_date</td></tr>
+<tr><td align="left" title="private _authors">- _authors</td></tr>
+<tr><td align="left" title="private _pluralForms">- _pluralForms</td></tr>
+<tr><td align="left" title="private _langcode">- _langcode</td></tr>
+<hr />
+<tr><td align="left" title="public __construct">+ __construct(langcode : mixed)</td></tr>
+<tr><td align="left" title="public __toString">+ __toString()</td></tr>
+<tr><td align="left" title="public parsePluralForms">+ parsePluralForms(pluralforms : mixed)</td></tr>
+<tr><td align="left" title="public getProjectName">+ getProjectName()</td></tr>
+<tr><td align="left" title="public setFromString">+ setFromString(header : mixed)</td></tr>
+<tr><td align="left" title="public setProjectName">+ setProjectName(projectName : mixed)</td></tr>
+<tr><td align="left" title="public setLanguageName">+ setLanguageName(languageName : mixed)</td></tr>
+<tr><td align="left" title="public getPluralForms">+ getPluralForms()</td></tr>
+<tr><td align="left" title="public getLanguageName">+ getLanguageName()</td></tr>
+<tr><td align="left" title="protected evaluatePlural"># evaluatePlural(element_stack : mixed, n : mixed)</td></tr>
+<tr><td align="left" title="private tokenizeFormula">- tokenizeFormula(formula : mixed)</td></tr>
+<tr><td align="left" title="private parseArithmetic">- parseArithmetic(string : mixed)</td></tr>
+<tr><td align="left" title="private parseHeader">- parseHeader(header : mixed)</td></tr>
+</table>
+  >
+  ];
+}

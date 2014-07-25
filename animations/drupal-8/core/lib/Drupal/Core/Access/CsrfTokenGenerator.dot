@@ -1,0 +1,17 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Access\\CsrfTokenGenerator" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class CsrfTokenGenerator">\\Drupal\\Core\\Access\\CsrfTokenGenerator</td></tr><hr />
+<tr><td align="left" title="protected privateKey"># privateKey</td></tr>
+<hr />
+<tr><td align="left" title="public validate">+ validate(token : mixed, value : mixed)</td></tr>
+<tr><td align="left" title="public get">+ get(value : mixed)</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(private_key : mixed)</td></tr>
+<tr><td align="left" title="protected computeToken"># computeToken(seed : mixed, value : mixed)</td></tr>
+</table>
+  >
+  ];
+}

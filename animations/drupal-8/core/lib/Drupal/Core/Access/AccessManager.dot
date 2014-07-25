@@ -1,0 +1,37 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Access\\AccessManager" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class AccessManager">\\Drupal\\Core\\Access\\AccessManager</td></tr><hr />
+<tr><td align="left" title="protected urlGenerator"># urlGenerator</td></tr>
+<tr><td align="left" title="protected paramConverterManager"># paramConverterManager</td></tr>
+<tr><td align="left" title="protected argumentsResolver"># argumentsResolver</td></tr>
+<tr><td align="left" title="protected requestStack"># requestStack</td></tr>
+<tr><td align="left" title="protected routeProvider"># routeProvider</td></tr>
+<tr><td align="left" title="protected dynamicRequirementMap"># dynamicRequirementMap</td></tr>
+<tr><td align="left" title="protected checks"># checks</td></tr>
+<tr><td align="left" title="protected checkMethods"># checkMethods</td></tr>
+<tr><td align="left" title="protected staticRequirementMap"># staticRequirementMap</td></tr>
+<tr><td align="left" title="protected checkIds"># checkIds</td></tr>
+<hr />
+<tr><td align="left" title="public __construct">+ __construct(route_provider : mixed, url_generator : mixed, paramconverter_manager : mixed, arguments_resolver : mixed, requestStack : mixed)</td></tr>
+<tr><td align="left" title="public loadDynamicRequirementMap">+ loadDynamicRequirementMap()</td></tr>
+<tr><td align="left" title="public checkNamedRoute">+ checkNamedRoute(route_name : mixed, parameters : array, account : mixed, route_request : mixed)</td></tr>
+<tr><td align="left" title="public check">+ check(route : mixed, request : mixed, account : mixed)</td></tr>
+<tr><td align="left" title="public addCheckService">+ addCheckService(service_id : mixed, service_method : mixed, applies_checks : array)</td></tr>
+<tr><td align="left" title="public setChecks">+ setChecks(routes : mixed)</td></tr>
+<tr><td align="left" title="protected loadCheck"># loadCheck(service_id : mixed)</td></tr>
+<tr><td align="left" title="protected performCheck"># performCheck(service_id : mixed, route : mixed, request : mixed, account : mixed)</td></tr>
+<tr><td align="left" title="protected checkAny"># checkAny(checks : array, route : mixed, request : mixed, account : mixed)</td></tr>
+<tr><td align="left" title="protected checkAll"># checkAll(checks : array, route : mixed, request : mixed, account : mixed)</td></tr>
+<tr><td align="left" title="protected applies"># applies(route : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\Symfony\\Component\\DependencyInjection\\ContainerAwareInterface" -> "\\Drupal\\Core\\Access\\AccessManager" [arrowhead="empty" style="dashed"];
+
+"\\Symfony\\Component\\DependencyInjection\\ContainerAwareTrait" -> "\\Drupal\\Core\\Access\\AccessManager" [arrowhead="empty" style="dotted"];
+
+}

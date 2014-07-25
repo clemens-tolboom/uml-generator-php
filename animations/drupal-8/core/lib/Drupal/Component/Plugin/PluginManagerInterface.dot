@@ -1,0 +1,14 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Plugin\\PluginManagerInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface PluginManagerInterface">\\Drupal\\Component\\Plugin\\PluginManagerInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td>&nbsp;</td></tr>
+</table>
+  >
+  ];
+}

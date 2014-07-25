@@ -1,0 +1,19 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Diff\\Engine\\DiffEngine" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class DiffEngine">\\Drupal\\Component\\Diff\\Engine\\DiffEngine</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public diff">+ diff(from_lines : mixed, to_lines : mixed)</td></tr>
+<tr><td align="left" title="protected _shift_boundaries"># _shift_boundaries(lines : mixed, changed : mixed, other_changed : mixed)</td></tr>
+<tr><td align="left" title="protected _compareseq"># _compareseq(xoff : mixed, xlim : mixed, yoff : mixed, ylim : mixed)</td></tr>
+<tr><td align="left" title="protected _diag"># _diag(xoff : mixed, xlim : mixed, yoff : mixed, ylim : mixed, nchunks : mixed)</td></tr>
+<tr><td align="left" title="protected _line_hash"># _line_hash(line : mixed)</td></tr>
+<tr><td align="left" title="protected _lcs_pos"># _lcs_pos(ypos : mixed)</td></tr>
+</table>
+  >
+  ];
+}

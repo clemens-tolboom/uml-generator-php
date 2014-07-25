@@ -1,0 +1,27 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Plugin\\Context\\ContextDefinitionInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface ContextDefinitionInterface">\\Drupal\\Component\\Plugin\\Context\\ContextDefinitionInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public setRequired">+ setRequired(required : mixed)</td></tr>
+<tr><td align="left" title="public isRequired">+ isRequired()</td></tr>
+<tr><td align="left" title="public getConstraints">+ getConstraints()</td></tr>
+<tr><td align="left" title="public setConstraints">+ setConstraints(constraints : array)</td></tr>
+<tr><td align="left" title="public getConstraint">+ getConstraint(constraint_name : mixed)</td></tr>
+<tr><td align="left" title="public addConstraint">+ addConstraint(constraint_name : mixed, options : mixed)</td></tr>
+<tr><td align="left" title="public setMultiple">+ setMultiple(multiple : mixed)</td></tr>
+<tr><td align="left" title="public isMultiple">+ isMultiple()</td></tr>
+<tr><td align="left" title="public getDescription">+ getDescription()</td></tr>
+<tr><td align="left" title="public setLabel">+ setLabel(label : mixed)</td></tr>
+<tr><td align="left" title="public setDescription">+ setDescription(description : mixed)</td></tr>
+<tr><td align="left" title="public getDataType">+ getDataType()</td></tr>
+<tr><td align="left" title="public setDataType">+ setDataType(data_type : mixed)</td></tr>
+<tr><td align="left" title="public getLabel">+ getLabel()</td></tr>
+</table>
+  >
+  ];
+}

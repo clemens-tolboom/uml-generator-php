@@ -1,0 +1,36 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Gettext\\PoItem" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class PoItem">\\Drupal\\Component\\Gettext\\PoItem</td></tr><hr />
+<tr><td align="left" title="private _comment">- _comment</td></tr>
+<tr><td align="left" title="private _translation">- _translation</td></tr>
+<tr><td align="left" title="private _plural">- _plural</td></tr>
+<tr><td align="left" title="private _source">- _source</td></tr>
+<tr><td align="left" title="private _context">- _context</td></tr>
+<tr><td align="left" title="private _langcode">- _langcode</td></tr>
+<hr />
+<tr><td align="left" title="public isPlural">+ isPlural()</td></tr>
+<tr><td align="left" title="public getLangcode">+ getLangcode()</td></tr>
+<tr><td align="left" title="public getComment">+ getComment()</td></tr>
+<tr><td align="left" title="public setComment">+ setComment(comment : mixed)</td></tr>
+<tr><td align="left" title="public __toString">+ __toString()</td></tr>
+<tr><td align="left" title="public setFromArray">+ setFromArray(values : array)</td></tr>
+<tr><td align="left" title="public setTranslation">+ setTranslation(translation : mixed)</td></tr>
+<tr><td align="left" title="public setPlural">+ setPlural(plural : mixed)</td></tr>
+<tr><td align="left" title="public getTranslation">+ getTranslation()</td></tr>
+<tr><td align="left" title="public setLangcode">+ setLangcode(langcode : mixed)</td></tr>
+<tr><td align="left" title="public setContext">+ setContext(context : mixed)</td></tr>
+<tr><td align="left" title="public getContext">+ getContext()</td></tr>
+<tr><td align="left" title="public getSource">+ getSource()</td></tr>
+<tr><td align="left" title="public setSource">+ setSource(source : mixed)</td></tr>
+<tr><td align="left" title="private formatString">- formatString(string : mixed)</td></tr>
+<tr><td align="left" title="private formatSingular">- formatSingular()</td></tr>
+<tr><td align="left" title="private formatItem">- formatItem()</td></tr>
+<tr><td align="left" title="private formatPlural">- formatPlural()</td></tr>
+</table>
+  >
+  ];
+}

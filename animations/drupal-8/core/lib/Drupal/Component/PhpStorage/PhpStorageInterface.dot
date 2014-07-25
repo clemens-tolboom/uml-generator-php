@@ -1,0 +1,21 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\PhpStorage\\PhpStorageInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface PhpStorageInterface">\\Drupal\\Component\\PhpStorage\\PhpStorageInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public deleteAll">+ deleteAll()</td></tr>
+<tr><td align="left" title="public getFullPath">+ getFullPath(name : mixed)</td></tr>
+<tr><td align="left" title="public listAll">+ listAll()</td></tr>
+<tr><td align="left" title="public delete">+ delete(name : mixed)</td></tr>
+<tr><td align="left" title="public writeable">+ writeable()</td></tr>
+<tr><td align="left" title="public load">+ load(name : mixed)</td></tr>
+<tr><td align="left" title="public save">+ save(name : mixed, code : mixed)</td></tr>
+<tr><td align="left" title="public exists">+ exists(name : mixed)</td></tr>
+</table>
+  >
+  ];
+}

@@ -1,0 +1,16 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Access\\AccessException" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class AccessException">\\Drupal\\Core\\Access\\AccessException</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td>&nbsp;</td></tr>
+</table>
+  >
+  ];
+"\\RuntimeException" -> "\\Drupal\\Core\\Access\\AccessException" [arrowhead="empty"];
+
+}

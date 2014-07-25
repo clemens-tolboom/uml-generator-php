@@ -1,0 +1,53 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Annotation\\ContextDefinition" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class ContextDefinition">\\Drupal\\Core\\Annotation\\ContextDefinition</td></tr><hr />
+<tr><td align="left" title="protected definition"># definition</td></tr>
+<hr />
+<tr><td align="left" title="public get">+ get()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(values : array)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Annotation\\Plugin" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class Plugin">\\Drupal\\Component\\Annotation\\Plugin</td></tr><hr />
+<tr><td align="left" title="protected definition"># definition</td></tr>
+<hr />
+<tr><td align="left" title="public getId">+ getId()</td></tr>
+<tr><td align="left" title="public getClass">+ getClass()</td></tr>
+<tr><td align="left" title="public setClass">+ setClass(class : mixed)</td></tr>
+<tr><td align="left" title="public setProvider">+ setProvider(provider : mixed)</td></tr>
+<tr><td align="left" title="public getProvider">+ getProvider()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(values : mixed)</td></tr>
+<tr><td align="left" title="public get">+ get()</td></tr>
+<tr><td align="left" title="protected parse"># parse(values : array)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Annotation\\AnnotationInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface AnnotationInterface">\\Drupal\\Component\\Annotation\\AnnotationInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public getClass">+ getClass()</td></tr>
+<tr><td align="left" title="public setClass">+ setClass(class : mixed)</td></tr>
+<tr><td align="left" title="public getId">+ getId()</td></tr>
+<tr><td align="left" title="public setProvider">+ setProvider(provider : mixed)</td></tr>
+<tr><td align="left" title="public getProvider">+ getProvider()</td></tr>
+<tr><td align="left" title="public get">+ get()</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Component\\Annotation\\Plugin" -> "\\Drupal\\Core\\Annotation\\ContextDefinition" [arrowhead="empty"];
+
+"\\Drupal\\Component\\Annotation\\AnnotationInterface" -> "\\Drupal\\Component\\Annotation\\Plugin" [arrowhead="empty" style="dashed"];
+
+}

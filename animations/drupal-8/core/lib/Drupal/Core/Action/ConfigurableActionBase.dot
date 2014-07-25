@@ -1,0 +1,166 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Action\\ConfigurableActionBase" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class ConfigurableActionBase">\\Drupal\\Core\\Action\\ConfigurableActionBase</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public validateConfigurationForm">+ validateConfigurationForm(form : array, form_state : array)</td></tr>
+<tr><td align="left" title="public calculateDependencies">+ calculateDependencies()</td></tr>
+<tr><td align="left" title="public setConfiguration">+ setConfiguration(configuration : array)</td></tr>
+<tr><td align="left" title="public getConfiguration">+ getConfiguration()</td></tr>
+<tr><td align="left" title="public defaultConfiguration">+ defaultConfiguration()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(configuration : array, plugin_id : mixed, plugin_definition : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\ConfigurablePluginInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface ConfigurablePluginInterface">\\Drupal\\Component\\Plugin\\ConfigurablePluginInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public calculateDependencies">+ calculateDependencies()</td></tr>
+<tr><td align="left" title="public defaultConfiguration">+ defaultConfiguration()</td></tr>
+<tr><td align="left" title="public setConfiguration">+ setConfiguration(configuration : array)</td></tr>
+<tr><td align="left" title="public getConfiguration">+ getConfiguration()</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\Plugin\\PluginFormInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface PluginFormInterface">\\Drupal\\Core\\Plugin\\PluginFormInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public submitConfigurationForm">+ submitConfigurationForm(form : array, form_state : array)</td></tr>
+<tr><td align="left" title="public validateConfigurationForm">+ validateConfigurationForm(form : array, form_state : array)</td></tr>
+<tr><td align="left" title="public buildConfigurationForm">+ buildConfigurationForm(form : array, form_state : array)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\Action\\ActionBase" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class ActionBase">\\Drupal\\Core\\Action\\ActionBase</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public executeMultiple">+ executeMultiple(entities : array)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\Action\\ActionInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface ActionInterface">\\Drupal\\Core\\Action\\ActionInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public executeMultiple">+ executeMultiple(objects : array)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\Plugin\\PluginBase" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class PluginBase">\\Drupal\\Core\\Plugin\\PluginBase</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td>&nbsp;</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\StringTranslation\\StringTranslationTrait" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; trait &raquo;</td></tr>
+<tr><td align="center" title="trait StringTranslationTrait">\\Drupal\\Core\\StringTranslation\\StringTranslationTrait</td></tr><hr />
+<tr><td align="left" title="protected stringTranslation"># stringTranslation</td></tr>
+<hr />
+<tr><td align="left" title="public setStringTranslation">+ setStringTranslation(translation : mixed)</td></tr>
+<tr><td align="left" title="protected getStringTranslation"># getStringTranslation()</td></tr>
+<tr><td align="left" title="protected formatPlural"># formatPlural(count : mixed, singular : mixed, plural : mixed, args : array, options : array)</td></tr>
+<tr><td align="left" title="protected t"># t(string : mixed, args : array, options : array)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\DependencyInjection\\DependencySerializationTrait" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; trait &raquo;</td></tr>
+<tr><td align="center" title="trait DependencySerializationTrait">\\Drupal\\Core\\DependencyInjection\\DependencySerializationTrait</td></tr><hr />
+<tr><td align="left" title="protected _serviceIds"># _serviceIds</td></tr>
+<hr />
+<tr><td align="left" title="public __wakeup">+ __wakeup()</td></tr>
+<tr><td align="left" title="public __sleep">+ __sleep()</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\PluginBase" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class PluginBase">\\Drupal\\Component\\Plugin\\PluginBase</td></tr><hr />
+<tr><td align="left" title="protected configuration"># configuration</td></tr>
+<tr><td align="left" title="protected pluginDefinition"># pluginDefinition</td></tr>
+<tr><td align="left" title="protected pluginId"># pluginId</td></tr>
+<hr />
+<tr><td align="left" title="public getPluginDefinition">+ getPluginDefinition()</td></tr>
+<tr><td align="left" title="public getDerivativeId">+ getDerivativeId()</td></tr>
+<tr><td align="left" title="public getBaseId">+ getBaseId()</td></tr>
+<tr><td align="left" title="public getPluginId">+ getPluginId()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(configuration : array, plugin_id : mixed, plugin_definition : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\PluginInspectionInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface PluginInspectionInterface">\\Drupal\\Component\\Plugin\\PluginInspectionInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public getPluginDefinition">+ getPluginDefinition()</td></tr>
+<tr><td align="left" title="public getPluginId">+ getPluginId()</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\DerivativeInspectionInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface DerivativeInspectionInterface">\\Drupal\\Component\\Plugin\\DerivativeInspectionInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public getDerivativeId">+ getDerivativeId()</td></tr>
+<tr><td align="left" title="public getBaseId">+ getBaseId()</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Component\\Plugin\\ConfigurablePluginInterface" -> "\\Drupal\\Core\\Action\\ConfigurableActionBase" [arrowhead="empty" style="dashed"];
+
+"\\Drupal\\Core\\Plugin\\PluginFormInterface" -> "\\Drupal\\Core\\Action\\ConfigurableActionBase" [arrowhead="empty" style="dashed"];
+
+"\\Drupal\\Core\\Action\\ActionBase" -> "\\Drupal\\Core\\Action\\ConfigurableActionBase" [arrowhead="empty"];
+
+"\\Drupal\\Core\\Action\\ActionInterface" -> "\\Drupal\\Core\\Action\\ActionBase" [arrowhead="empty" style="dashed"];
+
+"\\Drupal\\Core\\Plugin\\PluginBase" -> "\\Drupal\\Core\\Action\\ActionBase" [arrowhead="empty"];
+
+"\\Drupal\\Component\\Plugin\\PluginBase" -> "\\Drupal\\Core\\Plugin\\PluginBase" [arrowhead="empty"];
+
+"\\Drupal\\Core\\StringTranslation\\StringTranslationTrait" -> "\\Drupal\\Core\\Plugin\\PluginBase" [arrowhead="empty" style="dotted"];
+
+"\\Drupal\\Core\\DependencyInjection\\DependencySerializationTrait" -> "\\Drupal\\Core\\Plugin\\PluginBase" [arrowhead="empty" style="dotted"];
+
+"\\Drupal\\Component\\Plugin\\PluginInspectionInterface" -> "\\Drupal\\Component\\Plugin\\PluginBase" [arrowhead="empty" style="dashed"];
+
+"\\Drupal\\Component\\Plugin\\DerivativeInspectionInterface" -> "\\Drupal\\Component\\Plugin\\PluginBase" [arrowhead="empty" style="dashed"];
+
+}

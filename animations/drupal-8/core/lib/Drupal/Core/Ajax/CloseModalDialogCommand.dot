@@ -1,0 +1,42 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Ajax\\CloseModalDialogCommand" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class CloseModalDialogCommand">\\Drupal\\Core\\Ajax\\CloseModalDialogCommand</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public __construct">+ __construct(persist : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\Ajax\\CloseDialogCommand" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class CloseDialogCommand">\\Drupal\\Core\\Ajax\\CloseDialogCommand</td></tr><hr />
+<tr><td align="left" title="protected persist"># persist</td></tr>
+<tr><td align="left" title="protected selector"># selector</td></tr>
+<hr />
+<tr><td align="left" title="public render">+ render()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(selector : mixed, persist : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\Ajax\\CommandInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface CommandInterface">\\Drupal\\Core\\Ajax\\CommandInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public render">+ render()</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Core\\Ajax\\CloseDialogCommand" -> "\\Drupal\\Core\\Ajax\\CloseModalDialogCommand" [arrowhead="empty"];
+
+"\\Drupal\\Core\\Ajax\\CommandInterface" -> "\\Drupal\\Core\\Ajax\\CloseDialogCommand" [arrowhead="empty" style="dashed"];
+
+}

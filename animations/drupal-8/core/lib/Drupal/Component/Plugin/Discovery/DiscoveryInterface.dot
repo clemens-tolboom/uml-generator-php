@@ -1,0 +1,16 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface DiscoveryInterface">\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public hasDefinition">+ hasDefinition(plugin_id : mixed)</td></tr>
+<tr><td align="left" title="public getDefinitions">+ getDefinitions()</td></tr>
+<tr><td align="left" title="public getDefinition">+ getDefinition(plugin_id : mixed, exception_on_invalid : mixed)</td></tr>
+</table>
+  >
+  ];
+}

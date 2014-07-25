@@ -1,0 +1,60 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Archiver\\ArchiveTar" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class ArchiveTar">\\Drupal\\Core\\Archiver\\ArchiveTar</td></tr><hr />
+<tr><td align="left" title="public _file">+ _file</td></tr>
+<tr><td align="left" title="public _temp_tarname">+ _temp_tarname</td></tr>
+<tr><td align="left" title="public _separator">+ _separator</td></tr>
+<tr><td align="left" title="public _compress_type">+ _compress_type</td></tr>
+<tr><td align="left" title="public _compress">+ _compress</td></tr>
+<tr><td align="left" title="public _tarname">+ _tarname</td></tr>
+<hr />
+<tr><td align="left" title="public _addFile">+ _addFile(p_filename : mixed, p_header : mixed, p_add_dir : mixed, p_remove_dir : mixed)</td></tr>
+<tr><td align="left" title="public _addString">+ _addString(p_filename : mixed, p_string : mixed)</td></tr>
+<tr><td align="left" title="public _writeHeader">+ _writeHeader(p_filename : mixed, p_stored_filename : mixed)</td></tr>
+<tr><td align="left" title="public _writeHeaderBlock">+ _writeHeaderBlock(p_filename : mixed, p_size : mixed, p_mtime : mixed, p_perms : mixed, p_type : mixed, p_uid : mixed, p_gid : mixed)</td></tr>
+<tr><td align="left" title="public _addList">+ _addList(p_list : mixed, p_add_dir : mixed, p_remove_dir : mixed)</td></tr>
+<tr><td align="left" title="public _writeFooter">+ _writeFooter()</td></tr>
+<tr><td align="left" title="public _writeBlock">+ _writeBlock(p_binary_data : mixed, p_len : mixed)</td></tr>
+<tr><td align="left" title="public _readBlock">+ _readBlock()</td></tr>
+<tr><td align="left" title="public _jumpBlock">+ _jumpBlock(p_len : mixed)</td></tr>
+<tr><td align="left" title="public _writeLongHeader">+ _writeLongHeader(p_filename : mixed)</td></tr>
+<tr><td align="left" title="public _readHeader">+ _readHeader(v_binary_data : mixed, v_header : mixed)</td></tr>
+<tr><td align="left" title="public _append">+ _append(p_filelist : mixed, p_add_dir : mixed, p_remove_dir : mixed)</td></tr>
+<tr><td align="left" title="public _dirCheck">+ _dirCheck(p_dir : mixed)</td></tr>
+<tr><td align="left" title="public _pathReduction">+ _pathReduction(p_dir : mixed)</td></tr>
+<tr><td align="left" title="public _translateWinPath">+ _translateWinPath(p_path : mixed, p_remove_disk_letter : mixed)</td></tr>
+<tr><td align="left" title="public _openAppend">+ _openAppend()</td></tr>
+<tr><td align="left" title="public _extractList">+ _extractList(p_path : mixed, p_list_detail : mixed, p_mode : mixed, p_file_list : mixed, p_remove_path : mixed)</td></tr>
+<tr><td align="left" title="public _maliciousFilename">+ _maliciousFilename(file : mixed)</td></tr>
+<tr><td align="left" title="public _readLongHeader">+ _readLongHeader(v_header : mixed)</td></tr>
+<tr><td align="left" title="public _extractInString">+ _extractInString(p_filename : mixed)</td></tr>
+<tr><td align="left" title="public _cleanFile">+ _cleanFile()</td></tr>
+<tr><td align="left" title="public _close">+ _close()</td></tr>
+<tr><td align="left" title="public listContent">+ listContent()</td></tr>
+<tr><td align="left" title="public createModify">+ createModify(p_filelist : mixed, p_add_dir : mixed, p_remove_dir : mixed)</td></tr>
+<tr><td align="left" title="public addModify">+ addModify(p_filelist : mixed, p_add_dir : mixed, p_remove_dir : mixed)</td></tr>
+<tr><td align="left" title="public addString">+ addString(p_filename : mixed, p_string : mixed)</td></tr>
+<tr><td align="left" title="public extract">+ extract(p_path : mixed)</td></tr>
+<tr><td align="left" title="public add">+ add(p_filelist : mixed)</td></tr>
+<tr><td align="left" title="public loadExtension">+ loadExtension(ext : mixed)</td></tr>
+<tr><td align="left" title="public __destruct">+ __destruct()</td></tr>
+<tr><td align="left" title="public create">+ create(p_filelist : mixed)</td></tr>
+<tr><td align="left" title="public extractModify">+ extractModify(p_path : mixed, p_remove_path : mixed)</td></tr>
+<tr><td align="left" title="public extractInString">+ extractInString(p_filename : mixed)</td></tr>
+<tr><td align="left" title="public _openWrite">+ _openWrite()</td></tr>
+<tr><td align="left" title="public _openRead">+ _openRead()</td></tr>
+<tr><td align="left" title="public _openReadWrite">+ _openReadWrite()</td></tr>
+<tr><td align="left" title="public _isArchive">+ _isArchive(p_filename : mixed)</td></tr>
+<tr><td align="left" title="public _warning">+ _warning(p_message : mixed)</td></tr>
+<tr><td align="left" title="public extractList">+ extractList(p_filelist : mixed, p_path : mixed, p_remove_path : mixed)</td></tr>
+<tr><td align="left" title="public setAttribute">+ setAttribute()</td></tr>
+<tr><td align="left" title="public _error">+ _error(p_message : mixed)</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(p_tarname : mixed, p_compress : mixed)</td></tr>
+</table>
+  >
+  ];
+}

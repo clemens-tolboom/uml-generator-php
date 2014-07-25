@@ -1,0 +1,52 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Authentication\\AuthenticationManager" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class AuthenticationManager">\\Drupal\\Core\\Authentication\\AuthenticationManager</td></tr><hr />
+<tr><td align="left" title="protected triggeredProviderId"># triggeredProviderId</td></tr>
+<tr><td align="left" title="protected sortedProviders"># sortedProviders</td></tr>
+<tr><td align="left" title="protected providerOrders"># providerOrders</td></tr>
+<tr><td align="left" title="protected providers"># providers</td></tr>
+<hr />
+<tr><td align="left" title="public cleanup">+ cleanup(request : mixed)</td></tr>
+<tr><td align="left" title="public handleException">+ handleException(event : mixed)</td></tr>
+<tr><td align="left" title="public getSortedProviders">+ getSortedProviders()</td></tr>
+<tr><td align="left" title="public defaultProviderId">+ defaultProviderId()</td></tr>
+<tr><td align="left" title="public applies">+ applies(request : mixed)</td></tr>
+<tr><td align="left" title="public authenticate">+ authenticate(request : mixed)</td></tr>
+<tr><td align="left" title="public addProvider">+ addProvider(provider_id : mixed, provider : mixed, priority : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\Authentication\\AuthenticationProviderInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface AuthenticationProviderInterface">\\Drupal\\Core\\Authentication\\AuthenticationProviderInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public handleException">+ handleException(event : mixed)</td></tr>
+<tr><td align="left" title="public cleanup">+ cleanup(request : mixed)</td></tr>
+<tr><td align="left" title="public authenticate">+ authenticate(request : mixed)</td></tr>
+<tr><td align="left" title="public applies">+ applies(request : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\Authentication\\AuthenticationManagerInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface AuthenticationManagerInterface">\\Drupal\\Core\\Authentication\\AuthenticationManagerInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public defaultProviderId">+ defaultProviderId()</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Core\\Authentication\\AuthenticationProviderInterface" -> "\\Drupal\\Core\\Authentication\\AuthenticationManager" [arrowhead="empty" style="dashed"];
+
+"\\Drupal\\Core\\Authentication\\AuthenticationManagerInterface" -> "\\Drupal\\Core\\Authentication\\AuthenticationManager" [arrowhead="empty" style="dashed"];
+
+}

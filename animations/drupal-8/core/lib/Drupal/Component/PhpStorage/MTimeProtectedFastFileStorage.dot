@@ -1,0 +1,64 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\PhpStorage\\MTimeProtectedFastFileStorage" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class MTimeProtectedFastFileStorage">\\Drupal\\Component\\PhpStorage\\MTimeProtectedFastFileStorage</td></tr><hr />
+<tr><td align="left" title="protected secret"># secret</td></tr>
+<hr />
+<tr><td align="left" title="public delete">+ delete(name : mixed)</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(configuration : array)</td></tr>
+<tr><td align="left" title="public getFullPath">+ getFullPath(name : mixed, directory : mixed, directory_mtime : mixed)</td></tr>
+<tr><td align="left" title="public save">+ save(name : mixed, data : mixed)</td></tr>
+<tr><td align="left" title="protected getUncachedMTime"># getUncachedMTime(directory : mixed)</td></tr>
+<tr><td align="left" title="protected getContainingDirectoryFullPath"># getContainingDirectoryFullPath(name : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\PhpStorage\\FileStorage" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class FileStorage">\\Drupal\\Component\\PhpStorage\\FileStorage</td></tr><hr />
+<tr><td align="left" title="protected directory"># directory</td></tr>
+<hr />
+<tr><td align="left" title="&laquo; static &raquo; public htaccessLines"><u>+ htaccessLines</u>(private : mixed)</td></tr>
+<tr><td align="left" title="public delete">+ delete(name : mixed)</td></tr>
+<tr><td align="left" title="public getFullPath">+ getFullPath(name : mixed)</td></tr>
+<tr><td align="left" title="public writeable">+ writeable()</td></tr>
+<tr><td align="left" title="public deleteAll">+ deleteAll()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(configuration : array)</td></tr>
+<tr><td align="left" title="public listAll">+ listAll()</td></tr>
+<tr><td align="left" title="public exists">+ exists(name : mixed)</td></tr>
+<tr><td align="left" title="public load">+ load(name : mixed)</td></tr>
+<tr><td align="left" title="public save">+ save(name : mixed, code : mixed)</td></tr>
+<tr><td align="left" title="protected unlink"># unlink(path : mixed)</td></tr>
+<tr><td align="left" title="protected createDirectory"># createDirectory(directory : mixed, mode : mixed, is_backwards_recursive : mixed)</td></tr>
+<tr><td align="left" title="protected ensureDirectory"># ensureDirectory(directory : mixed, mode : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\PhpStorage\\PhpStorageInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface PhpStorageInterface">\\Drupal\\Component\\PhpStorage\\PhpStorageInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public deleteAll">+ deleteAll()</td></tr>
+<tr><td align="left" title="public getFullPath">+ getFullPath(name : mixed)</td></tr>
+<tr><td align="left" title="public listAll">+ listAll()</td></tr>
+<tr><td align="left" title="public delete">+ delete(name : mixed)</td></tr>
+<tr><td align="left" title="public writeable">+ writeable()</td></tr>
+<tr><td align="left" title="public load">+ load(name : mixed)</td></tr>
+<tr><td align="left" title="public save">+ save(name : mixed, code : mixed)</td></tr>
+<tr><td align="left" title="public exists">+ exists(name : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Component\\PhpStorage\\FileStorage" -> "\\Drupal\\Component\\PhpStorage\\MTimeProtectedFastFileStorage" [arrowhead="empty"];
+
+"\\Drupal\\Component\\PhpStorage\\PhpStorageInterface" -> "\\Drupal\\Component\\PhpStorage\\FileStorage" [arrowhead="empty" style="dashed"];
+
+}

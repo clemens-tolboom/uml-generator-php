@@ -1,0 +1,16 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Archiver\\ArchiverException" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class ArchiverException">\\Drupal\\Core\\Archiver\\ArchiverException</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td>&nbsp;</td></tr>
+</table>
+  >
+  ];
+"\\Exception" -> "\\Drupal\\Core\\Archiver\\ArchiverException" [arrowhead="empty"];
+
+}

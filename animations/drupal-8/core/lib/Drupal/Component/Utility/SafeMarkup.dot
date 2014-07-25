@@ -1,0 +1,18 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Utility\\SafeMarkup" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class SafeMarkup">\\Drupal\\Component\\Utility\\SafeMarkup</td></tr><hr />
+<tr><td align="left" title="&laquo; static &raquo; protected safeStrings"><u># safeStrings</u></td></tr>
+<hr />
+<tr><td align="left" title="&laquo; static &raquo; public getAll"><u>+ getAll</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public escape"><u>+ escape</u>(string : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public setMultiple"><u>+ setMultiple</u>(safe_strings : array)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public isSafe"><u>+ isSafe</u>(string : mixed, strategy : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public set"><u>+ set</u>(string : mixed, strategy : mixed)</td></tr>
+</table>
+  >
+  ];
+}

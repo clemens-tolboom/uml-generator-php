@@ -1,0 +1,14 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryCachedTrait" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; trait &raquo;</td></tr>
+<tr><td align="center" title="trait DiscoveryCachedTrait">\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryCachedTrait</td></tr><hr />
+<tr><td align="left" title="protected definitions"># definitions</td></tr>
+<hr />
+<tr><td align="left" title="public getDefinition">+ getDefinition(plugin_id : mixed, exception_on_invalid : mixed)</td></tr>
+</table>
+  >
+  ];
+}

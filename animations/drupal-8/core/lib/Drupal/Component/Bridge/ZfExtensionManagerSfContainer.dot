@@ -1,0 +1,25 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Bridge\\ZfExtensionManagerSfContainer" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class ZfExtensionManagerSfContainer">\\Drupal\\Component\\Bridge\\ZfExtensionManagerSfContainer</td></tr><hr />
+<tr><td align="left" title="protected prefix"># prefix</td></tr>
+<tr><td align="left" title="protected canonicalNamesReplacements"># canonicalNamesReplacements</td></tr>
+<hr />
+<tr><td align="left" title="public setContainer">+ setContainer(container : mixed)</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(prefix : mixed)</td></tr>
+<tr><td align="left" title="public has">+ has(extension : mixed)</td></tr>
+<tr><td align="left" title="public get">+ get(extension : mixed)</td></tr>
+<tr><td align="left" title="protected canonicalizeName"># canonicalizeName(name : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\Zend\\Feed\\Reader\\ExtensionManagerInterface" -> "\\Drupal\\Component\\Bridge\\ZfExtensionManagerSfContainer" [arrowhead="empty" style="dashed"];
+
+"\\Zend\\Feed\\Writer\\ExtensionManagerInterface" -> "\\Drupal\\Component\\Bridge\\ZfExtensionManagerSfContainer" [arrowhead="empty" style="dashed"];
+
+"\\Symfony\\Component\\DependencyInjection\\ContainerAwareInterface" -> "\\Drupal\\Component\\Bridge\\ZfExtensionManagerSfContainer" [arrowhead="empty" style="dashed"];
+
+}

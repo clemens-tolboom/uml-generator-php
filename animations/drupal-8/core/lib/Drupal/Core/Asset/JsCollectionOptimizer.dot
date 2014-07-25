@@ -1,0 +1,32 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Asset\\JsCollectionOptimizer" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class JsCollectionOptimizer">\\Drupal\\Core\\Asset\\JsCollectionOptimizer</td></tr><hr />
+<tr><td align="left" title="protected state"># state</td></tr>
+<tr><td align="left" title="protected dumper"># dumper</td></tr>
+<tr><td align="left" title="protected optimizer"># optimizer</td></tr>
+<tr><td align="left" title="protected grouper"># grouper</td></tr>
+<hr />
+<tr><td align="left" title="public __construct">+ __construct(grouper : mixed, optimizer : mixed, dumper : mixed, state : mixed)</td></tr>
+<tr><td align="left" title="public optimize">+ optimize(js_assets : array)</td></tr>
+<tr><td align="left" title="protected generateHash"># generateHash(js_group : array)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\Asset\\AssetCollectionOptimizerInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface AssetCollectionOptimizerInterface">\\Drupal\\Core\\Asset\\AssetCollectionOptimizerInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public optimize">+ optimize(assets : array)</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Core\\Asset\\AssetCollectionOptimizerInterface" -> "\\Drupal\\Core\\Asset\\JsCollectionOptimizer" [arrowhead="empty" style="dashed"];
+
+}

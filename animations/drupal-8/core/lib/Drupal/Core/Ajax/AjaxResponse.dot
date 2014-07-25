@@ -1,0 +1,20 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Ajax\\AjaxResponse" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class AjaxResponse">\\Drupal\\Core\\Ajax\\AjaxResponse</td></tr><hr />
+<tr><td align="left" title="protected commands"># commands</td></tr>
+<hr />
+<tr><td align="left" title="public prepareResponse">+ prepareResponse(request : mixed)</td></tr>
+<tr><td align="left" title="public addCommand">+ addCommand(command : mixed, prepend : mixed)</td></tr>
+<tr><td align="left" title="public prepare">+ prepare(request : mixed)</td></tr>
+<tr><td align="left" title="public getCommands">+ getCommands()</td></tr>
+<tr><td align="left" title="protected ajaxRender"># ajaxRender(request : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\Symfony\\Component\\HttpFoundation\\JsonResponse" -> "\\Drupal\\Core\\Ajax\\AjaxResponse" [arrowhead="empty"];
+
+}

@@ -1,0 +1,27 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Diff\\DiffFormatter" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class DiffFormatter">\\Drupal\\Component\\Diff\\DiffFormatter</td></tr><hr />
+<tr><td align="left" title="public trailing_context_lines">+ trailing_context_lines</td></tr>
+<tr><td align="left" title="public leading_context_lines">+ leading_context_lines</td></tr>
+<tr><td align="left" title="public show_header">+ show_header</td></tr>
+<hr />
+<tr><td align="left" title="public format">+ format(diff : mixed)</td></tr>
+<tr><td align="left" title="protected _context"># _context(lines : mixed)</td></tr>
+<tr><td align="left" title="protected _added"># _added(lines : mixed)</td></tr>
+<tr><td align="left" title="protected _deleted"># _deleted(lines : mixed)</td></tr>
+<tr><td align="left" title="protected _changed"># _changed(orig : mixed, closing : mixed)</td></tr>
+<tr><td align="left" title="protected _lines"># _lines(lines : mixed, prefix : mixed)</td></tr>
+<tr><td align="left" title="protected _start_block"># _start_block(header : mixed)</td></tr>
+<tr><td align="left" title="protected _block"># _block(xbeg : mixed, xlen : mixed, ybeg : mixed, ylen : mixed, edits : mixed)</td></tr>
+<tr><td align="left" title="protected _start_diff"># _start_diff()</td></tr>
+<tr><td align="left" title="protected _end_diff"># _end_diff()</td></tr>
+<tr><td align="left" title="protected _block_header"># _block_header(xbeg : mixed, xlen : mixed, ybeg : mixed, ylen : mixed)</td></tr>
+<tr><td align="left" title="protected _end_block"># _end_block()</td></tr>
+</table>
+  >
+  ];
+}

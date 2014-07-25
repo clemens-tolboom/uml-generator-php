@@ -1,0 +1,16 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Ajax\\AjaxResponseRenderer" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class AjaxResponseRenderer">\\Drupal\\Core\\Ajax\\AjaxResponseRenderer</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public render">+ render(content : mixed)</td></tr>
+<tr><td align="left" title="protected elementInfo"># elementInfo(type : mixed)</td></tr>
+<tr><td align="left" title="protected drupalRender"># drupalRender(elements : mixed, is_recursive_call : mixed)</td></tr>
+</table>
+  >
+  ];
+}

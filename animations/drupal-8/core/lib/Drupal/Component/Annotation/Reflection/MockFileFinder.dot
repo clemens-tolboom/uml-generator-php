@@ -1,0 +1,18 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Annotation\\Reflection\\MockFileFinder" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class MockFileFinder">\\Drupal\\Component\\Annotation\\Reflection\\MockFileFinder</td></tr><hr />
+<tr><td align="left" title="protected filename"># filename</td></tr>
+<hr />
+<tr><td align="left" title="&laquo; static &raquo; public create"><u>+ create</u>(filename : mixed)</td></tr>
+<tr><td align="left" title="public findFile">+ findFile(class : mixed)</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(prefixes : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\Doctrine\\Common\\Reflection\\ClassFinderInterface" -> "\\Drupal\\Component\\Annotation\\Reflection\\MockFileFinder" [arrowhead="empty" style="dashed"];
+
+}

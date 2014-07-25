@@ -1,0 +1,44 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Plugin\\Discovery\\StaticDiscovery" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class StaticDiscovery">\\Drupal\\Component\\Plugin\\Discovery\\StaticDiscovery</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public deleteDefinition">+ deleteDefinition(plugin : mixed)</td></tr>
+<tr><td align="left" title="public setDefinition">+ setDefinition(plugin : mixed, definition : mixed)</td></tr>
+<tr><td align="left" title="public getDefinitions">+ getDefinitions()</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface DiscoveryInterface">\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public hasDefinition">+ hasDefinition(plugin_id : mixed)</td></tr>
+<tr><td align="left" title="public getDefinitions">+ getDefinitions()</td></tr>
+<tr><td align="left" title="public getDefinition">+ getDefinition(plugin_id : mixed, exception_on_invalid : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryCachedTrait" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; trait &raquo;</td></tr>
+<tr><td align="center" title="trait DiscoveryCachedTrait">\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryCachedTrait</td></tr><hr />
+<tr><td align="left" title="protected definitions"># definitions</td></tr>
+<hr />
+<tr><td align="left" title="public getDefinition">+ getDefinition(plugin_id : mixed, exception_on_invalid : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryInterface" -> "\\Drupal\\Component\\Plugin\\Discovery\\StaticDiscovery" [arrowhead="empty" style="dashed"];
+
+"\\Drupal\\Component\\Plugin\\Discovery\\DiscoveryCachedTrait" -> "\\Drupal\\Component\\Plugin\\Discovery\\StaticDiscovery" [arrowhead="empty" style="dotted"];
+
+}

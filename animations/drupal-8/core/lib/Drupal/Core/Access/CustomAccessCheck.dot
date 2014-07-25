@@ -1,0 +1,29 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Core\\Access\\CustomAccessCheck" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class CustomAccessCheck">\\Drupal\\Core\\Access\\CustomAccessCheck</td></tr><hr />
+<tr><td align="left" title="protected argumentsResolver"># argumentsResolver</td></tr>
+<tr><td align="left" title="protected controllerResolver"># controllerResolver</td></tr>
+<hr />
+<tr><td align="left" title="public access">+ access(route : mixed, request : mixed, account : mixed)</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(controller_resolver : mixed, arguments_resolver : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Core\\Routing\\Access\\AccessInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface AccessInterface">\\Drupal\\Core\\Routing\\Access\\AccessInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td>&nbsp;</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Core\\Routing\\Access\\AccessInterface" -> "\\Drupal\\Core\\Access\\CustomAccessCheck" [arrowhead="empty" style="dashed"];
+
+}

@@ -1,0 +1,15 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Plugin\\PluginInspectionInterface" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface PluginInspectionInterface">\\Drupal\\Component\\Plugin\\PluginInspectionInterface</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public getPluginDefinition">+ getPluginDefinition()</td></tr>
+<tr><td align="left" title="public getPluginId">+ getPluginId()</td></tr>
+</table>
+  >
+  ];
+}

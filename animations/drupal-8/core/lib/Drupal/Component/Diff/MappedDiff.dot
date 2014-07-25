@@ -1,0 +1,34 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Diff\\MappedDiff" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class MappedDiff">\\Drupal\\Component\\Diff\\MappedDiff</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public __construct">+ __construct(from_lines : mixed, to_lines : mixed, mapped_from_lines : mixed, mapped_to_lines : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\Drupal\\Component\\Diff\\Diff" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class Diff">\\Drupal\\Component\\Diff\\Diff</td></tr><hr />
+<tr><td align="left" title="protected edits"># edits</td></tr>
+<hr />
+<tr><td align="left" title="public closing">+ closing()</td></tr>
+<tr><td align="left" title="public check">+ check(from_lines : mixed, to_lines : mixed)</td></tr>
+<tr><td align="left" title="public getEdits">+ getEdits()</td></tr>
+<tr><td align="left" title="public orig">+ orig()</td></tr>
+<tr><td align="left" title="public lcs">+ lcs()</td></tr>
+<tr><td align="left" title="public reverse">+ reverse()</td></tr>
+<tr><td align="left" title="public isEmpty">+ isEmpty()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(from_lines : mixed, to_lines : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\Drupal\\Component\\Diff\\Diff" -> "\\Drupal\\Component\\Diff\\MappedDiff" [arrowhead="empty"];
+
+}

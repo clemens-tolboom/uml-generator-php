@@ -1,0 +1,35 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Drupal\\Component\\Plugin\\PluginBag" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class PluginBag">\\Drupal\\Component\\Plugin\\PluginBag</td></tr><hr />
+<tr><td align="left" title="protected instanceIDs"># instanceIDs</td></tr>
+<tr><td align="left" title="protected pluginInstances"># pluginInstances</td></tr>
+<hr />
+<tr><td align="left" title="public next">+ next()</td></tr>
+<tr><td align="left" title="public current">+ current()</td></tr>
+<tr><td align="left" title="public removeInstanceId">+ removeInstanceId(instance_id : mixed)</td></tr>
+<tr><td align="left" title="public key">+ key()</td></tr>
+<tr><td align="left" title="public valid">+ valid()</td></tr>
+<tr><td align="left" title="public count">+ count()</td></tr>
+<tr><td align="left" title="public rewind">+ rewind()</td></tr>
+<tr><td align="left" title="public getInstanceIds">+ getInstanceIds()</td></tr>
+<tr><td align="left" title="public addInstanceId">+ addInstanceId(id : mixed, configuration : mixed)</td></tr>
+<tr><td align="left" title="public clear">+ clear()</td></tr>
+<tr><td align="left" title="public setConfiguration">+ setConfiguration(configuration : mixed)</td></tr>
+<tr><td align="left" title="public getConfiguration">+ getConfiguration()</td></tr>
+<tr><td align="left" title="public has">+ has(instance_id : mixed)</td></tr>
+<tr><td align="left" title="public get">+ get(instance_id : mixed)</td></tr>
+<tr><td align="left" title="public remove">+ remove(instance_id : mixed)</td></tr>
+<tr><td align="left" title="public set">+ set(instance_id : mixed, value : mixed)</td></tr>
+<tr><td align="left" title="protected initializePlugin"># initializePlugin(instance_id : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\Iterator" -> "\\Drupal\\Component\\Plugin\\PluginBag" [arrowhead="empty" style="dashed"];
+
+"\\Countable" -> "\\Drupal\\Component\\Plugin\\PluginBag" [arrowhead="empty" style="dashed"];
+
+}
