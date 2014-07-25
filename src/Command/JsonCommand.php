@@ -122,11 +122,22 @@ class JsonCommand extends Command
             $indexData = json_encode($visitor->getIndex());
 
             file_put_contents($indexfile, $indexData);
-            $sourceHtmlFile = __DIR__ . '/../../web/index.html';
-            $indexHtmlFile = $outputDirectory . '/index.html';
-            file_put_contents($indexHtmlFile, file_get_contents($sourceHtmlFile));
         }
+        $output->writeln("<comment>Writing web files to '$outputDirectory'</comment> run : php -S 0.0.0.0:1337 -t $outputDirectory");
+        $this->copyWeb($outputDirectory);
+    }
 
+    protected function copyWeb($outputDirectory)
+    {
+        $files = array(
+          'index.html',
+          'style.css',
+        );
+        foreach ($files as $file) {
+          $sourceFile = __DIR__ . '/../../web/' . $file;
+          $destFile = $outputDirectory . '/' . $file;
+          file_put_contents($destFile, file_get_contents($sourceFile));
+    }
     }
 
 } 
