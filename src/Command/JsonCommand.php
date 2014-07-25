@@ -132,6 +132,7 @@ class JsonCommand extends Command
         $files = array(
           'index.html',
           'style.css',
+          'favicon.ico',
         );
         foreach ($files as $file) {
           $sourceFile = __DIR__ . '/../../web/' . $file;
