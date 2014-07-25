@@ -161,14 +161,30 @@ function addGradient(svg, name, startColor, stopColor) {
 }
 
 function buildGraph(graph) {
-    window.console.log(graph);
+    // How long delaying showing the result
+    var preTicks = 0;
+    console.log("Skip rendering for " + preTicks);
 
-    var width = 6000;
-    var height = 6000;
+    var nodeCount = graph.nodes.length;
+    var linkCount = graph.links.length;
+    console.log("Graph has " + nodeCount +" nodes and " + linkCount + " links.");
+
+    var linkDistance = 30;
+
+    // Circle area ~ PI / 4 * (width * height)
+    // Square area ~ width * height
+    // Ratio Square / Circle ~ 4 / PI
+    var delta = 4.0/3.14 * Math.sqrt(nodeCount);
+    // correct for linkDistance ~ radius
+    var delta = 2 * delta;
+    var width = linkDistance * delta;
+    var height = linkDistance * delta;
+
+    console.log("- area " + width +" x " + height);
 
     var force = d3.layout.force()
             .charge(-120)
-            .linkDistance(30)
+            .linkDistance(linkDistance)
             .size([width, height]);
 
     var svg = d3.select("body").append("svg")
@@ -205,7 +221,6 @@ function buildGraph(graph) {
                 return d.id;
             });
 
-    var preTicks = 50;
     force.on("tick", function () {
         if (preTicks > 0) {
             preTicks = preTicks - 1;
