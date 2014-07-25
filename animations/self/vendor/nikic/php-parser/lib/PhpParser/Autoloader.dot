@@ -1,0 +1,16 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\PhpParser\\Autoloader" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class Autoloader">\\PhpParser\\Autoloader</td></tr><hr />
+<tr><td align="left" title="&laquo; static &raquo; private oldToNewMap"><u>- oldToNewMap</u></td></tr>
+<hr />
+<tr><td align="left" title="&laquo; static &raquo; public register"><u>+ register</u>(prepend : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public autoload"><u>+ autoload</u>(class : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; private registerLegacyAliases"><u>- registerLegacyAliases</u>()</td></tr>
+</table>
+  >
+  ];
+}

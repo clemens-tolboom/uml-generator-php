@@ -1,0 +1,79 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\PhpParser\\Node\\Name" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class Name">\\PhpParser\\Node\\Name</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public set">+ set(name : mixed)</td></tr>
+<tr><td align="left" title="public __toString">+ __toString()</td></tr>
+<tr><td align="left" title="public prepend">+ prepend(name : mixed)</td></tr>
+<tr><td align="left" title="public append">+ append(name : mixed)</td></tr>
+<tr><td align="left" title="public setLast">+ setLast(name : mixed)</td></tr>
+<tr><td align="left" title="public setFirst">+ setFirst(name : mixed)</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(parts : mixed, attributes : array)</td></tr>
+<tr><td align="left" title="public toString">+ toString(separator : mixed)</td></tr>
+<tr><td align="left" title="public getLast">+ getLast()</td></tr>
+<tr><td align="left" title="public getFirst">+ getFirst()</td></tr>
+<tr><td align="left" title="public isRelative">+ isRelative()</td></tr>
+<tr><td align="left" title="public isUnqualified">+ isUnqualified()</td></tr>
+<tr><td align="left" title="public isQualified">+ isQualified()</td></tr>
+<tr><td align="left" title="public isFullyQualified">+ isFullyQualified()</td></tr>
+<tr><td align="left" title="protected prepareName"># prepareName(name : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\PhpParser\\NodeAbstract" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class NodeAbstract">\\PhpParser\\NodeAbstract</td></tr><hr />
+<tr><td align="left" title="protected attributes"># attributes</td></tr>
+<tr><td align="left" title="protected subNodes"># subNodes</td></tr>
+<hr />
+<tr><td align="left" title="public __get">+ __get(name : mixed)</td></tr>
+<tr><td align="left" title="public getAttributes">+ getAttributes()</td></tr>
+<tr><td align="left" title="public __set">+ __set(name : mixed, value : mixed)</td></tr>
+<tr><td align="left" title="public __isset">+ __isset(name : mixed)</td></tr>
+<tr><td align="left" title="public getIterator">+ getIterator()</td></tr>
+<tr><td align="left" title="public __unset">+ __unset(name : mixed)</td></tr>
+<tr><td align="left" title="public getAttribute">+ getAttribute(key : mixed, default : mixed)</td></tr>
+<tr><td align="left" title="public hasAttribute">+ hasAttribute(key : mixed)</td></tr>
+<tr><td align="left" title="public getSubNodeNames">+ getSubNodeNames()</td></tr>
+<tr><td align="left" title="public getType">+ getType()</td></tr>
+<tr><td align="left" title="public getLine">+ getLine()</td></tr>
+<tr><td align="left" title="public setLine">+ setLine(line : mixed)</td></tr>
+<tr><td align="left" title="public setAttribute">+ setAttribute(key : mixed, value : mixed)</td></tr>
+<tr><td align="left" title="public getDocComment">+ getDocComment()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(subNodes : array, attributes : array)</td></tr>
+</table>
+  >
+  ];
+  "\\PhpParser\\Node" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface Node">\\PhpParser\\Node</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public hasAttribute">+ hasAttribute(key : mixed)</td></tr>
+<tr><td align="left" title="public getAttribute">+ getAttribute(key : mixed, default : mixed)</td></tr>
+<tr><td align="left" title="public getAttributes">+ getAttributes()</td></tr>
+<tr><td align="left" title="public setAttribute">+ setAttribute(key : mixed, value : mixed)</td></tr>
+<tr><td align="left" title="public getDocComment">+ getDocComment()</td></tr>
+<tr><td align="left" title="public getSubNodeNames">+ getSubNodeNames()</td></tr>
+<tr><td align="left" title="public getLine">+ getLine()</td></tr>
+<tr><td align="left" title="public setLine">+ setLine(line : mixed)</td></tr>
+<tr><td align="left" title="public getType">+ getType()</td></tr>
+</table>
+  >
+  ];
+"\\PhpParser\\NodeAbstract" -> "\\PhpParser\\Node\\Name" [arrowhead="empty"];
+
+"\\PhpParser\\Node" -> "\\PhpParser\\NodeAbstract" [arrowhead="empty" style="dashed"];
+
+"\\IteratorAggregate" -> "\\PhpParser\\NodeAbstract" [arrowhead="empty" style="dashed"];
+
+}

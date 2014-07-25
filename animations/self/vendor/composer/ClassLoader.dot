@@ -1,0 +1,36 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\Composer\\Autoload\\ClassLoader" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class ClassLoader">\\Composer\\Autoload\\ClassLoader</td></tr><hr />
+<tr><td align="left" title="private useIncludePath">- useIncludePath</td></tr>
+<tr><td align="left" title="private classMap">- classMap</td></tr>
+<tr><td align="left" title="private fallbackDirsPsr0">- fallbackDirsPsr0</td></tr>
+<tr><td align="left" title="private prefixesPsr0">- prefixesPsr0</td></tr>
+<tr><td align="left" title="private prefixDirsPsr4">- prefixDirsPsr4</td></tr>
+<tr><td align="left" title="private fallbackDirsPsr4">- fallbackDirsPsr4</td></tr>
+<tr><td align="left" title="private prefixLengthsPsr4">- prefixLengthsPsr4</td></tr>
+<hr />
+<tr><td align="left" title="public getUseIncludePath">+ getUseIncludePath()</td></tr>
+<tr><td align="left" title="public setUseIncludePath">+ setUseIncludePath(useIncludePath : mixed)</td></tr>
+<tr><td align="left" title="public setPsr4">+ setPsr4(prefix : mixed, paths : mixed)</td></tr>
+<tr><td align="left" title="public register">+ register(prepend : mixed)</td></tr>
+<tr><td align="left" title="public unregister">+ unregister()</td></tr>
+<tr><td align="left" title="public findFile">+ findFile(class : mixed)</td></tr>
+<tr><td align="left" title="public loadClass">+ loadClass(class : mixed)</td></tr>
+<tr><td align="left" title="public getPrefixes">+ getPrefixes()</td></tr>
+<tr><td align="left" title="public set">+ set(prefix : mixed, paths : mixed)</td></tr>
+<tr><td align="left" title="public getFallbackDirs">+ getFallbackDirs()</td></tr>
+<tr><td align="left" title="public getPrefixesPsr4">+ getPrefixesPsr4()</td></tr>
+<tr><td align="left" title="public getFallbackDirsPsr4">+ getFallbackDirsPsr4()</td></tr>
+<tr><td align="left" title="public getClassMap">+ getClassMap()</td></tr>
+<tr><td align="left" title="public add">+ add(prefix : mixed, paths : mixed, prepend : mixed)</td></tr>
+<tr><td align="left" title="public addClassMap">+ addClassMap(classMap : array)</td></tr>
+<tr><td align="left" title="public addPsr4">+ addPsr4(prefix : mixed, paths : mixed, prepend : mixed)</td></tr>
+<tr><td align="left" title="private findFileWithExtension">- findFileWithExtension(class : mixed, ext : mixed)</td></tr>
+</table>
+  >
+  ];
+}

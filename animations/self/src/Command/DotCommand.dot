@@ -1,0 +1,74 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\UmlGeneratorPhp\\Command\\DotCommand" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class DotCommand">\\UmlGeneratorPhp\\Command\\DotCommand</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="protected configure"># configure()</td></tr>
+<tr><td align="left" title="protected execute"># execute(input : mixed, output : mixed)</td></tr>
+<tr><td align="left" title="private checkValidJson">- checkValidJson(json : array)</td></tr>
+</table>
+  >
+  ];
+  "\\Symfony\\Component\\Console\\Command\\Command" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class Command">\\Symfony\\Component\\Console\\Command\\Command</td></tr><hr />
+<tr><td align="left" title="private applicationDefinitionMergedWithArgs">- applicationDefinitionMergedWithArgs</td></tr>
+<tr><td align="left" title="private applicationDefinitionMerged">- applicationDefinitionMerged</td></tr>
+<tr><td align="left" title="private code">- code</td></tr>
+<tr><td align="left" title="private synopsis">- synopsis</td></tr>
+<tr><td align="left" title="private helperSet">- helperSet</td></tr>
+<tr><td align="left" title="private ignoreValidationErrors">- ignoreValidationErrors</td></tr>
+<tr><td align="left" title="private description">- description</td></tr>
+<tr><td align="left" title="private processTitle">- processTitle</td></tr>
+<tr><td align="left" title="private name">- name</td></tr>
+<tr><td align="left" title="private aliases">- aliases</td></tr>
+<tr><td align="left" title="private definition">- definition</td></tr>
+<tr><td align="left" title="private help">- help</td></tr>
+<tr><td align="left" title="private application">- application</td></tr>
+<hr />
+<tr><td align="left" title="public setDescription">+ setDescription(description : mixed)</td></tr>
+<tr><td align="left" title="public getDescription">+ getDescription()</td></tr>
+<tr><td align="left" title="public setHelp">+ setHelp(help : mixed)</td></tr>
+<tr><td align="left" title="public getName">+ getName()</td></tr>
+<tr><td align="left" title="public setProcessTitle">+ setProcessTitle(title : mixed)</td></tr>
+<tr><td align="left" title="public addOption">+ addOption(name : mixed, shortcut : mixed, mode : mixed, description : mixed, default : mixed)</td></tr>
+<tr><td align="left" title="public setName">+ setName(name : mixed)</td></tr>
+<tr><td align="left" title="public getHelp">+ getHelp()</td></tr>
+<tr><td align="left" title="public getProcessedHelp">+ getProcessedHelp()</td></tr>
+<tr><td align="left" title="public asText">+ asText()</td></tr>
+<tr><td align="left" title="public asXml">+ asXml(asDom : mixed)</td></tr>
+<tr><td align="left" title="public getHelper">+ getHelper(name : mixed)</td></tr>
+<tr><td align="left" title="public getSynopsis">+ getSynopsis()</td></tr>
+<tr><td align="left" title="public setAliases">+ setAliases(aliases : mixed)</td></tr>
+<tr><td align="left" title="public getAliases">+ getAliases()</td></tr>
+<tr><td align="left" title="public addArgument">+ addArgument(name : mixed, mode : mixed, description : mixed, default : mixed)</td></tr>
+<tr><td align="left" title="public getNativeDefinition">+ getNativeDefinition()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(name : mixed)</td></tr>
+<tr><td align="left" title="public setApplication">+ setApplication(application : mixed)</td></tr>
+<tr><td align="left" title="public setHelperSet">+ setHelperSet(helperSet : mixed)</td></tr>
+<tr><td align="left" title="public isEnabled">+ isEnabled()</td></tr>
+<tr><td align="left" title="public getApplication">+ getApplication()</td></tr>
+<tr><td align="left" title="public ignoreValidationErrors">+ ignoreValidationErrors()</td></tr>
+<tr><td align="left" title="public run">+ run(input : mixed, output : mixed)</td></tr>
+<tr><td align="left" title="public getDefinition">+ getDefinition()</td></tr>
+<tr><td align="left" title="public setDefinition">+ setDefinition(definition : mixed)</td></tr>
+<tr><td align="left" title="public mergeApplicationDefinition">+ mergeApplicationDefinition(mergeArgs : mixed)</td></tr>
+<tr><td align="left" title="public setCode">+ setCode(code : mixed)</td></tr>
+<tr><td align="left" title="public getHelperSet">+ getHelperSet()</td></tr>
+<tr><td align="left" title="protected execute"># execute(input : mixed, output : mixed)</td></tr>
+<tr><td align="left" title="protected initialize"># initialize(input : mixed, output : mixed)</td></tr>
+<tr><td align="left" title="protected interact"># interact(input : mixed, output : mixed)</td></tr>
+<tr><td align="left" title="protected configure"># configure()</td></tr>
+<tr><td align="left" title="private validateName">- validateName(name : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\Symfony\\Component\\Console\\Command\\Command" -> "\\UmlGeneratorPhp\\Command\\DotCommand" [arrowhead="empty"];
+
+}

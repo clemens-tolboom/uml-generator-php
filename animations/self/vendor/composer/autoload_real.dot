@@ -1,0 +1,15 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\ComposerAutoloaderInitdcf8a06d7ec3b890548d0df52ed2e3ec" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class ComposerAutoloaderInitdcf8a06d7ec3b890548d0df52ed2e3ec">\\ComposerAutoloaderInitdcf8a06d7ec3b890548d0df52ed2e3ec</td></tr><hr />
+<tr><td align="left" title="&laquo; static &raquo; private loader"><u>- loader</u></td></tr>
+<hr />
+<tr><td align="left" title="&laquo; static &raquo; public getLoader"><u>+ getLoader</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public loadClassLoader"><u>+ loadClassLoader</u>(class : mixed)</td></tr>
+</table>
+  >
+  ];
+}

@@ -1,0 +1,44 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\PhpParser\\Lexer\\Emulative" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class Emulative">\\PhpParser\\Lexer\\Emulative</td></tr><hr />
+<tr><td align="left" title="protected inObjectAccess"># inObjectAccess</td></tr>
+<tr><td align="left" title="protected newKeywords"># newKeywords</td></tr>
+<hr />
+<tr><td align="left" title="public getNextToken">+ getNextToken(value : mixed, startAttributes : mixed, endAttributes : mixed)</td></tr>
+<tr><td align="left" title="public __construct">+ __construct()</td></tr>
+<tr><td align="left" title="public startLexing">+ startLexing(code : mixed)</td></tr>
+<tr><td align="left" title="public restoreContentCallback">+ restoreContentCallback(matches : array)</td></tr>
+<tr><td align="left" title="protected preprocessCode"># preprocessCode(code : mixed)</td></tr>
+<tr><td align="left" title="protected postprocessTokens"># postprocessTokens()</td></tr>
+</table>
+  >
+  ];
+  "\\PhpParser\\Lexer" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class Lexer">\\PhpParser\\Lexer</td></tr><hr />
+<tr><td align="left" title="protected tokenMap"># tokenMap</td></tr>
+<tr><td align="left" title="protected dropTokens"># dropTokens</td></tr>
+<tr><td align="left" title="protected line"># line</td></tr>
+<tr><td align="left" title="protected pos"># pos</td></tr>
+<tr><td align="left" title="protected tokens"># tokens</td></tr>
+<tr><td align="left" title="protected code"># code</td></tr>
+<hr />
+<tr><td align="left" title="public __construct">+ __construct()</td></tr>
+<tr><td align="left" title="public handleHaltCompiler">+ handleHaltCompiler()</td></tr>
+<tr><td align="left" title="public startLexing">+ startLexing(code : mixed)</td></tr>
+<tr><td align="left" title="public getNextToken">+ getNextToken(value : mixed, startAttributes : mixed, endAttributes : mixed)</td></tr>
+<tr><td align="left" title="protected createTokenMap"># createTokenMap()</td></tr>
+<tr><td align="left" title="protected handleErrors"># handleErrors()</td></tr>
+<tr><td align="left" title="protected resetErrors"># resetErrors()</td></tr>
+</table>
+  >
+  ];
+"\\PhpParser\\Lexer" -> "\\PhpParser\\Lexer\\Emulative" [arrowhead="empty"];
+
+}

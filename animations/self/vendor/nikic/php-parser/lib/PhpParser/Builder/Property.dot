@@ -1,0 +1,24 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\PhpParser\\Builder\\Property" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class Property">\\PhpParser\\Builder\\Property</td></tr><hr />
+<tr><td align="left" title="protected default"># default</td></tr>
+<tr><td align="left" title="protected type"># type</td></tr>
+<tr><td align="left" title="protected name"># name</td></tr>
+<hr />
+<tr><td align="left" title="public setDefault">+ setDefault(value : mixed)</td></tr>
+<tr><td align="left" title="public getNode">+ getNode()</td></tr>
+<tr><td align="left" title="public makeStatic">+ makeStatic()</td></tr>
+<tr><td align="left" title="public makePrivate">+ makePrivate()</td></tr>
+<tr><td align="left" title="public makePublic">+ makePublic()</td></tr>
+<tr><td align="left" title="public makeProtected">+ makeProtected()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(name : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\PhpParser\\Builder\\PhpParser\\BuilderAbstract" -> "\\PhpParser\\Builder\\Property" [arrowhead="empty"];
+
+}

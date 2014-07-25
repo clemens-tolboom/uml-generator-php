@@ -1,0 +1,1 @@
+[{"type":"class","namespace":"\\bar\\baz","meta":{"file":"\/Users\/clemens\/lib\/uml-generator-php\/vendor\/phpunit\/php-code-coverage\/Tests\/_files\/source_with_namespace.php","output":"\/Users\/clemens\/lib\/uml-generator-php\/tests\/output\/vendor\/phpunit\/php-code-coverage\/Tests\/_files\/source_with_namespace.json"},"name":"Foo","children":[],"traits":[],"implements":[]}]

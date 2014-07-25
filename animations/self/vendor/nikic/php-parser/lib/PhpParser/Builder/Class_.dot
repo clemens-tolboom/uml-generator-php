@@ -1,0 +1,30 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\PhpParser\\Builder\\Class_" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class Class_">\\PhpParser\\Builder\\Class_</td></tr><hr />
+<tr><td align="left" title="protected constants"># constants</td></tr>
+<tr><td align="left" title="protected properties"># properties</td></tr>
+<tr><td align="left" title="protected methods"># methods</td></tr>
+<tr><td align="left" title="protected uses"># uses</td></tr>
+<tr><td align="left" title="protected type"># type</td></tr>
+<tr><td align="left" title="protected extends"># extends</td></tr>
+<tr><td align="left" title="protected implements"># implements</td></tr>
+<tr><td align="left" title="protected name"># name</td></tr>
+<hr />
+<tr><td align="left" title="public addStmt">+ addStmt(stmt : mixed)</td></tr>
+<tr><td align="left" title="public addStmts">+ addStmts(stmts : array)</td></tr>
+<tr><td align="left" title="public getNode">+ getNode()</td></tr>
+<tr><td align="left" title="public makeFinal">+ makeFinal()</td></tr>
+<tr><td align="left" title="public makeAbstract">+ makeAbstract()</td></tr>
+<tr><td align="left" title="public extend">+ extend(class : mixed)</td></tr>
+<tr><td align="left" title="public implement">+ implement()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(name : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\PhpParser\\Builder\\PhpParser\\BuilderAbstract" -> "\\PhpParser\\Builder\\Class_" [arrowhead="empty"];
+
+}

@@ -1,0 +1,47 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\ExampleNameSpace\\ExampleClass" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class ExampleClass">\\ExampleNameSpace\\ExampleClass</td></tr><hr />
+<tr><td align="left" title="&laquo; static &raquo; public staticVar"><u>+ staticVar</u></td></tr>
+<tr><td align="left" title="public publicVar">+ publicVar</td></tr>
+<tr><td align="left" title="protected protectedVar"># protectedVar</td></tr>
+<tr><td align="left" title="private privateVar">- privateVar</td></tr>
+<hr />
+<tr><td align="left" title="&laquo; static &raquo; public staticFunction"><u>+ staticFunction</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public publicStaticFunction"><u>+ publicStaticFunction</u>()</td></tr>
+<tr><td align="left" title="public publicByDefaultFunction">+ publicByDefaultFunction()</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(exampleargument : mixed)</td></tr>
+<tr><td align="left" title="public publicFunction">+ publicFunction()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; protected protectedStaticFunction"><u># protectedStaticFunction</u>()</td></tr>
+<tr><td align="left" title="protected protectedFunction"># protectedFunction()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; private privateStaticFunction"><u>- privateStaticFunction</u>()</td></tr>
+<tr><td align="left" title="private privateFunction">- privateFunction()</td></tr>
+</table>
+  >
+  ];
+  "\\ExampleNameSpace\\ExampleTrait" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; trait &raquo;</td></tr>
+<tr><td align="center" title="trait ExampleTrait">\\ExampleNameSpace\\ExampleTrait</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public getReturnDescription">+ getReturnDescription()</td></tr>
+<tr><td align="left" title="public getReturnType">+ getReturnType()</td></tr>
+</table>
+  >
+  ];
+"\\ExampleNameSpace\\Examples" -> "\\ExampleNameSpace\\ExampleClass" [arrowhead="empty" style="dashed"];
+
+"\\ExampleNameSpace\\Things" -> "\\ExampleNameSpace\\ExampleClass" [arrowhead="empty" style="dashed"];
+
+"\\ExampleNameSpace\\SimpleExampleClass" -> "\\ExampleNameSpace\\ExampleClass" [arrowhead="empty"];
+
+"\\ExampleNameSpace\\ExampleTrait" -> "\\ExampleNameSpace\\ExampleClass" [arrowhead="empty" style="dotted"];
+
+"\\ExampleNameSpace\\OtherTrait" -> "\\ExampleNameSpace\\ExampleClass" [arrowhead="empty" style="dotted"];
+
+}

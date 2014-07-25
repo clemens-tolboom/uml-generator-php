@@ -1,0 +1,64 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\UmlGeneratorPhp\\OopFilter" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class OopFilter">\\UmlGeneratorPhp\\OopFilter</td></tr><hr />
+<tr><td align="left" title="protected useIndex"># useIndex</td></tr>
+<tr><td align="left" title="protected index"># index</td></tr>
+<tr><td align="left" title="protected meta"># meta</td></tr>
+<tr><td align="left" title="protected currentNamespace"># currentNamespace</td></tr>
+<hr />
+<tr><td align="left" title="public leaveNode">+ leaveNode(statement : mixed)</td></tr>
+<tr><td align="left" title="public setMeta">+ setMeta(meta : mixed)</td></tr>
+<tr><td align="left" title="public beforeTraverse">+ beforeTraverse(nodes : array)</td></tr>
+<tr><td align="left" title="public enterNode">+ enterNode(statement : mixed)</td></tr>
+<tr><td align="left" title="public clearIndex">+ clearIndex()</td></tr>
+<tr><td align="left" title="public getIndex">+ getIndex()</td></tr>
+<tr><td align="left" title="public getMeta">+ getMeta()</td></tr>
+<tr><td align="left" title="private parseUse">- parseUse(statement : mixed)</td></tr>
+<tr><td align="left" title="private parseMethod">- parseMethod(statement : mixed)</td></tr>
+<tr><td align="left" title="private addIndex">- addIndex(fullyqualifiedname : mixed, filename : mixed, relations : mixed)</td></tr>
+<tr><td align="left" title="private parseProperty">- parseProperty(statement : mixed)</td></tr>
+<tr><td align="left" title="private parseClass">- parseClass(statement : mixed)</td></tr>
+<tr><td align="left" title="private parseInterface">- parseInterface(statement : mixed)</td></tr>
+<tr><td align="left" title="private parseTrait">- parseTrait(statement : mixed)</td></tr>
+<tr><td align="left" title="private parseTraitUse">- parseTraitUse(statement : mixed)</td></tr>
+<tr><td align="left" title="private parseConstant">- parseConstant(statement : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\PhpParser\\NodeVisitorAbstract" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class NodeVisitorAbstract">\\PhpParser\\NodeVisitorAbstract</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public afterTraverse">+ afterTraverse(nodes : array)</td></tr>
+<tr><td align="left" title="public leaveNode">+ leaveNode(node : mixed)</td></tr>
+<tr><td align="left" title="public enterNode">+ enterNode(node : mixed)</td></tr>
+<tr><td align="left" title="public beforeTraverse">+ beforeTraverse(nodes : array)</td></tr>
+</table>
+  >
+  ];
+  "\\PhpParser\\NodeVisitor" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface NodeVisitor">\\PhpParser\\NodeVisitor</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public afterTraverse">+ afterTraverse(nodes : array)</td></tr>
+<tr><td align="left" title="public leaveNode">+ leaveNode(node : mixed)</td></tr>
+<tr><td align="left" title="public enterNode">+ enterNode(node : mixed)</td></tr>
+<tr><td align="left" title="public beforeTraverse">+ beforeTraverse(nodes : array)</td></tr>
+</table>
+  >
+  ];
+"\\PhpParser\\NodeVisitorAbstract" -> "\\UmlGeneratorPhp\\OopFilter" [arrowhead="empty"];
+
+"\\PhpParser\\NodeVisitor" -> "\\PhpParser\\NodeVisitorAbstract" [arrowhead="empty" style="dashed"];
+
+}

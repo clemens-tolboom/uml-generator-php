@@ -1,0 +1,22 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\PhpParser\\Error" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class Error">\\PhpParser\\Error</td></tr><hr />
+<tr><td align="left" title="protected rawLine"># rawLine</td></tr>
+<tr><td align="left" title="protected rawMessage"># rawMessage</td></tr>
+<hr />
+<tr><td align="left" title="public setRawLine">+ setRawLine(line : mixed)</td></tr>
+<tr><td align="left" title="public getRawLine">+ getRawLine()</td></tr>
+<tr><td align="left" title="public setRawMessage">+ setRawMessage(message : mixed)</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(message : mixed, line : mixed)</td></tr>
+<tr><td align="left" title="public getRawMessage">+ getRawMessage()</td></tr>
+<tr><td align="left" title="protected updateMessage"># updateMessage()</td></tr>
+</table>
+  >
+  ];
+"\\RuntimeException" -> "\\PhpParser\\Error" [arrowhead="empty"];
+
+}

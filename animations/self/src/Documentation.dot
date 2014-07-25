@@ -1,0 +1,17 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\UmlGeneratorPhp\\Documentation" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class Documentation">\\UmlGeneratorPhp\\Documentation</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public getPropertyURL">+ getPropertyURL(data : mixed, classdata : mixed)</td></tr>
+<tr><td align="left" title="public getMethodURL">+ getMethodURL(data : mixed, classdata : mixed)</td></tr>
+<tr><td align="left" title="public getObjectURL">+ getObjectURL(data : mixed)</td></tr>
+<tr><td align="left" title="public getSiteURL">+ getSiteURL(data : mixed)</td></tr>
+</table>
+  >
+  ];
+}

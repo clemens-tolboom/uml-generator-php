@@ -1,0 +1,1 @@
+[{"type":"class","namespace":"\\Foo\\Bar","meta":{"file":"\/Users\/clemens\/lib\/uml-generator-php\/vendor\/phpunit\/php-token-stream\/Tests\/_files\/classInNamespace.php","output":"\/Users\/clemens\/lib\/uml-generator-php\/tests\/output\/vendor\/phpunit\/php-token-stream\/Tests\/_files\/classInNamespace.json"},"name":"TestClass","children":[],"traits":[],"implements":[]}]

@@ -1,0 +1,312 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\UmlGeneratorPhp\\JsonGeneratorTest" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class JsonGeneratorTest">\\UmlGeneratorPhp\\JsonGeneratorTest</td></tr><hr />
+<tr><td align="left" title="private visitor">- visitor</td></tr>
+<tr><td align="left" title="private traverser">- traverser</td></tr>
+<tr><td align="left" title="private parser">- parser</td></tr>
+<hr />
+<tr><td align="left" title="public getCode">+ getCode(type : mixed, scope : mixed)</td></tr>
+<tr><td align="left" title="public isMethod">+ isMethod(node : mixed)</td></tr>
+<tr><td align="left" title="public isAttribute">+ isAttribute(node : mixed)</td></tr>
+<tr><td align="left" title="public isConstant">+ isConstant(node : mixed)</td></tr>
+<tr><td align="left" title="public testConstant">+ testConstant()</td></tr>
+<tr><td align="left" title="public testAttributeScope">+ testAttributeScope()</td></tr>
+<tr><td align="left" title="public testNamespace">+ testNamespace()</td></tr>
+<tr><td align="left" title="public testInterface">+ testInterface()</td></tr>
+<tr><td align="left" title="public testFunctionScope">+ testFunctionScope()</td></tr>
+<tr><td align="left" title="public setUp">+ setUp()</td></tr>
+</table>
+  >
+  ];
+  "\\PHPUnit_Framework_TestCase" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class PHPUnit_Framework_TestCase">\\PHPUnit_Framework_TestCase</td></tr><hr />
+<tr><td align="left" title="protected runTestInSeparateProcess"># runTestInSeparateProcess</td></tr>
+<tr><td align="left" title="protected backupGlobals"># backupGlobals</td></tr>
+<tr><td align="left" title="protected backupStaticAttributesBlacklist"># backupStaticAttributesBlacklist</td></tr>
+<tr><td align="left" title="protected preserveGlobalState"># preserveGlobalState</td></tr>
+<tr><td align="left" title="protected backupGlobalsBlacklist"># backupGlobalsBlacklist</td></tr>
+<tr><td align="left" title="protected backupStaticAttributes"># backupStaticAttributes</td></tr>
+<tr><td align="left" title="private result">- result</td></tr>
+<tr><td align="left" title="private numAssertions">- numAssertions</td></tr>
+<tr><td align="left" title="private status">- status</td></tr>
+<tr><td align="left" title="private testResult">- testResult</td></tr>
+<tr><td align="left" title="private mockObjects">- mockObjects</td></tr>
+<tr><td align="left" title="private statusMessage">- statusMessage</td></tr>
+<tr><td align="left" title="private outputExpectedString">- outputExpectedString</td></tr>
+<tr><td align="left" title="private outputCallback">- outputCallback</td></tr>
+<tr><td align="left" title="private outputBufferingActive">- outputBufferingActive</td></tr>
+<tr><td align="left" title="private hasPerformedExpectationsOnOutput">- hasPerformedExpectationsOnOutput</td></tr>
+<tr><td align="left" title="private locale">- locale</td></tr>
+<tr><td align="left" title="private outputExpectedRegex">- outputExpectedRegex</td></tr>
+<tr><td align="left" title="private output">- output</td></tr>
+<tr><td align="left" title="private name">- name</td></tr>
+<tr><td align="left" title="private useErrorHandler">- useErrorHandler</td></tr>
+<tr><td align="left" title="private useOutputBuffering">- useOutputBuffering</td></tr>
+<tr><td align="left" title="private dataName">- dataName</td></tr>
+<tr><td align="left" title="private data">- data</td></tr>
+<tr><td align="left" title="private inIsolation">- inIsolation</td></tr>
+<tr><td align="left" title="private expectedException">- expectedException</td></tr>
+<tr><td align="left" title="private expectedExceptionMessage">- expectedExceptionMessage</td></tr>
+<tr><td align="left" title="private dependencyInput">- dependencyInput</td></tr>
+<tr><td align="left" title="private dependencies">- dependencies</td></tr>
+<tr><td align="left" title="private required">- required</td></tr>
+<tr><td align="left" title="private expectedExceptionCode">- expectedExceptionCode</td></tr>
+<tr><td align="left" title="private iniSettings">- iniSettings</td></tr>
+<hr />
+<tr><td align="left" title="&laquo; static &raquo; public at"><u>+ at</u>(index : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public returnValue"><u>+ returnValue</u>(value : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public exactly"><u>+ exactly</u>(count : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public once"><u>+ once</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public any"><u>+ any</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public atLeastOnce"><u>+ atLeastOnce</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public returnValueMap"><u>+ returnValueMap</u>(valueMap : array)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public never"><u>+ never</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public setUpBeforeClass"><u>+ setUpBeforeClass</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public tearDownAfterClass"><u>+ tearDownAfterClass</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public returnArgument"><u>+ returnArgument</u>(argumentIndex : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public onConsecutiveCalls"><u>+ onConsecutiveCalls</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public returnCallback"><u>+ returnCallback</u>(callback : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public throwException"><u>+ throwException</u>(exception : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public returnSelf"><u>+ returnSelf</u>()</td></tr>
+<tr><td align="left" title="public setInIsolation">+ setInIsolation(inIsolation : mixed)</td></tr>
+<tr><td align="left" title="public setResult">+ setResult(result : mixed)</td></tr>
+<tr><td align="left" title="public getResult">+ getResult()</td></tr>
+<tr><td align="left" title="public setBackupStaticAttributes">+ setBackupStaticAttributes(backupStaticAttributes : mixed)</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(name : mixed, data : array, dataName : mixed)</td></tr>
+<tr><td align="left" title="public setRunTestInSeparateProcess">+ setRunTestInSeparateProcess(runTestInSeparateProcess : mixed)</td></tr>
+<tr><td align="left" title="public setPreserveGlobalState">+ setPreserveGlobalState(preserveGlobalState : mixed)</td></tr>
+<tr><td align="left" title="public getMockForAbstractClass">+ getMockForAbstractClass(originalClassName : mixed, arguments : array, mockClassName : mixed, callOriginalConstructor : mixed, callOriginalClone : mixed, callAutoload : mixed, mockedMethods : mixed, cloneArguments : mixed)</td></tr>
+<tr><td align="left" title="public getNumAssertions">+ getNumAssertions()</td></tr>
+<tr><td align="left" title="public setBackupGlobals">+ setBackupGlobals(backupGlobals : mixed)</td></tr>
+<tr><td align="left" title="public addToAssertionCount">+ addToAssertionCount(count : mixed)</td></tr>
+<tr><td align="left" title="public getMockBuilder">+ getMockBuilder(className : mixed)</td></tr>
+<tr><td align="left" title="public setTestResultObject">+ setTestResultObject(result : mixed)</td></tr>
+<tr><td align="left" title="public getMock">+ getMock(originalClassName : mixed, methods : mixed, arguments : array, mockClassName : mixed, callOriginalConstructor : mixed, callOriginalClone : mixed, callAutoload : mixed, cloneArguments : mixed)</td></tr>
+<tr><td align="left" title="public getTestResultObject">+ getTestResultObject()</td></tr>
+<tr><td align="left" title="public setOutputCallback">+ setOutputCallback(callback : mixed)</td></tr>
+<tr><td align="left" title="public getExpectedException">+ getExpectedException()</td></tr>
+<tr><td align="left" title="public hasPerformedExpectationsOnOutput">+ hasPerformedExpectationsOnOutput()</td></tr>
+<tr><td align="left" title="public setExpectedException">+ setExpectedException(exceptionName : mixed, exceptionMessage : mixed, exceptionCode : mixed)</td></tr>
+<tr><td align="left" title="public setDependencyInput">+ setDependencyInput(dependencyInput : array)</td></tr>
+<tr><td align="left" title="public setUseErrorHandler">+ setUseErrorHandler(useErrorHandler : mixed)</td></tr>
+<tr><td align="left" title="public expectOutputString">+ expectOutputString(expectedString : mixed)</td></tr>
+<tr><td align="left" title="public expectOutputRegex">+ expectOutputRegex(expectedRegex : mixed)</td></tr>
+<tr><td align="left" title="public getName">+ getName(withDataSet : mixed)</td></tr>
+<tr><td align="left" title="public getAnnotations">+ getAnnotations()</td></tr>
+<tr><td align="left" title="public getSize">+ getSize()</td></tr>
+<tr><td align="left" title="public getActualOutput">+ getActualOutput()</td></tr>
+<tr><td align="left" title="public hasOutput">+ hasOutput()</td></tr>
+<tr><td align="left" title="public setUseOutputBuffering">+ setUseOutputBuffering(useOutputBuffering : mixed)</td></tr>
+<tr><td align="left" title="public count">+ count()</td></tr>
+<tr><td align="left" title="public runBare">+ runBare()</td></tr>
+<tr><td align="left" title="public run">+ run(result : mixed)</td></tr>
+<tr><td align="left" title="public getStatus">+ getStatus()</td></tr>
+<tr><td align="left" title="public getStatusMessage">+ getStatusMessage()</td></tr>
+<tr><td align="left" title="public toString">+ toString()</td></tr>
+<tr><td align="left" title="public setDependencies">+ setDependencies(dependencies : array)</td></tr>
+<tr><td align="left" title="public setName">+ setName(name : mixed)</td></tr>
+<tr><td align="left" title="public hasFailed">+ hasFailed()</td></tr>
+<tr><td align="left" title="protected onNotSuccessfulTest"># onNotSuccessfulTest(e : mixed)</td></tr>
+<tr><td align="left" title="protected prepareTemplate"># prepareTemplate(template : mixed)</td></tr>
+<tr><td align="left" title="protected tearDown"># tearDown()</td></tr>
+<tr><td align="left" title="protected handleDependencies"># handleDependencies()</td></tr>
+<tr><td align="left" title="protected dataToString"># dataToString(data : mixed)</td></tr>
+<tr><td align="left" title="protected createResult"># createResult()</td></tr>
+<tr><td align="left" title="protected assertPreConditions"># assertPreConditions()</td></tr>
+<tr><td align="left" title="protected assertPostConditions"># assertPostConditions()</td></tr>
+<tr><td align="left" title="protected getDataSetAsString"># getDataSetAsString(includeData : mixed)</td></tr>
+<tr><td align="left" title="protected setUp"># setUp()</td></tr>
+<tr><td align="left" title="protected setExpectedExceptionFromAnnotation"># setExpectedExceptionFromAnnotation()</td></tr>
+<tr><td align="left" title="protected setLocale"># setLocale()</td></tr>
+<tr><td align="left" title="protected iniSet"># iniSet(varName : mixed, newValue : mixed)</td></tr>
+<tr><td align="left" title="protected runTest"># runTest()</td></tr>
+<tr><td align="left" title="protected verifyMockObjects"># verifyMockObjects()</td></tr>
+<tr><td align="left" title="protected checkRequirements"># checkRequirements()</td></tr>
+<tr><td align="left" title="protected getMockClass"># getMockClass(originalClassName : mixed, methods : mixed, arguments : array, mockClassName : mixed, callOriginalConstructor : mixed, callOriginalClone : mixed, callAutoload : mixed, cloneArguments : mixed)</td></tr>
+<tr><td align="left" title="protected setUseOutputBufferingFromAnnotation"># setUseOutputBufferingFromAnnotation()</td></tr>
+<tr><td align="left" title="protected getObjectForTrait"># getObjectForTrait(traitName : mixed, arguments : array, traitClassName : mixed, callOriginalConstructor : mixed, callOriginalClone : mixed, callAutoload : mixed, cloneArguments : mixed)</td></tr>
+<tr><td align="left" title="protected getMockFromWsdl"># getMockFromWsdl(wsdlFile : mixed, originalClassName : mixed, mockClassName : mixed, methods : array, callOriginalConstructor : mixed)</td></tr>
+<tr><td align="left" title="protected setRequirementsFromAnnotation"># setRequirementsFromAnnotation()</td></tr>
+<tr><td align="left" title="protected setUseErrorHandlerFromAnnotation"># setUseErrorHandlerFromAnnotation()</td></tr>
+</table>
+  >
+  ];
+  "\\PHPUnit_Framework_Test" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface PHPUnit_Framework_Test">\\PHPUnit_Framework_Test</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public run">+ run(result : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\PHPUnit_Framework_SelfDescribing" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface PHPUnit_Framework_SelfDescribing">\\PHPUnit_Framework_SelfDescribing</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public toString">+ toString()</td></tr>
+</table>
+  >
+  ];
+  "\\PHPUnit_Framework_Assert" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class PHPUnit_Framework_Assert">\\PHPUnit_Framework_Assert</td></tr><hr />
+<tr><td align="left" title="&laquo; static &raquo; private count"><u>- count</u></td></tr>
+<hr />
+<tr><td align="left" title="&laquo; static &raquo; public assertJsonStringEqualsJsonFile"><u>+ assertJsonStringEqualsJsonFile</u>(expectedFile : mixed, actualJson : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertJsonStringNotEqualsJsonFile"><u>+ assertJsonStringNotEqualsJsonFile</u>(expectedFile : mixed, actualJson : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertJsonFileNotEqualsJsonFile"><u>+ assertJsonFileNotEqualsJsonFile</u>(expectedFile : mixed, actualFile : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertJsonStringNotEqualsJsonString"><u>+ assertJsonStringNotEqualsJsonString</u>(expectedJson : mixed, actualJson : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertJsonStringEqualsJsonString"><u>+ assertJsonStringEqualsJsonString</u>(expectedJson : mixed, actualJson : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertThat"><u>+ assertThat</u>(value : mixed, constraint : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertJson"><u>+ assertJson</u>(expectedJson : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertJsonFileEqualsJsonFile"><u>+ assertJsonFileEqualsJsonFile</u>(expectedFile : mixed, actualFile : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public logicalAnd"><u>+ logicalAnd</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public isTrue"><u>+ isTrue</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public callback"><u>+ callback</u>(callback : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public anything"><u>+ anything</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public logicalXor"><u>+ logicalXor</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public logicalOr"><u>+ logicalOr</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public logicalNot"><u>+ logicalNot</u>(constraint : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertNotTag"><u>+ assertNotTag</u>(matcher : mixed, actual : mixed, message : mixed, isHtml : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertTag"><u>+ assertTag</u>(matcher : mixed, actual : mixed, message : mixed, isHtml : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertXmlFileEqualsXmlFile"><u>+ assertXmlFileEqualsXmlFile</u>(expectedFile : mixed, actualFile : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertXmlFileNotEqualsXmlFile"><u>+ assertXmlFileNotEqualsXmlFile</u>(expectedFile : mixed, actualFile : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertStringEndsNotWith"><u>+ assertStringEndsNotWith</u>(suffix : mixed, string : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertStringEndsWith"><u>+ assertStringEndsWith</u>(suffix : mixed, string : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertStringStartsWith"><u>+ assertStringStartsWith</u>(prefix : mixed, string : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertStringStartsNotWith"><u>+ assertStringStartsNotWith</u>(prefix : mixed, string : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertXmlStringEqualsXmlFile"><u>+ assertXmlStringEqualsXmlFile</u>(expectedFile : mixed, actualXml : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertXmlStringNotEqualsXmlFile"><u>+ assertXmlStringNotEqualsXmlFile</u>(expectedFile : mixed, actualXml : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertSelectRegExp"><u>+ assertSelectRegExp</u>(selector : mixed, pattern : mixed, count : mixed, actual : mixed, message : mixed, isHtml : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertSelectEquals"><u>+ assertSelectEquals</u>(selector : mixed, content : mixed, count : mixed, actual : mixed, message : mixed, isHtml : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertSelectCount"><u>+ assertSelectCount</u>(selector : mixed, count : mixed, actual : mixed, message : mixed, isHtml : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertEqualXMLStructure"><u>+ assertEqualXMLStructure</u>(expectedElement : mixed, actualElement : mixed, checkAttributes : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertXmlStringEqualsXmlString"><u>+ assertXmlStringEqualsXmlString</u>(expectedXml : mixed, actualXml : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertXmlStringNotEqualsXmlString"><u>+ assertXmlStringNotEqualsXmlString</u>(expectedXml : mixed, actualXml : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public isFalse"><u>+ isFalse</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public isJson"><u>+ isJson</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public matchesRegularExpression"><u>+ matchesRegularExpression</u>(pattern : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public matches"><u>+ matches</u>(string : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public stringStartsWith"><u>+ stringStartsWith</u>(prefix : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public lessThanOrEqual"><u>+ lessThanOrEqual</u>(value : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public lessThan"><u>+ lessThan</u>(value : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public isInstanceOf"><u>+ isInstanceOf</u>(className : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public isType"><u>+ isType</u>(type : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public stringContains"><u>+ stringContains</u>(string : mixed, case : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public stringEndsWith"><u>+ stringEndsWith</u>(suffix : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public getCount"><u>+ getCount</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public resetCount"><u>+ resetCount</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public markTestSkipped"><u>+ markTestSkipped</u>(message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public markTestIncomplete"><u>+ markTestIncomplete</u>(message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public fail"><u>+ fail</u>(message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public readAttribute"><u>+ readAttribute</u>(classOrObject : mixed, attributeName : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public identicalTo"><u>+ identicalTo</u>(value : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public objectHasAttribute"><u>+ objectHasAttribute</u>(attributeName : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public containsOnlyInstancesOf"><u>+ containsOnlyInstancesOf</u>(classname : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public arrayHasKey"><u>+ arrayHasKey</u>(key : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public containsOnly"><u>+ containsOnly</u>(type : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public contains"><u>+ contains</u>(value : mixed, checkForObjectIdentity : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public isNull"><u>+ isNull</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public attribute"><u>+ attribute</u>(constraint : mixed, attributeName : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public equalTo"><u>+ equalTo</u>(value : mixed, delta : mixed, maxDepth : mixed, canonicalize : mixed, ignoreCase : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public attributeEqualTo"><u>+ attributeEqualTo</u>(attributeName : mixed, value : mixed, delta : mixed, maxDepth : mixed, canonicalize : mixed, ignoreCase : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public classHasAttribute"><u>+ classHasAttribute</u>(attributeName : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public classHasStaticAttribute"><u>+ classHasStaticAttribute</u>(attributeName : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public greaterThanOrEqual"><u>+ greaterThanOrEqual</u>(value : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public greaterThan"><u>+ greaterThan</u>(value : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public isEmpty"><u>+ isEmpty</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public fileExists"><u>+ fileExists</u>()</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertStringNotMatchesFormatFile"><u>+ assertStringNotMatchesFormatFile</u>(formatFile : mixed, string : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertStringMatchesFormatFile"><u>+ assertStringMatchesFormatFile</u>(formatFile : mixed, string : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertNotEmpty"><u>+ assertNotEmpty</u>(actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeNotEmpty"><u>+ assertAttributeNotEmpty</u>(haystackAttributeName : mixed, haystackClassOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertGreaterThan"><u>+ assertGreaterThan</u>(expected : mixed, actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeEmpty"><u>+ assertAttributeEmpty</u>(haystackAttributeName : mixed, haystackClassOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertEmpty"><u>+ assertEmpty</u>(actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertNotEquals"><u>+ assertNotEquals</u>(expected : mixed, actual : mixed, message : mixed, delta : mixed, maxDepth : mixed, canonicalize : mixed, ignoreCase : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeNotEquals"><u>+ assertAttributeNotEquals</u>(expected : mixed, actualAttributeName : mixed, actualClassOrObject : mixed, message : mixed, delta : mixed, maxDepth : mixed, canonicalize : mixed, ignoreCase : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeGreaterThan"><u>+ assertAttributeGreaterThan</u>(expected : mixed, actualAttributeName : mixed, actualClassOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertGreaterThanOrEqual"><u>+ assertGreaterThanOrEqual</u>(expected : mixed, actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeLessThanOrEqual"><u>+ assertAttributeLessThanOrEqual</u>(expected : mixed, actualAttributeName : mixed, actualClassOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertFileEquals"><u>+ assertFileEquals</u>(expected : mixed, actual : mixed, message : mixed, canonicalize : mixed, ignoreCase : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertLessThanOrEqual"><u>+ assertLessThanOrEqual</u>(expected : mixed, actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeLessThan"><u>+ assertAttributeLessThan</u>(expected : mixed, actualAttributeName : mixed, actualClassOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeGreaterThanOrEqual"><u>+ assertAttributeGreaterThanOrEqual</u>(expected : mixed, actualAttributeName : mixed, actualClassOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertLessThan"><u>+ assertLessThan</u>(expected : mixed, actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeEquals"><u>+ assertAttributeEquals</u>(expected : mixed, actualAttributeName : mixed, actualClassOrObject : mixed, message : mixed, delta : mixed, maxDepth : mixed, canonicalize : mixed, ignoreCase : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertEquals"><u>+ assertEquals</u>(expected : mixed, actual : mixed, message : mixed, delta : mixed, maxDepth : mixed, canonicalize : mixed, ignoreCase : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeNotContains"><u>+ assertAttributeNotContains</u>(needle : mixed, haystackAttributeName : mixed, haystackClassOrObject : mixed, message : mixed, ignoreCase : mixed, checkForObjectIdentity : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertContainsOnly"><u>+ assertContainsOnly</u>(type : mixed, haystack : mixed, isNativeType : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertNotContains"><u>+ assertNotContains</u>(needle : mixed, haystack : mixed, message : mixed, ignoreCase : mixed, checkForObjectIdentity : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeContains"><u>+ assertAttributeContains</u>(needle : mixed, haystackAttributeName : mixed, haystackClassOrObject : mixed, message : mixed, ignoreCase : mixed, checkForObjectIdentity : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertArrayNotHasKey"><u>+ assertArrayNotHasKey</u>(key : mixed, array : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertContains"><u>+ assertContains</u>(needle : mixed, haystack : mixed, message : mixed, ignoreCase : mixed, checkForObjectIdentity : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertContainsOnlyInstancesOf"><u>+ assertContainsOnlyInstancesOf</u>(classname : mixed, haystack : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeContainsOnly"><u>+ assertAttributeContainsOnly</u>(type : mixed, haystackAttributeName : mixed, haystackClassOrObject : mixed, isNativeType : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertNotCount"><u>+ assertNotCount</u>(expectedCount : mixed, haystack : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeNotCount"><u>+ assertAttributeNotCount</u>(expectedCount : mixed, haystackAttributeName : mixed, haystackClassOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeCount"><u>+ assertAttributeCount</u>(expectedCount : mixed, haystackAttributeName : mixed, haystackClassOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertCount"><u>+ assertCount</u>(expectedCount : mixed, haystack : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertNotContainsOnly"><u>+ assertNotContainsOnly</u>(type : mixed, haystack : mixed, isNativeType : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeNotContainsOnly"><u>+ assertAttributeNotContainsOnly</u>(type : mixed, haystackAttributeName : mixed, haystackClassOrObject : mixed, isNativeType : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertFileNotEquals"><u>+ assertFileNotEquals</u>(expected : mixed, actual : mixed, message : mixed, canonicalize : mixed, ignoreCase : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertStringEqualsFile"><u>+ assertStringEqualsFile</u>(expectedFile : mixed, actualString : mixed, message : mixed, canonicalize : mixed, ignoreCase : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeNotInstanceOf"><u>+ assertAttributeNotInstanceOf</u>(expected : mixed, attributeName : mixed, classOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertInternalType"><u>+ assertInternalType</u>(expected : mixed, actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeInternalType"><u>+ assertAttributeInternalType</u>(expected : mixed, attributeName : mixed, classOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertNotInstanceOf"><u>+ assertNotInstanceOf</u>(expected : mixed, actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeInstanceOf"><u>+ assertAttributeInstanceOf</u>(expected : mixed, attributeName : mixed, classOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeNotSame"><u>+ assertAttributeNotSame</u>(expected : mixed, actualAttributeName : mixed, actualClassOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertInstanceOf"><u>+ assertInstanceOf</u>(expected : mixed, actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertNotInternalType"><u>+ assertNotInternalType</u>(expected : mixed, actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeNotInternalType"><u>+ assertAttributeNotInternalType</u>(expected : mixed, attributeName : mixed, classOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertStringMatchesFormat"><u>+ assertStringMatchesFormat</u>(format : mixed, string : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertStringNotMatchesFormat"><u>+ assertStringNotMatchesFormat</u>(format : mixed, string : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertNotSameSize"><u>+ assertNotSameSize</u>(expected : mixed, actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertSameSize"><u>+ assertSameSize</u>(expected : mixed, actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertRegExp"><u>+ assertRegExp</u>(pattern : mixed, string : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertNotRegExp"><u>+ assertNotRegExp</u>(pattern : mixed, string : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertNotSame"><u>+ assertNotSame</u>(expected : mixed, actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertAttributeSame"><u>+ assertAttributeSame</u>(expected : mixed, actualAttributeName : mixed, actualClassOrObject : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertFalse"><u>+ assertFalse</u>(condition : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertNotNull"><u>+ assertNotNull</u>(actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertTrue"><u>+ assertTrue</u>(condition : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertFileNotExists"><u>+ assertFileNotExists</u>(filename : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertStringNotEqualsFile"><u>+ assertStringNotEqualsFile</u>(expectedFile : mixed, actualString : mixed, message : mixed, canonicalize : mixed, ignoreCase : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertFileExists"><u>+ assertFileExists</u>(filename : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertNull"><u>+ assertNull</u>(actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertClassHasAttribute"><u>+ assertClassHasAttribute</u>(attributeName : mixed, className : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertObjectNotHasAttribute"><u>+ assertObjectNotHasAttribute</u>(attributeName : mixed, object : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertSame"><u>+ assertSame</u>(expected : mixed, actual : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertObjectHasAttribute"><u>+ assertObjectHasAttribute</u>(attributeName : mixed, object : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertClassNotHasStaticAttribute"><u>+ assertClassNotHasStaticAttribute</u>(attributeName : mixed, className : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertClassNotHasAttribute"><u>+ assertClassNotHasAttribute</u>(attributeName : mixed, className : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertClassHasStaticAttribute"><u>+ assertClassHasStaticAttribute</u>(attributeName : mixed, className : mixed, message : mixed)</td></tr>
+<tr><td align="left" title="&laquo; static &raquo; public assertArrayHasKey"><u>+ assertArrayHasKey</u>(key : mixed, array : mixed, message : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\PHPUnit_Framework_TestCase" -> "\\UmlGeneratorPhp\\JsonGeneratorTest" [arrowhead="empty"];
+
+"\\PHPUnit_Framework_Test" -> "\\PHPUnit_Framework_TestCase" [arrowhead="empty" style="dashed"];
+
+"\\PHPUnit_Framework_SelfDescribing" -> "\\PHPUnit_Framework_TestCase" [arrowhead="empty" style="dashed"];
+
+"\\PHPUnit_Framework_Assert" -> "\\PHPUnit_Framework_TestCase" [arrowhead="empty"];
+
+}

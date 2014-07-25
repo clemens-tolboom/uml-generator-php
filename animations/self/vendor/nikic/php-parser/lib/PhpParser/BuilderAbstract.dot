@@ -1,0 +1,30 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\PhpParser\\BuilderAbstract" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class BuilderAbstract">\\PhpParser\\BuilderAbstract</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="protected setModifier"># setModifier(modifier : mixed)</td></tr>
+<tr><td align="left" title="protected normalizeValue"># normalizeValue(value : mixed)</td></tr>
+<tr><td align="left" title="protected normalizeName"># normalizeName(name : mixed)</td></tr>
+<tr><td align="left" title="protected normalizeNode"># normalizeNode(node : mixed)</td></tr>
+</table>
+  >
+  ];
+  "\\PhpParser\\Builder" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; interface &raquo;</td></tr>
+<tr><td align="center" title="interface Builder">\\PhpParser\\Builder</td></tr><hr />
+<tr><td></td></tr>
+<hr />
+<tr><td align="left" title="public getNode">+ getNode()</td></tr>
+</table>
+  >
+  ];
+"\\PhpParser\\Builder" -> "\\PhpParser\\BuilderAbstract" [arrowhead="empty" style="dashed"];
+
+}
