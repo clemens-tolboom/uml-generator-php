@@ -11,7 +11,7 @@
  },
  */
 function loadGraph(callbackFunc) {
-    d3.json('/diagrams/uml-generator-php.index', function (data) {
+    d3.json('/uml-generator-php/diagrams/uml-generator-php.index', function (data) {
         //data = dummy();
         var graph = [];
         var nodes = [];
