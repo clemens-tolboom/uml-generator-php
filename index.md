@@ -17,6 +17,13 @@ the class and method names will be clickable and lead to the defined URLs. The r
 documentation module for api.drupal.org.
 
 
+### Our diagrams
+
+We generate two types for now
+
+* [UML](diagrams/index.html) using GraphViz as a render engine.
+* [An animation](diagrams/graph.html) based on information from the indexed files.
+
 ### Example output.
 
 This is some example output generated from the Drupal 8 master branch. Some rendering issues may occur
@@ -31,6 +38,8 @@ documentation website.
     <a href="images/output/OopFilter.svg"><img src="images/output/OopFilter.svg"></a><br>
     OopFilter from uml-generator-php
 </div>
+
+<iframe src="diagrams/graph.html" width="100%" height="600px"></iframe>
 <br style="clear: both;">
 
 ### Installation instructions.
