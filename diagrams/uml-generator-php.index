@@ -1,0 +1,64 @@
+{
+  "\\UmlGeneratorPhp\\Command\\BaseCommand": {
+    "file": "/diagrams/Command/BaseCommand.json",
+    "relations": {
+      "implement": [],
+      "trait": [],
+      "extend": "\\Symfony\\Component\\Console\\Command\\Command"
+    }
+  },
+  "\\UmlGeneratorPhp\\Command\\DotCommand": {
+    "file": "/diagrams/Command/DotCommand.json",
+    "relations": {
+      "implement": [],
+      "trait": [],
+      "extend": "\\UmlGeneratorPhp\\Command\\BaseCommand"
+    }
+  },
+  "\\UmlGeneratorPhp\\Command\\JsonCommand": {
+    "file": "/diagrams/Command/JsonCommand.json",
+    "relations": {
+      "implement": [],
+      "trait": [],
+      "extend": "\\UmlGeneratorPhp\\Command\\BaseCommand"
+    }
+  },
+  "\\UmlGeneratorPhp\\Command\\RunCommand": {
+    "file": "/diagrams/Command/RunCommand.json",
+    "relations": {
+      "implement": [],
+      "trait": [],
+      "extend": "\\UmlGeneratorPhp\\Command\\BaseCommand"
+    }
+  },
+  "\\UmlGeneratorPhp\\Documentation": {
+    "file": "/diagrams/Documentation.json",
+    "relations": {
+      "implement": [],
+      "trait": []
+    }
+  },
+  "\\UmlGeneratorPhp\\DrupalDocumentation": {
+    "file": "/diagrams/DrupalDocumentation.json",
+    "relations": {
+      "implement": [],
+      "trait": [],
+      "extend": "\\UmlGeneratorPhp\\Documentation"
+    }
+  },
+  "\\UmlGeneratorPhp\\OopFilter": {
+    "file": "/diagrams/OopFilter.json",
+    "relations": {
+      "implement": [],
+      "trait": [],
+      "extend": "\\PhpParser\\NodeVisitorAbstract"
+    }
+  },
+  "\\UmlGeneratorPhp\\OopToDot": {
+    "file": "/diagrams/OopToDot.json",
+    "relations": {
+      "implement": [],
+      "trait": []
+    }
+  }
+}

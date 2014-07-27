@@ -1,0 +1,23 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\UmlGeneratorPhp\\Command\\BaseCommand" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class BaseCommand">\\UmlGeneratorPhp\\Command\\BaseCommand</td></tr><hr />
+<tr><td align="left" title="public projectRoot">+ projectRoot</td></tr>
+<tr><td align="left" title="public output">+ output</td></tr>
+<hr />
+<tr><td align="left" title="public writeln">+ writeln(text : mixed)</td></tr>
+<tr><td align="left" title="public getProjectRoot">+ getProjectRoot()</td></tr>
+<tr><td align="left" title="public setOutput">+ setOutput(output : mixed)</td></tr>
+<tr><td align="left" title="public getConfig">+ getConfig()</td></tr>
+<tr><td align="left" title="public getOutput">+ getOutput()</td></tr>
+<tr><td align="left" title="protected findConfig"># findConfig()</td></tr>
+<tr><td align="left" title="private setProjectRoot">- setProjectRoot(projectRoot : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\Symfony\\Component\\Console\\Command\\Command" -> "\\UmlGeneratorPhp\\Command\\BaseCommand" [arrowhead="empty"];
+
+}

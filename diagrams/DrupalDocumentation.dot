@@ -1,0 +1,20 @@
+digraph "Class Diagram" {
+  node [shape=plaintext]
+  "\\UmlGeneratorPhp\\DrupalDocumentation" [
+    label=<
+<table border="1" cellpadding="2" cellspacing="0" cellborder="0">
+<tr><td align="center">&laquo; class &raquo;</td></tr>
+<tr><td align="center" title="class DrupalDocumentation">\\UmlGeneratorPhp\\DrupalDocumentation</td></tr><hr />
+<tr><td align="left" title="protected meta"># meta</td></tr>
+<hr />
+<tr><td align="left" title="public getObjectURL">+ getObjectURL(data : mixed)</td></tr>
+<tr><td align="left" title="public getPropertyURL">+ getPropertyURL(data : mixed, classdata : mixed)</td></tr>
+<tr><td align="left" title="public getMethodURL">+ getMethodURL(data : mixed, classdata : mixed)</td></tr>
+<tr><td align="left" title="public getSiteURL">+ getSiteURL(data : mixed)</td></tr>
+<tr><td align="left" title="public __construct">+ __construct(meta : mixed)</td></tr>
+</table>
+  >
+  ];
+"\\UmlGeneratorPhp\\Documentation" -> "\\UmlGeneratorPhp\\DrupalDocumentation" [arrowhead="empty"];
+
+}
