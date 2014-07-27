@@ -60,6 +60,7 @@ class DotCommand extends BaseCommand
             $this->writeln('<error>Directory not found</error>');
             exit(1);
         }
+        $indexFile = $directory . '/uml-generator-php.index';
 
         if (!is_file($indexFile)) {
             $this->writeln("<error>No index file found</error> @ $indexFile. You need to run `uml-generator-php generate:json` first.");

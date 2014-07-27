@@ -34,7 +34,6 @@ class RunCommand extends BaseCommand
         // Run generate:json
         $command = $this->getApplication()->find('generate:json');
         $arguments = array(
-          'input' => $projectRoot,
           'command' => 'generate:json',
           'input' => $config['input-dir'],
           'output' => $outputDirectory,
@@ -68,7 +67,34 @@ class RunCommand extends BaseCommand
             $arguments['--legacy'] = TRUE;
         }
         $inputArguments = new ArrayInput($arguments);
+        $this->writeln("  arguments: " . $inputArguments);
         $command->run($inputArguments, $output);
+
+        $this->writeln("<comment>Writing web files to '$outputDirectory'</comment>");
+        $this->copyWeb($outputDirectory);
+        $this->writeln($this->runWebserver($outputDirectory));
+
+    }
+
+    protected function runWebserver($outputDirectory) {
+        return "<comment>Refresh your browser or run:</comment> php -S 0.0.0.0:1337 -t '$outputDirectory'";
+    }
+
+    protected function copyWeb($outputDirectory) {
+        $finder = new Finder();
+        $finder->files()->in(__DIR__ . '/../../web/');
+        foreach ($finder as $file) {
+            $sourceFile = $file->getRealpath();
+
+            $destinationFile = $outputDirectory . '/' . $file->getRelativePathname();
+            $path = dirname($destinationFile);
+            if (!is_dir($path)) {
+                mkdir(dirname($destinationFile), 0777, TRUE);
+            }
+
+            file_put_contents($destinationFile, file_get_contents($sourceFile));
+
+        }
     }
 
 }

@@ -45,6 +45,7 @@ class JsonCommand extends BaseCommand
     {
         $this->setOutput($output);
 
+        $inputDirectory = realpath($input->getArgument('input'));
         if (!is_dir($inputDirectory)) {
             $this->writeln('<error>Input is not a directory</error>');
             die;
@@ -96,12 +97,12 @@ class JsonCommand extends BaseCommand
             $traverser = new \PhpParser\NodeTraverser;
 
             $pinfo = pathinfo($file);
-            $outputfiledir = str_replace($inputDirectory, $outputDirectory, $pinfo['dirname']);
-            $outputfile = $outputfiledir . '/' . $pinfo['filename'] . '.json';
+            $outputFileDir = str_replace($inputDirectory, $outputDirectory, $pinfo['dirname']);
+            $outputFile = $outputFileDir . '/' . $pinfo['filename'] . '.json';
 
             $meta = array(
               'file' => $file->getPathName(),
-              'output' => $outputfile
+              'output' => $outputFile
             );
             $this->writeln($file->getPathName());
             try {
@@ -118,31 +119,14 @@ class JsonCommand extends BaseCommand
 
             $json = json_encode($tree);
             if ($json != '[]') {
-                if (!is_dir($outputfiledir)) {
-                    mkdir($outputfiledir, 0777, true);
+                if (!is_dir($outputFileDir)) {
+                    mkdir($outputFileDir, 0777, true);
                 }
-                file_put_contents($outputfile, $json);
+                file_put_contents($outputFile, $json);
             }
             $indexData = json_encode($visitor->getIndex());
-
-            file_put_contents($indexfile, $indexData);
+            file_put_contents($indexFile, $indexData);
         }
-        $output->writeln("<comment>Writing web files to '$outputDirectory'</comment> run : php -S 0.0.0.0:1337 -t $outputDirectory");
-        $this->copyWeb($outputDirectory);
-    }
-
-    protected function copyWeb($outputDirectory)
-    {
-        $files = array(
-          'index.html',
-          'style.css',
-          'favicon.ico',
-        );
-        foreach ($files as $file) {
-          $sourceFile = __DIR__ . '/../../web/' . $file;
-          $destFile = $outputDirectory . '/' . $file;
-          file_put_contents($destFile, file_get_contents($sourceFile));
-    }
     }
 
 }
