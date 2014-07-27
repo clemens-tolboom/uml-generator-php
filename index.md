@@ -39,7 +39,14 @@ documentation website.
     OopFilter from uml-generator-php
 </div>
 
+Below is a self graph of `/src` only.
+
 <iframe src="diagrams/graph.html" width="100%" height="600px"></iframe>
+
+You could try to run this [Drupal graph](animations/drupal-8/) but it needs a heavy system.
+
+Or this less heavy [self graph](animations/self/).
+
 <br style="clear: both;">
 
 ### Installation instructions.
