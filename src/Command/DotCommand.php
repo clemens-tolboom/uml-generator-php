@@ -25,7 +25,7 @@ class DotCommand extends BaseCommand
             'The directory containing the JSON files.'
           )
           ->addOption(
-            'parents',
+            'with-parents',
             'p',
             InputOption::VALUE_NONE,
             'Add parents into file.'
@@ -37,7 +37,7 @@ class DotCommand extends BaseCommand
             'Set documentation url generator.'
           )
           ->addOption(
-            'parent-limit',
+            'parents-depth',
             'l',
             InputOption::VALUE_REQUIRED,
             'Limits the max depth of parents in a single graphviz file (all by default)',
@@ -66,7 +66,7 @@ class DotCommand extends BaseCommand
             exit(1);
         };
 
-        $with_parents = $input->getOption('parents');
+        $with_parents = $input->getOption('with-parents');
 
         switch (strtolower($input->getOption('documenter'))) {
             case "drupal":
@@ -90,7 +90,7 @@ class DotCommand extends BaseCommand
         $finder->files()->ignoreUnreadableDirs()->in($directory);
         $files = $finder->name('*.json');
 
-        $limit = $input->getOption('parent-limit');
+        $limit = $input->getOption('parents-depth');
         $legacy = $input->getOption('legacy');
 
         foreach ($files as $file) {

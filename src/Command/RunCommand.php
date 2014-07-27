@@ -29,12 +29,15 @@ class RunCommand extends BaseCommand
         $config = $this->getConfig();
         chdir($projectRoot);
 
+        $outputDirectory = $config['output-dir'];
+
         // Run generate:json
         $command = $this->getApplication()->find('generate:json');
         $arguments = array(
           'input' => $projectRoot,
           'command' => 'generate:json',
-          'output' => $config['outputdir']
+          'input' => $config['input-dir'],
+          'output' => $outputDirectory,
         );
         if (isset($config['skip'])) {
             $arguments['--skip'] = $config['skip'];
@@ -50,19 +53,19 @@ class RunCommand extends BaseCommand
         // Run generate:dot
         $command = $this->getApplication()->find('generate:dot');
         $arguments = array(
-          'directory' => $config['outputdir'],
           'command' => 'generate:dot',
+          'directory' => $config['output-dir'],
         );
         if (isset($config['parents'])) {
             if ($config['parents']['enabled']) {
-                $arguments['--parents'] = true;
+                $arguments['--with-parents'] = FALSE;
             }
             if (isset($config['parents']['depth'])) {
-                $arguments['--parent-depth'] = $config['parents']['depth'];
+                $arguments['--parents-depth'] = $config['parents']['depth'];
             }
         }
         if (isset($config['legacy'])) {
-            $arguments['--legacy'] = true;
+            $arguments['--legacy'] = TRUE;
         }
         $inputArguments = new ArrayInput($arguments);
         $command->run($inputArguments, $output);

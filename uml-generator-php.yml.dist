@@ -1,7 +1,9 @@
 # Required
 
+input-dir: /tmp/uml-generator
+
 # The output directory relative to the project root
-outputdir: tests/output
+output-dir: tests/output
 
 # Optional
 parents:
