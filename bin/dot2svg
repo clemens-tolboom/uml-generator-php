@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+if [ "$1" = "" ] ; then
+  echo "No input directory given"
+  exit 1
+fi
+
+if [ ! -d "$1" ] ; then
+  echo "'$1' is not a directory."
+  exit 1
+fi
+
+INPUT_DIR=$1
+
+OUTPUT_DIR=$2
+[ -d "$2" ] || echo "No output directory given ... using $INPUT_DIR" && OUTPUT_DIR=$1
+
+set -x
+find $1 -type f -name "*.dot" -exec dot -Tsvg -O $OUTPUT_DIR/{} \;
