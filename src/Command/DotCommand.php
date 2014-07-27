@@ -12,7 +12,7 @@ use UmlGeneratorPhp;
 use UmlGeneratorPhp\DrupalDocumentation;
 use UmlGeneratorPhp\OopToDot;
 
-class DotCommand extends Command
+class DotCommand extends BaseCommand
 {
     protected function configure()
     {
@@ -53,14 +53,16 @@ class DotCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->setOutput($output);
+
         $directory = realpath($input->getArgument('directory'));
         if ($directory === false) {
-            $output->writeln('<error>Directory not found</error>');
+            $this->writeln('<error>Directory not found</error>');
             exit(1);
         }
 
-        if (!is_file($directory . '/uml-generator-php.index')) {
-            $output->writeln("<error>No index file found. You need to run `uml-generator-php generate:json` first.</error>");
+        if (!is_file($indexFile)) {
+            $this->writeln("<error>No index file found</error> @ $indexFile. You need to run `uml-generator-php generate:json` first.");
             exit(1);
         };
 
@@ -103,7 +105,7 @@ class DotCommand extends Command
 
                 $pinfo = pathinfo($file);
                 $outputfile = $pinfo['dirname'] . '/' . $pinfo['filename'] . '.dot';
-                //$output->writeln($outputfile);
+                //$this->writeln($outputfile);
                 file_put_contents($outputfile, $dot);
             }
         }
@@ -125,4 +127,4 @@ class DotCommand extends Command
         return true;
     }
 
-} 
+}

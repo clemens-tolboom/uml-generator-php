@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use UmlGeneratorPhp;
 
-class JsonCommand extends Command
+class JsonCommand extends BaseCommand
 {
     protected function configure()
     {
@@ -43,18 +43,19 @@ class JsonCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $inputDirectory = realpath($input->getArgument('input'));
-        $outputDirectory = realpath($input->getArgument('output'));
+        $this->setOutput($output);
 
         if (!is_dir($inputDirectory)) {
-            $output->writeln('<error>Input is not a directory</error>');
+            $this->writeln('<error>Input is not a directory</error>');
             die;
         }
-        if (!is_dir($outputDirectory)) {
-            $output->writeln('<comment>' . $input->getArgument('output') . ' not found</comment>');
-            $output->writeln('<comment>Creating output directory</comment>');
+
+        $outputDirectory = $input->getArgument('output');
+        if (!is_dir($outputDirectory) && !is_link($outputDirectory)) {
+            $this->writeln('<comment>' . $outputDirectory . ' not found</comment>');
+            $this->writeln('<comment>Creating output directory</comment>');
             mkdir($input->getArgument('output'), 0777, true);
-            $outputDirectory = realpath($input->getArgument('output'));
+            $outputDirectory = realpath($outputDirectory);
         }
 
 
@@ -62,22 +63,25 @@ class JsonCommand extends Command
         $finder = new Finder();
         $finder->files()->ignoreUnreadableDirs()->in($inputDirectory);
         $skipped = $input->getOption('skip');
-        if (is_array($skipped)) {
+        if (is_array($skipped) && !empty($skipped)) {
+            $this->writeln("  skipping: " . join(", ", $skipped));
             foreach ($skipped as $skip) {
                 $finder = $finder->notPath($skip);
             }
         }
         $only = $input->getOption('only');
-        if (is_array($only)) {
+        if (is_array($only) && !empty($only)) {
+            $this->writeln("  only: " . join(", ", $only));
             foreach ($only as $filter) {
                 $finder = $finder->Path($filter);
             }
         }
         $files = $finder->name('*.php');
 
-        $indexfile = $outputDirectory . '/uml-generator-php.index';
-        if (file_exists($indexfile)) {
-            $lastRunTimestamp = filemtime($indexfile);
+        $indexFile = $outputDirectory . '/uml-generator-php.index';
+        if (file_exists($indexFile)) {
+            $this->writeln('Found index file: ' . $indexFile);
+            $lastRunTimestamp = filemtime($indexFile);
         } else {
             $lastRunTimestamp = 0;
         }
@@ -99,7 +103,7 @@ class JsonCommand extends Command
               'file' => $file->getPathName(),
               'output' => $outputfile
             );
-            $output->writeln($file->getPathName());
+            $this->writeln($file->getPathName());
             try {
                 $visitor->setMeta($meta);
                 $traverser->addVisitor($visitor);
@@ -141,4 +145,4 @@ class JsonCommand extends Command
     }
     }
 
-} 
+}

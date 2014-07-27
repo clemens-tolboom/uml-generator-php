@@ -2,14 +2,13 @@
 
 namespace UmlGeneratorPhp\Command;
 
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Finder\Finder;
 use UmlGeneratorPhp;
 
-class RunCommand extends Command
+class RunCommand extends BaseCommand
 {
     protected function configure()
     {
@@ -18,25 +17,16 @@ class RunCommand extends Command
           ->setDescription('Read .uml-generator-php.yml in project root and runs all tools');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        // Find the project root containing .uml-generator-php.yml
-        $projectRoot = getcwd();
-        $projectRoot = realpath($projectRoot);
-        $output->writeln("Scanning for .uml-generator-php.yml");
-        while ($projectRoot !== '/') {
-            $output->writeln("  scanning dir: " . $projectRoot);
-            if (file_exists($projectRoot . '/.uml-generator-php.yml')) {
-                break;
-            } else {
-                $projectRoot = realpath($projectRoot . '/..');
-            }
-        }
-        if ($projectRoot == '/') {
-            $output->writeln('<error>.uml-generator-php.yml not found.</error> Please run : cp ' .  realpath(__DIR__ . '/../../uml-generator-php.yml.dist') . ' ' . getcwd() . '/.uml-generator-php.yml');
+    protected function execute(InputInterface $input, OutputInterface $output) {
+        $this->setOutput($output);
+
+        $this->findConfig();
+        $projectRoot = $this->getProjectRoot();
+        if (is_null($projectRoot)) {
+            $this->writeln('<error>.uml-generator-php.yml not found.</error> Please run : cp ' . realpath(__DIR__ . '/../../uml-generator-php.yml.dist') . ' ' . getcwd() . '/.uml-generator-php.yml');
             exit(1);
         }
-        $config = Yaml::parse(file_get_contents($projectRoot . '/.uml-generator-php.yml'));
+        $config = $this->getConfig();
         chdir($projectRoot);
 
         // Run generate:json
@@ -53,7 +43,8 @@ class RunCommand extends Command
             $arguments['--only'] = $config['only'];
         }
         $inputArguments = new ArrayInput($arguments);
-        $command->run($inputArguments, $output);
+        $this->writeln("  arguments: " . $inputArguments);
+        $result = $command->run($inputArguments, $output);
 
 
         // Run generate:dot
