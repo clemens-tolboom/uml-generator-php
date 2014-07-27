@@ -20,7 +20,9 @@ function loadGraph(callbackFunc) {
             if (data.hasOwnProperty(key)) {
                 var id = key;
                 nodes.push({
-                    id: id
+                    id: id,
+                    file: data[key].file,
+                    svg: data[key].file.replace(/json$/, 'dot.svg')
                 });
 
                 if (data[key].relations.extend) {

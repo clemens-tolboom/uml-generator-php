@@ -13,12 +13,35 @@
 loadGraph(listGraph);
 
 function listGraph(graph) {
-    console.log(graph);
+    var svg = d3.select("body").append("div").append('ol');
+    var node = svg.selectAll(".node")
+            .data(graph.nodes)
+            .enter()
+            .append("li")
+            .attr("class", "node")
+            .append('a')
+                .attr('href', function(d){return d.svg})
+                .text(function(d){ return d.id})
+            .append('img')
+            .attr('src', function(d){return d.svg})
+            ;
+
 }
 </script>
 </head>
 <body>
-# TODO list the graph items
+<h2>Index</h2>
+
+<span><a href="graph.html">Graph</a></span>
+
+<h2>TODOs</h2>
+
+<ol>
+    <li>List the graph items based on their relations</li>
+</ol>
+
+<h2>Files</h2>
+
 <div id="list"></div>
 </body>
 </html>
