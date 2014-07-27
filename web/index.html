@@ -8,118 +8,15 @@
 <script type="text/javascript">
 // Add arrow? : http://stackoverflow.com/questions/15054804/d3-drawing-arrows-tips
 
-loadGraph(buildGraph);
+loadGraph(listGraph);
 
-function addGradient(svg, name, startColor, stopColor) {
-    svg.append("radialGradient")
-            .attr("id", "line-gradient-" + name)
-            .selectAll("stop")
-            .data([
-                {offset: "0%", color: startColor, opacity: 0.4},
-                {offset: "100%", color: startColor, opacity: 1}
-            ])
-            .enter()
-            .append("stop")
-            .attr("offset", function (d) {
-                return d.offset;
-            })
-            .attr("stop-color", function (d) {
-                return d.color;
-            })
-    ;
-}
-
-function buildGraph(graph) {
-    // How long delaying showing the result
-    var preTicks = 0;
-    console.log("Skip rendering for " + preTicks);
-
-    var nodeCount = graph.nodes.length;
-    var linkCount = graph.links.length;
-    console.log("Graph has " + nodeCount +" nodes and " + linkCount + " links.");
-
-    var linkDistance = 30;
-
-    // Circle area ~ PI / 4 * (width * height)
-    // Square area ~ width * height
-    // Ratio Square / Circle ~ 4 / PI
-    var delta = 4.0/3.14 * Math.sqrt(nodeCount);
-    // correct for linkDistance ~ radius
-    var delta = 2 * delta;
-    var width = linkDistance * delta;
-    var height = linkDistance * delta;
-
-    console.log("- area " + width +" x " + height);
-
-    var force = d3.layout.force()
-            .charge(-120)
-            .linkDistance(linkDistance)
-            .size([width, height]);
-
-    var svg = d3.select("body").append("svg")
-            .attr("width", width)
-            .attr("height", height);
-
-
-    addGradient(svg, 'extends', "#f90", "black");
-    addGradient(svg, 'trait', "#0D0", "black");
-    addGradient(svg, 'implements', "#0Cf", "black");
-
-    force
-            .nodes(graph.nodes)
-            .links(graph.links)
-            .start();
-
-    var link = svg.selectAll(".link")
-            .data(graph.links)
-            .enter().append("line")
-            .attr("class", function (d) {
-                return "link " + d.style;
-            });
-
-    var node = svg.selectAll(".node")
-                    .data(graph.nodes)
-                    .enter().append("circle")
-                    .attr("class", "node")
-                    .attr("r", 5)
-                    .call(force.drag)
-            ;
-
-    node.append("title")
-            .text(function (d) {
-                return d.id;
-            });
-
-    force.on("tick", function () {
-        if (preTicks > 0) {
-            preTicks = preTicks - 1;
-            console.log("Waiting");
-            return;
-        }
-        link.attr("x1", function (d) {
-            return d.source.x;
-        })
-                .attr("y1", function (d) {
-                    return d.source.y;
-                })
-                .attr("x2", function (d) {
-                    return d.target.x;
-                })
-                .attr("y2", function (d) {
-                    return d.target.y;
-                });
-
-        node.attr("cx", function (d) {
-            return d.x;
-        })
-                .attr("cy", function (d) {
-                    return d.y;
-                });
-    });
+function listGraph(graph) {
+    console.log(graph);
 }
 </script>
 </head>
 <body>
-<div id="graph"></div>
+# TODO list the graph items
+<div id="list"></div>
 </body>
 </html>
