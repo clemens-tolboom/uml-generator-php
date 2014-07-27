@@ -1,6 +1,6 @@
 {
   "\\UmlGeneratorPhp\\Command\\BaseCommand": {
-    "file": "/diagrams/Command/BaseCommand.json",
+    "file": "Command/BaseCommand.json",
     "relations": {
       "implement": [],
       "trait": [],
@@ -8,7 +8,7 @@
     }
   },
   "\\UmlGeneratorPhp\\Command\\DotCommand": {
-    "file": "/diagrams/Command/DotCommand.json",
+    "file": "Command/DotCommand.json",
     "relations": {
       "implement": [],
       "trait": [],
@@ -16,7 +16,7 @@
     }
   },
   "\\UmlGeneratorPhp\\Command\\JsonCommand": {
-    "file": "/diagrams/Command/JsonCommand.json",
+    "file": "Command/JsonCommand.json",
     "relations": {
       "implement": [],
       "trait": [],
@@ -24,7 +24,7 @@
     }
   },
   "\\UmlGeneratorPhp\\Command\\RunCommand": {
-    "file": "/diagrams/Command/RunCommand.json",
+    "file": "Command/RunCommand.json",
     "relations": {
       "implement": [],
       "trait": [],
@@ -32,14 +32,14 @@
     }
   },
   "\\UmlGeneratorPhp\\Documentation": {
-    "file": "/diagrams/Documentation.json",
+    "file": "Documentation.json",
     "relations": {
       "implement": [],
       "trait": []
     }
   },
   "\\UmlGeneratorPhp\\DrupalDocumentation": {
-    "file": "/diagrams/DrupalDocumentation.json",
+    "file": "DrupalDocumentation.json",
     "relations": {
       "implement": [],
       "trait": [],
@@ -47,7 +47,7 @@
     }
   },
   "\\UmlGeneratorPhp\\OopFilter": {
-    "file": "/diagrams/OopFilter.json",
+    "file": "OopFilter.json",
     "relations": {
       "implement": [],
       "trait": [],
@@ -55,7 +55,7 @@
     }
   },
   "\\UmlGeneratorPhp\\OopToDot": {
-    "file": "/diagrams/OopToDot.json",
+    "file": "OopToDot.json",
     "relations": {
       "implement": [],
       "trait": []
