@@ -2,14 +2,13 @@
 
 namespace UmlGeneratorPhp\Command;
 
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Finder\Finder;
 use UmlGeneratorPhp;
 
-class RunCommand extends Command
+class RunCommand extends BaseCommand
 {
     protected function configure()
     {
@@ -18,31 +17,26 @@ class RunCommand extends Command
           ->setDescription('Read .uml-generator-php.yml in project root and runs all tools');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        // Find the project root containing .uml-generator-php.yml
-        $projectRoot = getcwd();
-        $projectRoot = realpath($projectRoot) . '/';
-        while ($projectRoot !== '/') {
-            if (file_exists($projectRoot . '.uml-generator-php.yml')) {
-                break;
-            } else {
-                $projectRoot = realpath($projectRoot . '..') . '/';
-            }
-        }
-        if ($projectRoot == '/') {
-            $output->writeln('<error>.uml-generator-php.yml not found.</error>');
+    protected function execute(InputInterface $input, OutputInterface $output) {
+        $this->setOutput($output);
+
+        $this->findConfig();
+        $projectRoot = $this->getProjectRoot();
+        if (is_null($projectRoot)) {
+            $this->writeln('<error>.uml-generator-php.yml not found.</error> Please run : cp ' . realpath(__DIR__ . '/../../uml-generator-php.yml.dist') . ' ' . getcwd() . '/.uml-generator-php.yml');
             exit(1);
         }
-        $config = Yaml::parse(file_get_contents($projectRoot . '.uml-generator-php.yml'));
+        $config = $this->getConfig();
         chdir($projectRoot);
+
+        $outputDirectory = $config['output-dir'];
 
         // Run generate:json
         $command = $this->getApplication()->find('generate:json');
         $arguments = array(
-          'input' => $projectRoot,
           'command' => 'generate:json',
-          'output' => $config['outputdir']
+          'input' => $config['input-dir'],
+          'output' => $outputDirectory,
         );
         if (isset($config['skip'])) {
             $arguments['--skip'] = $config['skip'];
@@ -51,28 +45,57 @@ class RunCommand extends Command
             $arguments['--only'] = $config['only'];
         }
         $inputArguments = new ArrayInput($arguments);
-        $command->run($inputArguments, $output);
+        $this->writeln("  arguments: " . $inputArguments);
+        $result = $command->run($inputArguments, $output);
 
 
         // Run generate:dot
         $command = $this->getApplication()->find('generate:dot');
         $arguments = array(
-          'directory' => $config['outputdir'],
           'command' => 'generate:dot',
+          'directory' => $config['output-dir'],
         );
         if (isset($config['parents'])) {
             if ($config['parents']['enabled']) {
-                $arguments['--parents'] = true;
+                $arguments['--with-parents'] = FALSE;
             }
             if (isset($config['parents']['depth'])) {
-                $arguments['--parent-depth'] = $config['parents']['depth'];
+                $arguments['--parents-depth'] = $config['parents']['depth'];
             }
         }
         if (isset($config['legacy'])) {
-            $arguments['--legacy'] = true;
+            $arguments['--legacy'] = TRUE;
         }
         $inputArguments = new ArrayInput($arguments);
+        $this->writeln("  arguments: " . $inputArguments);
         $command->run($inputArguments, $output);
+
+        $this->writeln("<comment>Writing web files to '$outputDirectory'</comment>");
+        $this->copyWeb($outputDirectory);
+        $this->writeln($this->runWebserver($outputDirectory));
+
+    }
+
+    protected function runWebserver($outputDirectory) {
+        return "<comment>Refresh your browser or run:</comment> php -S 0.0.0.0:1337 -t '$outputDirectory'";
+    }
+
+    protected function copyWeb($outputDirectory) {
+        $finder = new Finder();
+        $finder->files()->in(__DIR__ . '/../../web/');
+        foreach ($finder as $file) {
+            $sourceFile = $file->getRealpath();
+
+            $destinationFile = $outputDirectory . '/' . $file->getRelativePathname();
+            $path = dirname($destinationFile);
+            if (!is_dir($path)) {
+                mkdir(dirname($destinationFile), 0777, TRUE);
+            }
+
+            $this->getOutput()->writeln("Copied: $sourceFile to $destinationFile");
+            file_put_contents($destinationFile, file_get_contents($sourceFile));
+
+        }
     }
 
 }

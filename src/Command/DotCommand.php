@@ -12,7 +12,7 @@ use UmlGeneratorPhp;
 use UmlGeneratorPhp\DrupalDocumentation;
 use UmlGeneratorPhp\OopToDot;
 
-class DotCommand extends Command
+class DotCommand extends BaseCommand
 {
     protected function configure()
     {
@@ -25,7 +25,7 @@ class DotCommand extends Command
             'The directory containing the JSON files.'
           )
           ->addOption(
-            'parents',
+            'with-parents',
             'p',
             InputOption::VALUE_NONE,
             'Add parents into file.'
@@ -37,7 +37,7 @@ class DotCommand extends Command
             'Set documentation url generator.'
           )
           ->addOption(
-            'parent-limit',
+            'parents-depth',
             'l',
             InputOption::VALUE_REQUIRED,
             'Limits the max depth of parents in a single graphviz file (all by default)',
@@ -53,18 +53,21 @@ class DotCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->setOutput($output);
+
         $directory = realpath($input->getArgument('directory'));
         if ($directory === false) {
-            $output->writeln('<error>Directory not found</error>');
+            $this->writeln('<error>Directory not found</error>');
             exit(1);
         }
+        $indexFile = $directory . '/uml-generator-php.index';
 
-        if (!is_file($directory . '/uml-generator-php.index')) {
-            $output->writeln("<error>No index file found. You need to run `uml-generator-php generate:json` first.</error>");
+        if (!is_file($indexFile)) {
+            $this->writeln("<error>No index file found</error> @ $indexFile. You need to run `uml-generator-php generate:json` first.");
             exit(1);
         };
 
-        $with_parents = $input->getOption('parents');
+        $with_parents = $input->getOption('with-parents');
 
         switch (strtolower($input->getOption('documenter'))) {
             case "drupal":
@@ -88,7 +91,7 @@ class DotCommand extends Command
         $finder->files()->ignoreUnreadableDirs()->in($directory);
         $files = $finder->name('*.json');
 
-        $limit = $input->getOption('parent-limit');
+        $limit = $input->getOption('parents-depth');
         $legacy = $input->getOption('legacy');
 
         foreach ($files as $file) {
@@ -103,7 +106,7 @@ class DotCommand extends Command
 
                 $pinfo = pathinfo($file);
                 $outputfile = $pinfo['dirname'] . '/' . $pinfo['filename'] . '.dot';
-                //$output->writeln($outputfile);
+                //$this->writeln($outputfile);
                 file_put_contents($outputfile, $dot);
             }
         }
@@ -125,4 +128,4 @@ class DotCommand extends Command
         return true;
     }
 
-} 
+}

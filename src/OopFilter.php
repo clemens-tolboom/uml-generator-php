@@ -138,7 +138,14 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
             $implements[] = $implementname;
         }
         $node['implements'] = $implements;
-        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['output']);
+        $relations = array(
+          'implement' => $implements,
+          'trait' => $traits,
+        );
+        if (isset($node['extends'])) {
+            $relations['extend'] = $node['extends'];
+        }
+        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['output'], $relations);
         return [$node];
     }
 
@@ -155,14 +162,16 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
           'name' => $statement->name,
           'children' => $statement->stmts
         ];
+        $relations = array();
         if (isset($statement->extends->parts)) {
             if ($statement->extends instanceof Node\Name\FullyQualified) {
                 $node['extends'] = '\\' . join('\\', $statement->extends->parts);
             } else {
                 $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
             }
+            $relations['extend'] = $node['extends'];
         }
-        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['output']);
+        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['output'], $relations);
         return [$node];
     }
 
@@ -179,14 +188,16 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
           'name' => $statement->name,
           'children' => $statement->stmts
         ];
+        $relations = array();
         if (isset($statement->extends->parts)) {
             if ($statement->extends instanceof Node\Name\FullyQualified) {
                 $node['extends'] = '\\' . join('\\', $statement->extends->parts);
             } else {
                 $node['extends'] = $this->currentNamespace . '\\' . join('\\', $statement->extends->parts);
             }
+            $relations['extend'] = $node['extends'];
         }
-        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['output']);
+        $this->addIndex($this->currentNamespace . '\\' . $statement->name, $this->getMeta()['output'], $relations);
         return [$node];
     }
 
@@ -289,10 +300,11 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
         return [$node];
     }
 
-    private function addIndex($fullyqualifiedname, $filename)
+    private function addIndex($fullyqualifiedname, $filename, $relations)
     {
         if (!isset($this->index[$fullyqualifiedname])) {
-            $this->index[$fullyqualifiedname] = $filename;
+            $this->index[$fullyqualifiedname]['file'] = $filename;
+            $this->index[$fullyqualifiedname]['relations'] = $relations;
         } else {
             $message = "Fully Qualified object name already in index: (%s) original file '%s', current file '%s'";
             //throw new \UnexpectedValueException(sprintf($message,$fullyqualifiedname, $this->index[$fullyqualifiedname], $filename));

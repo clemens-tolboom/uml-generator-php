@@ -1,3 +1,4 @@
-outputdir: tests/output
+input-dir: src
+output-dir: gh-pages/diagrams
 parents:
     enabled: true
