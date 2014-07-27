@@ -91,6 +91,10 @@ function loadGraph(callbackFunc) {
             }
         });
         console.log(graph);
+        var nodeCount = graph.nodes.length;
+        var linkCount = graph.links.length;
+        console.log("Graph has " + nodeCount +" nodes and " + linkCount + " links.");
+
         callbackFunc(graph);
     });
 
