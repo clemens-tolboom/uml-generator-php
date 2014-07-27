@@ -92,6 +92,7 @@ class RunCommand extends BaseCommand
                 mkdir(dirname($destinationFile), 0777, TRUE);
             }
 
+            $this->getOutput()->writeln("Copied: $sourceFile to $destinationFile");
             file_put_contents($destinationFile, file_get_contents($sourceFile));
 
         }
