@@ -17,20 +17,17 @@ body {
 }
 
 .link.extends {
-    stroke: #f00;
     stroke-width: 4.5px;
-    stroke: url(#line-gradient-extends);
+    stroke: url(#line-gradient-extends) #f00;
     stroke-width: 3px;
 }
 
 .link.trait {
-    stroke: #09f;
-    stroke: url(#line-gradient-trait);
+    stroke: url(#line-gradient-trait) #09f;
     stroke-width: 2px;
 }
 
 .link.implements {
-    stroke: #0f9;
-    stroke: url(#line-gradient-implements);
+    stroke: url(#line-gradient-implements) #0f9;
     stroke-width: 2px;
 }
