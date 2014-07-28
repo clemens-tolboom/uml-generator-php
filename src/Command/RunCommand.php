@@ -23,7 +23,6 @@ class RunCommand extends BaseCommand
         $this->findConfig();
         $projectRoot = $this->getProjectRoot();
         if (is_null($projectRoot)) {
-            $this->writeln('<error>.uml-generator-php.yml not found.</error> Please run : cp ' . realpath(__DIR__ . '/../../uml-generator-php.yml.dist') . ' ' . getcwd() . '/.uml-generator-php.yml');
             exit(1);
         }
         $config = $this->getConfig();
