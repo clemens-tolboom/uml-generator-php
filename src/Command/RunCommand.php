@@ -44,15 +44,17 @@ class RunCommand extends BaseCommand
             $arguments['--only'] = $config['only'];
         }
         $inputArguments = new ArrayInput($arguments);
-        $this->writeln("  arguments: " . $inputArguments);
+        // TODO: don't do next line as it breaks $inputArguments ... is it consuming it's config?
+        //$this->writeln("  arguments: " . $inputArguments);
         $result = $command->run($inputArguments, $output);
+        $this->writeln("Run result: " . $result, 3);
 
 
         // Run generate:dot
         $command = $this->getApplication()->find('generate:dot');
         $arguments = array(
           'command' => 'generate:dot',
-          'directory' => $config['output-dir'],
+          'directory' => $outputDirectory,
         );
         if (isset($config['parents'])) {
             if ($config['parents']['enabled']) {
@@ -66,7 +68,8 @@ class RunCommand extends BaseCommand
             $arguments['--legacy'] = TRUE;
         }
         $inputArguments = new ArrayInput($arguments);
-        $this->writeln("  arguments: " . $inputArguments);
+        // TODO: (see above for similar) don't do next line as it breaks $inputArguments ... is it consuming it's config?
+        //$this->writeln("  arguments: " . $inputArguments);
         $command->run($inputArguments, $output);
 
         $this->writeln("<comment>Writing web files to '$outputDirectory'</comment>");
