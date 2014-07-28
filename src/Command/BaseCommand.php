@@ -76,9 +76,26 @@ class BaseCommand extends Command {
 
     }
 
+    protected function overrideConfig($config, $key, $value)
+    {
+        // TODO allow for overriding path
+    }
+
+    private function validateConfig($config)
+    {
+        // TODO: validate the config
+        // TODO: fill in the defaults
+        // TODO: provide child to override the config
+
+    }
+
     public function getConfig() {
         $projectRoot = $this->getProjectRoot();
-        return Yaml::parse(file_get_contents($projectRoot . '/.uml-generator-php.yml'));
+        if (is_null($projectRoot)) {
+            throw new Exception("No config file found. This needs a '.uml-generator-php.yml' file somewhere");
+        }
+        $config = Yaml::parse(file_get_contents($projectRoot . '/.uml-generator-php.yml'));
+        return $config;
     }
 
 }
