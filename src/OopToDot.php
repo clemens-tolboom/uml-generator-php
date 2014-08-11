@@ -175,8 +175,14 @@ class OopToDot
               'protected' => 'protected %s',
               'private' => 'private %s',
             );
+            // TODO: refactor for both attributes and methods
+            //       both use similar (same) filter and sort anon function
 
+            // Get attributes
             $properties = array_filter($values['children'], function ($item) {
+                if (!is_array($item)){
+                  return FALSE;
+                }
                 return $item['type'] == 'attribute';
             });
             uasort($properties, function ($a, $b) {
@@ -207,7 +213,12 @@ class OopToDot
                 $result[] = '<tr><td></td></tr>';
             }
             $result[] = '<hr />';
+            // Get methods
             $methods = array_filter($values['children'], function ($item) {
+                if (!is_array($item)){
+                  echo "ERROR: Unexpected string value: " . $item . PHP_EOL;
+                  return FALSE;
+                }
                 return $item['type'] == 'method';
             });
             uasort($methods, function ($a, $b) {
