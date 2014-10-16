@@ -303,7 +303,8 @@ class OopFilter extends \PhpParser\NodeVisitorAbstract
     private function addIndex($fullyqualifiedname, $filename, $relations)
     {
         if (!isset($this->index[$fullyqualifiedname])) {
-            $this->index[$fullyqualifiedname]['file'] = $filename;
+            $base = $this->meta['base'];
+            $this->index[$fullyqualifiedname]['file'] = str_replace($base . '/', '', $filename);
             $this->index[$fullyqualifiedname]['relations'] = $relations;
         } else {
             $message = "Fully Qualified object name already in index: (%s) original file '%s', current file '%s'";
