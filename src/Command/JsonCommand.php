@@ -103,7 +103,7 @@ class JsonCommand extends BaseCommand
             $meta = array(
               'file' => $file->getPathName(),
               'output' => $outputFile,
-              'base' => $outputDirectory
+              'base' => realpath($outputDirectory)
             );
             $this->writeln($file->getPathName());
             try {
