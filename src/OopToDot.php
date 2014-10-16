@@ -37,7 +37,7 @@ class OopToDot
 
     function loadParentDiagram($array, $file_index, $limit, $loaded_files = [])
     {
-        if ($limit > 0) {
+        if ($limit > 0 && is_array($array)) {
             foreach ($array as $values) {
                 if (isset($values['implements'])) {
                     foreach ($values['implements'] as $implement) {
@@ -216,7 +216,6 @@ class OopToDot
             // Get methods
             $methods = array_filter($values['children'], function ($item) {
                 if (!is_array($item)){
-                  echo "ERROR: Unexpected string value: " . $item . PHP_EOL;
                   return FALSE;
                 }
                 return $item['type'] == 'method';
