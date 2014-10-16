@@ -84,13 +84,19 @@ class JsonCommand extends BaseCommand
             $this->writeln('Found index file: ' . $indexFile);
             $lastRunTimestamp = filemtime($indexFile);
         } else {
-            $lastRunTimestamp = 0;
+            $this->writeln('Reindexing all files');
+            $lastRunTimestamp = FALSE;
         }
 
-        $files->date('since @' . $lastRunTimestamp);
+        if ($lastRunTimestamp) {
+            // TODO: this skips old files when having index or deleted index. Why?
+            // TODO: does doing a git pull after last run skips files added in the past?
+            //$files->date('since @' . $lastRunTimestamp);
+        }
 
         $visitor = new UmlGeneratorPhp\OopFilter;
         foreach ($files as $file) {
+            $this->writeln('Parsing: ' . $file);
             // Parse file for OOP concepts
             $code = file_get_contents($file);
             $parser = new \PhpParser\Parser(new \PhpParser\Lexer);
