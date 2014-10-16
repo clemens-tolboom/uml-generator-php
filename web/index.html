@@ -23,7 +23,7 @@
                 <div class="panel-heading">Search result</div>
                 <div class="list-group">
                     <a href="#" class="list-group-item" ng-repeat="class in classes | filter:searchquery | limitTo: 500"
-                       ng-click="openClass(class.name)">{{ class.name }}</a>
+                       ng-click="openClass($event, class.name)">{{ class.name }}</a>
                 </div>
             </div>
         </div>
@@ -52,7 +52,8 @@
             });
         });
 
-        $scope.openClass = function (name) {
+        $scope.openClass = function (event, name) {
+            event.preventDefault();
             var file = $scope.classInfo[name].file;
             $scope.svgPath = file.replace(".json", ".dot.svg");
         };
