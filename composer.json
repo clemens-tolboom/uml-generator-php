@@ -2,6 +2,7 @@
     "name": "clemens-tolboom/uml-php-parser",
     "description": "Parser PHP into UML diagrams.",
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "license": "proprietary",
     "authors": [
         {
@@ -15,10 +16,10 @@
         }
     },
     "require": {
-        "nikic/php-parser": "1.0.*@dev",
-        "symfony/console": "2.6.*@dev",
-        "symfony/finder": "2.6.*@dev",
-        "symfony/yaml": "2.6.*@dev"
+        "nikic/php-parser": "^2.0",
+        "symfony/console": "^2.6",
+        "symfony/finder": "^2.6",
+        "symfony/yaml": "^2.6"
     },
     "require-dev": {
       "phpunit/phpunit": "3.7.*"
