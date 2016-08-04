@@ -2,6 +2,7 @@
 
 namespace UmlGeneratorPhp\Command;
 
+use PhpParser\ParserFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -93,7 +94,7 @@ class JsonCommand extends BaseCommand
         foreach ($files as $file) {
             // Parse file for OOP concepts
             $code = file_get_contents($file);
-            $parser = new \PhpParser\Parser(new \PhpParser\Lexer);
+            $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);
             $traverser = new \PhpParser\NodeTraverser;
 
             $pinfo = pathinfo($file);

@@ -1,7 +1,7 @@
 <?php
-require 'vendor/autoload.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 
-use NodeVisitorDump;
+use PhpParser\ParserFactory;
 
 ini_set('xdebug.max_nesting_level', 2000);
 
@@ -9,7 +9,7 @@ $code = '<?php // some code';
 
 $code = file_get_contents('/Users/clemens/Sites/drupal/d8/www/core/lib/Drupal.php');
 
-$parser = new PhpParser\Parser(new PhpParser\Lexer);
+$parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);
 
 $traverser = new PhpParser\NodeTraverser;
 

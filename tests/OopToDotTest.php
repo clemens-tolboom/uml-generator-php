@@ -9,6 +9,7 @@
 
 namespace UmlGeneratorPhp;
 
+use PhpParser\ParserFactory;
 use UmlGeneratorPhp\OopFilter;
 use UmlGeneratorPhp\OopToDot;
 
@@ -19,7 +20,7 @@ class OopToDotTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->parser = new \PhpParser\Parser(new \PhpParser\Lexer);
+        $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);
         $this->traverser = new \PhpParser\NodeTraverser;
         $filter = new OopFilter;
         $filter->setMeta([
@@ -42,4 +43,3 @@ class OopToDotTest extends \PHPUnit_Framework_TestCase
     }
 
 }
- 
