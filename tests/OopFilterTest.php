@@ -8,6 +8,7 @@
 
 namespace UmlGeneratorPhp;
 
+use PhpParser\ParserFactory;
 
 class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,7 +18,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->parser = new \PhpParser\Parser(new \PhpParser\Lexer);
+        $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);
         $this->traverser = new \PhpParser\NodeTraverser;
 
         $this->visitor = new OopFilter;
