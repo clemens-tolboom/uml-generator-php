@@ -25,6 +25,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->visitor->setMeta([
             'file' => 'dummy/path.php',
             'output' => 'dummy/output',
+            'base' => ''
         ]);
         $this->traverser->addVisitor($this->visitor);
     }
