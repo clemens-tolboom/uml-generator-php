@@ -26,6 +26,7 @@ class OopToDotTest extends \PHPUnit_Framework_TestCase
         $filter->setMeta([
             'file' => '/dummy/path.php',
             'output' => 'dummy/output',
+            'base' => ''
         ]);
         $this->traverser->addVisitor($filter);
     }
